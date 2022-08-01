@@ -1,0 +1,223 @@
+.view {
+  background: transparent linear-gradient(135deg, #f4f3f3 30%, #4d52523e 100%)
+    0% 0% no-repeat padding-box;
+    /* min-height: 100vh; */
+    padding-bottom: 50px;
+}
+@media only screen and (min-width: 850px) {
+  .view__content {
+    max-width: 90%;
+    margin: auto;
+  }
+}
+.view__content {
+  margin-top: 15px;
+}
+.view__right {
+  /* border: solid red; */
+  /* height: 100vh; */
+  margin-left: 10px;
+  background-color: #fff;
+  width: 100%;
+  padding: 15px;
+}
+.view__head {
+  padding: 6px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}
+.view__head h6 {
+  /* font-family: "Poppins",sans-serif; */
+  font-family: "Heebo", sans-serif;
+  font-weight: bold;
+  color: rgb(7, 92, 129);
+}
+.view__head__left {
+  align-items: center;
+}
+.view__head__left p {
+  font-family: "Heebo", sans-serif;
+  font-size: 15px;
+  margin-left: 5px;
+  margin-top: -2px;
+  color: rgb(56, 54, 54);
+}
+.view__head__right p {
+  font-family: "Heebo", sans-serif;
+  font-size: 15px;
+  margin-left: 5px;
+  margin-left: -1px;
+  color: rgb(56, 54, 54);
+}
+#view__loc__icon {
+  font-size: 18px;
+  color: rgb(3, 74, 3);
+}
+
+.view__main {
+  background-color: rgb(231, 236, 236);
+  /* height: 400px; */
+  padding: 10px;
+  padding-right: 25px;
+  padding-bottom: 20px;
+}
+/* .view__main__img{
+    max-width: 200px;
+} */
+.view__main__right {
+  /* border: saddlebrown solid; */
+}
+
+.view__main__first__left {
+  align-items: center;
+  margin-top: 5px;
+}
+.view__main__first__row p {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  margin-left: 5px;
+  /* margin-left: -1px; */
+  color: rgb(90, 88, 88);
+  
+}
+
+ 
+ 
+.view__main__first__row {
+  margin-top: 10px;
+}
+.view__main__icons{
+    font-size: 18px;
+    color: rgb(82, 80, 80);
+}
+#auto__icon{
+    color: rgb(255, 208, 0);
+}
+#view__peron{
+    color: rgb(0, 140, 255);
+}
+#sett__icon{
+    color: rgb(98, 0, 255);
+}
+#school__icon{
+    color: rgb(54, 95, 129);
+}
+#place__icon{
+    color: rgb(211, 103, 21);
+}
+
+.view__like{
+    background-color: #fffbfb98;
+    /* height: 200px; */
+    margin-top: 10px;
+    padding: 10px;
+}
+  .view__like h6{
+    font-family: "Heebo", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    /* margin-left: 5px; */
+    /* margin-left: -1px; */
+    color: rgb(4, 86, 109);
+  }
+  .view__like p{
+    font-family: "Heebo", sans-serif;
+    font-size: 14px;
+    /* margin-left: 5px; */
+  margin-top: 5px;
+    
+    /* margin-left: -1px; */
+    color: rgb(90, 88, 88);
+  }
+  .view__like h5{
+    font-family: "Heebo", sans-serif;
+    font-size: 13.5px;
+    /* margin-left: 5px; */
+  margin-top: 5px;
+    
+    /* margin-left: -1px; */
+    color: rgb(121, 120, 120);
+  }
+  .view__like  button{
+    font-family: "Heebo", sans-serif;
+    background-color: rgb(234, 10, 10);
+    color: #fff;
+    font-size: 14px;
+    padding: 5px;
+    margin-top: 10px;
+
+  }
+  #view__fav__icon{
+margin-left: 5px;
+font-size: 23px;
+  }
+  .view__desc{
+margin-top: 10px;
+box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+padding : 10px;
+padding-bottom: 10px;
+  }
+
+  .view__desc h6{
+    
+    font-weight: bold;
+    font-family: "Heebo", sans-serif;
+    color: rgb(6, 64, 122);
+}
+.view__desc p{
+    
+   font-size: 14px;
+    font-family: "Heebo", sans-serif;
+    color: rgb(84, 84, 84);
+}
+ .view__desc h5{
+    font-size: 14px;
+    font-family: "Heebo", sans-serif;
+    /* color: rgb(84, 84, 84); */
+    /* margin-left: 5px; */
+ }
+
+ .view__desc__columns{
+    /* border: solid red; */
+ }
+
+ .view__intrest__send{
+    margin-top: 10px;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    padding : 10px;
+    padding-bottom: 10px;
+    /* background-color: rgb(217, 212, 212); */
+    /* height: 200px; */
+ }
+ .view__intrest__send__head{
+    background-color: rgb(12, 100, 49);
+    /* height: 40px; */
+    padding: 10px;
+    font-size: 17px;
+    font-family: "Heebo", sans-serif;
+    color: #fff;
+    font-weight: bold;
+ }
+
+ .view__intrest__send__div{
+    padding-bottom: 30px;
+    justify-content: space-between;
+    padding-top: 30px;
+    /* height: 200px; */
+    background-color: rgb(244, 243, 243);
+ }
+ .view__intrest__send__div p{
+    font-family: "Heebo", sans-serif;
+     
+  margin-left: 10px;
+ 
+ }
+ .view__intrest__send__div button{
+    background-color: rgb(193, 13, 13);
+    margin-right: 20px;
+    color: #fff;
+    font-family: "Heebo", sans-serif;
+    font-size: 14px;
+    padding: 5px;
+ }

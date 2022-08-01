@@ -1,0 +1,212 @@
+.edu{
+    min-height: 90vh;
+    /* border: solid red; */
+    background: transparent linear-gradient(135deg, #ffffff 30%, #5cb3b21b 100%) 0% 0% no-repeat padding-box;
+padding-top: 50px;
+font-family: 'Poppins',sans-serif;
+padding-bottom: 50px    ;
+}
+.edu h3{
+    font-weight: 700;
+    font-size: 27px;
+    /* color: rgb(47, 255, 92); */
+}
+
+@media screen and (min-width: 800px){
+    .edu__div{
+max-width: 80%;
+margin: auto;
+    }
+}
+
+.edu__right form{
+    margin: auto;
+ 
+    background-color: #fff;
+    margin-top: 30px;
+    border-radius: 16px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+ padding: 25px;
+ font-family: 'Poppins', sans-serif;
+max-width: 700px;
+}
+.edu__row textarea{
+    width: 100%;
+    border: solid 1px rgba(128, 128, 128, 0.518);
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    outline: none;
+    font-size: 14px; 
+}
+.edu__row input {
+    width: 100%;
+    border: solid 1px rgba(128, 128, 128, 0.518);
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    outline: none;
+    font-size: 14px;
+}
+.edu__row select{
+    width: 100%; 
+    border: solid 1px rgba(128, 128, 128, 0.518);
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    /* padding-right: 2  0px; */
+    outline: none;
+    font-size: 15px;
+    color: rgb(95, 93, 93);
+ 
+}
+.edu__second__row select{
+    width: 100%; 
+    border: solid 1px rgba(128, 128, 128, 0.518);
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    /* padding-right: 2  0px; */
+    outline: none;
+    font-size: 15px;
+    color: rgb(95, 93, 93);
+ 
+}
+.edu__second__row{
+    margin-top: 10px;
+}
+.edu__second__row p{
+    font-size: 14px;
+    color: rgb(95, 93, 93);
+ 
+}
+.edu__row{
+    font-size: 14px;
+    color: rgb(95, 93, 93);
+ 
+
+}
+.pr__crtn__row p{
+    font-size: 14px;
+    color: rgb(95, 93, 93);
+ 
+}
+ 
+ 
+ 
+ 
+ 
+ .edu__location{
+    margin-top: 20px;
+    padding: 10px;
+    padding-bottom: 20px;
+    /* height: 200px; */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+     background-color: rgba(173, 242, 219, 0.18);
+ }
+ .edu__location{
+    font-size: 14px;
+    color: rgb(95, 93, 93);
+ 
+
+}
+ .edu__location__row select{
+    width: 100%; 
+    border: solid 1px rgba(128, 128, 128, 0.518);
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    /* padding-right: 2  0px; */
+    outline: none;
+    font-size: 15px;
+    color: rgb(95, 93, 93);
+ }
+
+
+ .edu__phone__row{
+    font-size: 14px;
+    color: rgb(95, 93, 93);
+ }
+@media screen and (max-width: 800px){
+    .pf__crtn{
+  
+        /* border: solid red; */
+        background: transparent linear-gradient(135deg, #ffffff 30%, #5cb3b21b 100%) 0% 0% no-repeat padding-box;
+    padding-top: 20px;
+    font-family: 'Poppins',sans-serif;
+    padding-bottom: 50px    ;
+    }
+    .pf__crtn h3{
+        font-weight: 700;
+        font-size: 20px;
+        text-align: center;
+        /* border: solid red; */
+        /* color: rgb(47, 255, 92); */
+    }
+    .pf__crtn__left{
+        font-size: 18px;
+        text-align: center;
+    }
+    .pf__crtn__left__img{
+        max-width: 200px;
+        margin: auto;
+    }
+    .pf__crtn__div {
+        padding: 15px;
+    }
+    .pf__crtn__right form{
+        padding: 10px;
+    }
+    .pr__crtn__row select{
+        
+        padding: 3px;
+        
+        font-size: 14px;
+        
+     
+    }
+    .pr__crtn__second__row select{
+     
+        margin-top: 5px;
+        border-radius: 5px;
+        padding: 3px;
+        /* padding-right: 2  0px; */
+        outline: none;
+        font-size: 14px;
+        color: rgb(95, 93, 93);
+     
+    }
+    .pr__crtn__second__row{
+        margin-top: 10px;
+    }
+    .pr__crtn__second__row p{
+        font-size: 14px;
+        color: rgb(95, 93, 93);
+     
+    }
+    .pr__crtn__third__row{
+        margin-top: 2px;
+    }
+    .pr__crtn__row p{
+        font-size: 14px;
+        color: rgb(95, 93, 93);
+     
+    }
+    .pr__crtn__second__row input{
+      
+       padding: 3px;
+       
+       font-size: 13px;
+       margin-top: 2px;
+    }
+    .pr__crtn__second__row p{
+        font-size: 13px;
+        color: rgb(95, 93, 93);
+     
+    }
+    .pr__crtn__second__row{
+        margin-top: 10px;
+    }
+}

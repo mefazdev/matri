@@ -1,0 +1,213 @@
+.pf__crtn{
+    min-height: 90vh;
+    /* border: solid red; */
+    background: transparent linear-gradient(135deg, #ffffff 30%, #5cb3b21b 100%) 0% 0% no-repeat padding-box;
+padding-top: 50px;
+font-family: 'Poppins',sans-serif;
+padding-bottom: 50px    ;
+}
+.pf__crtn h3{
+    font-weight: 700;
+    font-size: 27px;
+    /* color: rgb(47, 255, 92); */
+}
+
+@media screen and (min-width: 800px){
+    .pf__crtn__div{
+max-width: 80%;
+margin: auto;
+    }
+}
+
+.pf__crtn__right form{
+    margin: auto;
+ 
+    background-color: #fff;
+    margin-top: 30px;
+    border-radius: 16px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+ padding: 25px;
+ font-family: 'Poppins', sans-serif;
+max-width: 700px;
+}
+.pr__crtn__row select{
+    width: 100%; 
+    border: solid 1px rgba(128, 128, 128, 0.518);
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    /* padding-right: 2  0px; */
+    outline: none;
+    font-size: 15px;
+    color: rgb(95, 93, 93);
+ 
+}
+.pr__crtn__second__row select{
+    width: 100%; 
+    border: solid 1px rgba(128, 128, 128, 0.518);
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    /* padding-right: 2  0px; */
+    outline: none;
+    font-size: 15px;
+    color: rgb(95, 93, 93);
+ 
+}
+.pr__crtn__second__row{
+    margin-top: 10px;
+}
+.pr__crtn__second__row p{
+    font-size: 14px;
+    color: rgb(95, 93, 93);
+ 
+}
+.pr__crtn__row p{
+    font-size: 14px;
+    color: rgb(95, 93, 93);
+ 
+}
+.pr__crtn__second__row input{
+    width: 100%;
+   border: solid 1px rgba(128, 128, 128, 0.518);
+   margin-top: 5px;
+   border-radius: 5px;
+   padding: 5px;
+   outline: none;
+   font-size: 14px;
+}
+.ph__challange__row{
+    /* border: saddlebrown solid; */
+    max-width: 130px;
+    margin-top: 10px;
+}
+.maritial__status__row__input__row{
+    /* border: saddlebrown solid; */
+    /* justify-content: space-between; */
+    max-width: 160px;
+}
+.maritial__status__row__input__row input{
+    /* border: saddlebrown solid; */
+    max-width: 15px;
+    margin-left: 5px;
+     
+    
+}
+.maritial__status__row__input__row__3{
+    max-width: 130px;
+}
+
+#pr__crtn__btn__one{
+    background-color: rgb(187, 241, 241);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 4px;
+    width: 120px;
+    color: green;
+    margin-right: 5px;
+}
+#pr__crtn__btn__two{
+    /* background-color: rgb(187, 241, 241); */
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 4px;
+    width: 120px;
+    margin: auto;
+    margin-left: 5px;
+    color: #fff;
+    background-color: rgb(0, 128, 68);
+}
+
+.pr__crtn__third__row{
+    margin: auto;
+    margin-top: 30px;
+    /* border: solid red; */
+    max-width: 260px;
+
+
+}
+
+
+@media screen and (max-width: 800px){
+    .pf__crtn{
+  
+        /* border: solid red; */
+        background: transparent linear-gradient(135deg, #ffffff 30%, #5cb3b21b 100%) 0% 0% no-repeat padding-box;
+    padding-top: 20px;
+    font-family: 'Poppins',sans-serif;
+    padding-bottom: 50px    ;
+    }
+    .pf__crtn h3{
+        font-weight: 700;
+        font-size: 20px;
+        text-align: center;
+        /* border: solid red; */
+        /* color: rgb(47, 255, 92); */
+    }
+    .pf__crtn__left{
+        font-size: 18px;
+        text-align: center;
+    }
+    .pf__crtn__left__img{
+        max-width: 200px;
+        margin: auto;
+    }
+    .pf__crtn__div {
+        padding: 15px;
+    }
+    .pf__crtn__right form{
+        padding: 10px;
+    }
+    .pr__crtn__row select{
+        
+        padding: 3px;
+        
+        font-size: 14px;
+        
+     
+    }
+    .pr__crtn__second__row select{
+     
+        margin-top: 5px;
+        border-radius: 5px;
+        padding: 3px;
+        /* padding-right: 2  0px; */
+        outline: none;
+        font-size: 14px;
+        color: rgb(95, 93, 93);
+     
+    }
+    .pr__crtn__second__row{
+        margin-top: 10px;
+    }
+    .pr__crtn__second__row p{
+        font-size: 14px;
+        color: rgb(95, 93, 93);
+     
+    }
+    .pr__crtn__third__row{
+        margin-top: 2px;
+    }
+    .pr__crtn__row p{
+        font-size: 14px;
+        color: rgb(95, 93, 93);
+     
+    }
+    .pr__crtn__second__row input{
+      
+       padding: 3px;
+       
+       font-size: 13px;
+       margin-top: 2px;
+    }
+    .pr__crtn__second__row p{
+        font-size: 13px;
+        color: rgb(95, 93, 93);
+     
+    }
+    .pr__crtn__second__row{
+        margin-top: 10px;
+    }
+}

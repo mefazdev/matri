@@ -1,0 +1,108 @@
+import { combineReducers } from 'redux'
+import * as types from './types'
+
+const descEditControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__DESC__EDIT:
+        return state =  true
+      case types.CLOSE__DESC__EDIT :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
+  const relgsEditControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__RELGS__EDIT :
+        return state =  true
+      case types.CLOSE__RELGS__EDIT :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
+  const eduEditControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__EDU__EDIT:
+        return state =  true
+      case types.CLOSE__EDU__EDIT :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
+  const famEditControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__FAM__EDIT:
+        return state =  true
+      case types.CLOSE__FAM__EDIT :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
+  const locEditControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__LOC__EDIT:
+        return state =  true
+      case types.CLOSE__LOC__EDIT :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
+  const lookingEditControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__LOOKING__EDIT:
+        return state =  true
+      case types.CLOSE__LOOKING__EDIT :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
+  const physiEditControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__PHYSI__EDIT:
+        return state =  true
+      case types.CLOSE__PHYSI__EDIT :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
+  const basicEditControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__BASIC__EDIT:
+        return state =  true
+      case types.CLOSE__BASIC__EDIT :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
+  const reducers= {
+basicEditControl :basicEditControl,
+   descEditControl : descEditControl,
+   relgsEditControl :relgsEditControl,
+   eduEditControl : eduEditControl,
+   famEditControl : famEditControl,
+locEditControl : locEditControl,
+lookingEditControl: lookingEditControl,
+physiEditControl:physiEditControl,
+
+
+
+
+  }
+
+
+  export default combineReducers(reducers)

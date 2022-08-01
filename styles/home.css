@@ -1,0 +1,224 @@
+ 
+.home__main{
+/* border: saddlebrown solid; */
+/* margin-top: 30px; */
+/* height: 90vh; */
+background-color: aliceblue;
+}
+
+.home__main__right{
+/* border: solid green; */
+}
+
+.home__main__div{
+/* border: solid red; */
+margin: auto;
+padding-top: 30px;
+}
+@media only screen and (min-width: 850px) {
+    .home__main__div{
+        max-width: 80%;
+    }
+    .home__main{
+      height: 90vh;
+    }
+ 
+ }
+ .home__main__right h2{
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+ }
+ .home__main__right form{
+   margin: auto;
+ 
+    background-color: #fff;
+    margin-top: 30px;
+    border-radius: 16px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+ padding: 25px;
+ font-family: 'Heebo', sans-serif;
+max-width: 700px; 
+}
+
+ .home__main__img{
+   /* border: saddlebrown solid; */
+   display: flex;
+   align-items: center;
+ }
+ .main__form__head{
+   padding-bottom: 5px;
+   border-bottom: .5px solid rgba(128, 128, 128, 0.183);
+ }
+ .main__form__head p{
+   font-family: 'Poppins', sans-serif;
+   font-weight: 600;
+ }
+ .main__form__row{
+   margin-top: 20px;
+ }
+ .main__form__row  p  {
+   color: rgba(128, 128, 128, 0.925);
+   font-size: 14px;
+   font-weight: 500; 
+   letter-spacing: .5px;
+ }
+ .main__form__row  label  {
+   color: rgb(109, 105, 105);
+   font-size: 14px;
+   font-weight: 500; 
+   letter-spacing: .5px;
+ }
+ .main__form__row input{
+   font-size: 13px;
+ }
+ .main__form__row__left{
+width: 100%;
+
+/* border: solid ; */
+ }
+ .main__form__row__left select{
+   width: 100%; 
+   border: solid 1px rgba(128, 128, 128, 0.518);
+   margin-top: 5px;
+   border-radius: 5px;
+   padding: 5px;
+   /* padding-right: 2  0px; */
+   outline: none;
+
+ }
+ .main__form__row__right input{
+   width: 100%;
+   border: solid 1px rgba(128, 128, 128, 0.518);
+   margin-top: 5px;
+   border-radius: 5px;
+   padding: 5px;
+   outline: none;
+ }
+ .main__form__row__left input{
+  width: 100%;
+  border: solid 1px rgba(128, 128, 128, 0.518);
+  margin-top: 5px;
+  border-radius: 5px;
+  padding: 5px;
+  outline: none;
+ }
+
+ .phone__input select{
+   max-width: 100px;
+ } 
+ .phone__input{
+   background: #ffffff 0% 0% no-repeat padding-box;
+   border: 1px solid #c4c4c4;
+   margin-top: 10px;
+   height: 40px;
+   outline: none;
+   padding-left: 2px;
+
+   display: flex;
+   border-radius: 5px;
+   padding-top: 5px;
+   /* align-items: center; */
+   /* border: saddlebrown solid; */
+position: relative;
+ }
+ .phone__input input{
+   /* margin-top: -120px; */
+   position: absolute;
+   /* max-width: 170px; */
+   width: 100%;
+   max-width: 80%;
+   top: 0;
+   right: 0;
+ margin-right: 5px;
+ border: none;
+   /* margin-left: 50px; */
+  padding-top: 5px;
+      outline: none;
+      height: initial;
+       
+      margin-top: 0px;
+      padding-left: 5px;
+      background: #ffffff 0% 0% no-repeat padding-box;
+/* display: none; */
+ }
+ .phone__input  img{
+   max-width: 30px;
+   margin-top: -20px;
+ }
+ .phone__input  select {
+outline: none;
+margin-left: 30px;
+max-width: 20px;
+ /* display: none; */
+
+ }
+
+  
+ 
+ 
+ .main__form__gender{
+   max-width: 170px;
+ }
+ .main__form__check__div input[type=checkbox] {
+   accent-color: rgba(0, 128, 51, 0.826);
+   
+   height: 15px;
+   width: 15px;
+ }
+ .main__form__check__div{
+   display: flex;
+   margin-top: 20px;
+   /* align-items: center  ; */
+ }
+ .main__form__check__div p{
+   margin-top: -4px;
+   font-size: 14px;
+   color: gray;
+   margin-left: 5px;
+   /* margin-top: 4; */
+ }
+.home__main__form__btn__div{
+   width: 100%;
+   /* border: solid red; */
+}
+ #home__main__form__btn{
+background-color: rgba(0, 128, 51, 0.826);
+color: #fff;
+margin: auto;
+margin-top: 30px;
+padding: 7px;
+width: 100%;
+max-width: 350px;
+border-radius: 5px;
+box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+ }
+
+
+ @media only screen and (max-width: 850px) {
+   .home__main__img{
+      /* display: none; */
+   }
+   .home__main__div {
+      padding: 20px;
+      height: inherit;
+   }
+   .phone__input input{
+      
+      width: 100%;
+      max-width: 70%;
+   }
+   .home__main__img{
+      /* border: solid red; */
+      margin: auto;
+      display: none;
+     
+   }
+   .home__main__right h2{
+      font-family: 'Poppins', sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+      /* text-align: ; */
+   }
+}
