@@ -206,7 +206,7 @@ const [saving, setSaving] = useState(false)
            </select>
           </div>
           <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
-            <p>Mothers's Profession</p>
+            <p>Mothers&apos;s Profession</p>
           <input onChange={(e)=>setmothersProf(e.target.value)} value={mothersProf}/>
           </div>
           </div>
