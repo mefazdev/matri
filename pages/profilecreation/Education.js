@@ -7,8 +7,9 @@ import Link from 'next/link'
  import { courses } from '../../asset/data/courses'
  import { professions } from '../../asset/data/profession'
 import { cities } from '../../asset/data/cities'
+import {districts} from '../../asset/data/districts'
 import {
-  createUserWithEmailAndPassword,
+   
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth, db } from "../../firebase";
@@ -22,8 +23,12 @@ function Education() {
   const [profession, setProfession] = useState('')
   const [profType, setProfType] = useState('')
   const [city, setCity] = useState('')
+ const [district,setDistrict] = useState('')
+ const [address,setAddress] = useState('')
+
   const [user, setUser] = useState({})
   const [member, setMember] = useState([])
+
 
 const router = useRouter()
   const getUser = ()=>{
@@ -58,7 +63,8 @@ const router = useRouter()
     profession:profession,
     profType:profType,
     city:city,
-   
+   district:district,
+   address:address
     });
 
     router.push('/profilecreation/Description')
@@ -150,13 +156,20 @@ const router = useRouter()
                </div>
                 <div className='edu__location'>
                   <div className='edu__location__row '>
-                   <p>Home location</p>
+                   <p>Location</p>
                   <div className='grid grid-cols-3 gap-5'>
                     <select>
-                      <option>India</option>
-                    </select>
-                    <select>
                       <option>Kerala</option>
+                    </select>
+                    <select required
+                    onChange={(e)=>setDistrict(e.target.value)}
+                    >
+                      <option value='' >District</option>
+                      {districts.map((dist,index)=>{
+                        return(
+                          <option key={index}>{dist}</option>
+                        )
+                      })} 
                     </select>
                     <select onChange={(e)=>setCity(e.target.value)} required>
                       <option value=''>City</option>
@@ -167,7 +180,20 @@ const router = useRouter()
                       })}
                     </select>
                     </div>
+                    
                   </div>
+                  <div className='edu__location__row mt-5'>
+                   <p>Full Address</p>
+                 
+                 
+                      <textarea
+                      required
+                      rows={4}
+                      onChange={(e)=>setAddress(e.target.value)}
+                      id='address__area'/>
+                    </div>
+                    
+ 
                   {/* <div className='edu__location__row mt-5'>
                    <p>Present location</p>
                    <div className='grid grid-cols-3 gap-5'>

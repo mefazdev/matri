@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import imageHolder from '../asset/image/photo-holder.png'
 import Image from 'next/image'
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
@@ -9,16 +9,66 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import PhoneIcon from '@mui/icons-material/Phone';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'; 
+import {
+ 
+  onAuthStateChanged,
+} from "firebase/auth";
+import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { auth, db } from '../firebase';
+import Link from 'next/link';
+import { useSelector, useDispatch } from "react-redux";
+import { openSearch } from '../redux/actions';
+import { signOut } from "firebase/auth";
+import { useRouter } from 'next/router';
+
 export default function AccoundSidebar() {
+  const router = useRouter()
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({})
+  const [member, setMember] = useState([])
+  const getUser = ()=>{
+    onAuthStateChanged(auth, (currentUser) => {
+       setUser(currentUser);
+     
+     });
+     }
+     const fetchMember = async () => {
+      const userId = await user ? user.uid : null;
+  
+      if (userId) {
+        const q = await query(
+          collection(db, "member"),
+          where("userId", "==", user?.uid)
+        );
+  
+        const data = await getDocs(q);
+        setMember(data.docs.map((doc) => doc));
+      }
+    };  
+
+
+   const logOut = async()=>{
+    await signOut(auth)
+    router.push('/')
+
+   } 
+     useEffect(()=>{
+      getUser()
+     },[])
+
+     useEffect(()=>{
+      fetchMember()
+     },[user])
   return (
     <div className='acc__sbar'>
         <div className='sbar__first__row flex '>
  <div className='sbar__first__row__left'>
- <Image src={imageHolder} alt='' />
+  {member.photo ? <img src={member.photo} alt=''/> :  <Image src={imageHolder} alt='' />}
+
  </div>
  <div className='sbar__first__row__right'>
 
-    <h6> <span style={{fontWeight:"bold"}}>SALAHUDDE</span>(WR433454) </h6>
+    <h6> <span style={{fontWeight:"bold"}}>{member[0]?.data().brideName}</span>({member[0]?.data().profileId}) </h6>
     <p>Account : Free</p>
     <button>Upgrade</button>
  </div>
@@ -29,14 +79,18 @@ export default function AccoundSidebar() {
         </div>
         <div className='sbar__second__row '>
         <div className='sbar__second__row__div  flex'>
-            <button id='sbar__second__row__btn1'>Profiles</button>
-            <button id='sbar__second__row__btn2'>Search</button>
+          <Link href='/account/Home'><button id='sbar__second__row__btn1'>Profiles</button></Link>
+           
+            <button id='sbar__second__row__btn2' onClick={()=>dispatch(openSearch())}>Search</button>
             
   
 </div>
 <div className='sbar__second__row__div  flex'>
-<button id='sbar__second__row__btn3' >Explore</button>
-            <button id='sbar__second__row__btn4'>Logout</button>
+  <Link href='/account/Explore'><button id='sbar__second__row__btn3' >Explore</button></Link>
+
+            <button
+            onClick={logOut}
+            id='sbar__second__row__btn4'>Logout</button>
 </div>
 </div>
 
@@ -49,10 +103,14 @@ export default function AccoundSidebar() {
       <CameraAltIcon id='sbar__third__row__bottom__icon'/>
       <p>Manage Photos</p>
         </div>
-        <div className='sbar__third__row__right flex'>
-            <EditIcon id='sbar__third__row__bottom__icon'/>
+        <Link 
+        
+        href={`/account/editProfile/${encodeURIComponent(member[0]?.id)}`}><div className='sbar__third__row__right flex'
+        
+        ><EditIcon id='sbar__third__row__bottom__icon'/>
             <p>Edit Profile</p>
-        </div>
+        </div></Link>
+        
     </div>
 </div>
 
@@ -84,7 +142,7 @@ export default function AccoundSidebar() {
          <div className='sbar__setings__row grid grid-cols-2 gap-4'>
         <div className='sbar__setings__left flex'>
             <PowerSettingsNewIcon id='sbar__third__row__bottom__icon'/>
-            <p>Logout</p>
+            <p onClick={logOut}>Logout</p>
         </div>
        
          </div>

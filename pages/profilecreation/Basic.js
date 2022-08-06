@@ -23,7 +23,7 @@ export default function Basic() {
   const [weight, setWeight] = useState('');
   const [skinTone, setSkinTone] = useState("");
   const [bodyType, setBodyType] = useState("");
-  const [physically, setPhysically] = useState("");
+  const [physically, setPhysically] = useState("no");
   const [maritialStatus, setMaritialStatus] = useState("");
   const [user, setUser] = useState({});
   const [member, setMember] = useState([]);
@@ -98,10 +98,10 @@ const router = useRouter()
             <div className="pf__crtn__left__img">
               <Image src={couples} />
             </div>
-            <button onClick={ submitForm
-              // () => 
-              // console.log(member[0].id)
-               }>CLICKME </button>
+            {/* <button onClick={  
+              () => 
+              console.log(physically)
+               }>CLICKME </button> */}
           </div>
 
           <div className="pf__crtn__right md:col-span-2">
@@ -113,7 +113,8 @@ const router = useRouter()
                 Date of Birth<span style={{ color: "red" }}>*</span>
               </p>
               <div className="gap-5 grid grid-cols-3">
-                <select onChange={(e) => setDay(e.target.value)} required>
+                <select
+                  onChange={(e) => setDay(e.target.value)} required>
                 <option value=''>Day</option>
                   {days.map((day, index) => {
                     return <option value={day} key={index}>{day}</option>;
@@ -197,9 +198,9 @@ const router = useRouter()
                 <p>
                   Physically challenged?<span style={{ color: "red" }}>*</span>
                 </p>
-                <select onChange={(e) => setPhysically(e.target.value)} required>
-                  <option value='no' >No</option>
-                  <option value='yes'>Yes</option>
+                <select  onChange={(e) => setPhysically(e.target.value)} required>
+                  <option    >No</option>
+                  <option  >Yes</option>
                 </select>
               </div>
               <div>

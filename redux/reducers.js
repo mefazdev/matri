@@ -89,6 +89,29 @@ const descEditControl = (state = false, { type }) => {
         return state
     }
   }
+
+  const searchControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__SEARCH:
+        return state =  true
+      case types.CLOSE__SEARCH :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
+  const loginControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__LOGIN:
+        return state =  true
+      case types.CLOSE__LOGIN :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
   const reducers= {
 basicEditControl :basicEditControl,
    descEditControl : descEditControl,
@@ -98,7 +121,8 @@ basicEditControl :basicEditControl,
 locEditControl : locEditControl,
 lookingEditControl: lookingEditControl,
 physiEditControl:physiEditControl,
-
+searchControl:searchControl,
+loginControl:loginControl
 
 
 

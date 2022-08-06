@@ -18,8 +18,16 @@ export const closeFamEdit = () => ({type:types.CLOSE__FAM__EDIT})
 export const openLocEdit = () => ({type:types.OPEN__LOC__EDIT})
 export const closeLocEdit = () => ({type:types.CLOSE__LOC__EDIT})
 
-export const openLookingEdit = () => ({type:types.OPEN__LOOK__EDIT})
-export const closeLookingEdit = () => ({type:types.CLOSE__LOOK__EDIT})
+export const openLookingEdit = () => ({type:types.OPEN__LOOKING__EDIT})
+export const closeLookingEdit = () => ({type:types.CLOSE__LOOKING__EDIT})
 
 export const openPhysiEdit = () => ({type:types.OPEN__PHYSI__EDIT})
 export const closePhysiEdit = () => ({type:types.CLOSE__PHYSI__EDIT})
+
+
+export const openSearch = () => ({type:types.OPEN__SEARCH})
+export const closeSearch = () => ({type:types.CLOSE__SEARCH})
+
+export const openLogin = () => ({type:types.OPEN__LOGIN})
+export const closeLogin = () => ({type:types.CLOSE__LOGIN})
+

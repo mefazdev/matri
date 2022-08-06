@@ -16,8 +16,15 @@ export const CLOSE__FAM__EDIT = 'CLOSE__FAM__EDIT'
 export const OPEN__LOC__EDIT = 'OPEN__LOC__EDIT'
 export const CLOSE__LOC__EDIT = 'CLOSE__LOC__EDIT'
 
-export const OPEN__LOOK__EDIT = 'OPEN__LOOK__EDIT'
-export const CLOSE__LOOK__EDIT = 'CLOSE__LOOK__EDIT'
+export const OPEN__LOOKING__EDIT = 'OPEN__LOOKING__EDIT'
+export const CLOSE__LOOKING__EDIT = 'CLOSE__LOOKING__EDIT'
 
 export const OPEN__PHYSI__EDIT = 'OPEN__PHYSI__EDIT'
 export const CLOSE__PHYSI__EDIT = 'CLOSE__PHYSI__EDIT'
+
+
+export const OPEN__SEARCH = 'OPEN__SEARCH'
+export const CLOSE__SEARCH = 'CLOSE__SEARCH'
+
+export const OPEN__LOGIN = 'OPEN__LOGIN'
+export const CLOSE__LOGIN = 'CLOSE__LOGIN'

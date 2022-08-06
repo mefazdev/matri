@@ -20,7 +20,7 @@ export default function Description() {
   const [community, setCommunity] = useState('')
   const [religiousness, setReligiousness] = useState('')
   const [financialStatus, setFinancialStatus] = useState('')
-  const [scndNumber, setsScndNumber] = useState('')
+  const [scndNumber, setScndNumber] = useState('')
   const [wtspNumber, setWtspNumber] = useState('')
   const [contactPerson, setContactPerson] = useState('')
   const [callTime, setCallTime] = useState('')
@@ -149,14 +149,14 @@ const [user,setUser] = useState({})
             </div>
             <div className='edu__phone__row gap-5 grid grid-cols-2 mt-5'>
             <div>
-             <p>Primary Number<span style={{color:'red'}}>*</span></p>
+             <p>Secondary Number<span style={{color:'red'}}>*</span></p>
                <div className='phone__input '>
                <PhoneInput
               name='phone'
               className='pl-2'
               placeholder="Phone"
               value={scndNumber}
-              onChange={setsScndNumber}
+              onChange={setScndNumber}
               required
               defaultCountry='IN'
       />
@@ -166,15 +166,15 @@ const [user,setUser] = useState({})
              </div>
              
                 <div>
-             <p> Secondary Number<span style={{color:'red'}}>*</span></p>
+             <p>WhatsApp Number </p>
                <div className='phone__input '>
                <PhoneInput
               name='phone'
               className='pl-2'
               placeholder="Phone"
               value={wtspNumber}
-              onChange={setsScndNumber}
-              required
+              onChange={setWtspNumber}
+              // required
               defaultCountry='IN'
       />
      

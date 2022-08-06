@@ -39,6 +39,11 @@ color: #fff;
 font-size: 20px;
 }
 
+#star__active{
+    font-size: 20px;
+    color: yellow;    
+}
+
 .dpy__foot__left{
     padding-left: 10px;
     width: 100%;
@@ -89,3 +94,19 @@ color: orange;
     font-size: 17px;
     color: red;
 }
+.dpy__foot__left a{
+    /* border:solid #fff 1px; */
+    height: inherit;
+    padding:0;
+    max-width: fit-content;
+    margin-top:  -3px; ;
+}
+
+ .share__overlay{
+    background-color: #fff;
+    margin-left: 5px;
+    font-family: "Heebo", sans-serif;
+    font-size: 14px;
+    padding: 4px;
+    color: rgb(62, 61, 61);
+ }

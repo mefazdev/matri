@@ -87,8 +87,17 @@ margin-top: 10px;
       
         font-family: 'Heebo',sans-serif;
       font-size: 14px;
+    
 
      }
+     .edit__row h4{
+      
+      font-family: 'Heebo',sans-serif;
+    font-size: 14px;
+    color: rgb(0, 136, 255);
+    text-decoration: underline;
+    cursor: pointer;
+   }
      .edit__row__head{
         justify-content: space-between;
      }

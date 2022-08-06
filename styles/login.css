@@ -1,0 +1,73 @@
+.login{
+    max-width: 350px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.927);
+    /* height: 350px; */
+    outline: none;
+    margin-top: 100px;
+    border-radius: 10px;
+    padding: 20px;
+    /* position: relative; */
+}
+.login h4{
+    text-align: center;
+    font-family: 'Poppins',sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    color: rgb(8, 66, 8);
+}
+.login p{
+ 
+    font-family: 'Heebo',sans-serif;
+    font-size: 14px; 
+    color: rgb(88, 87, 87);
+}
+.login h6{
+    text-align: right;
+ 
+    font-family: 'Heebo',sans-serif;
+    font-size: 14px; 
+    color: rgb(8, 7, 7);
+    margin-top: 6px;
+}
+.login h5{
+    text-align: center;
+ 
+    font-family: 'Heebo',sans-serif;
+    font-size: 14px; 
+    /* color: rgb(10, 65, 127);  */
+    color: rgb(8, 7, 7);
+    margin-top: 26px;
+}
+.login__row{
+    margin: auto;
+    margin-top: 10px;
+    max-width: 300px;
+    
+    
+}
+.login__row input{
+    border: solid 1px gray;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    padding: 4px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.login button{
+    color: #fff;
+    background-color: rgb(46, 95, 46);
+    width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 6px;
+    /* position: absolute; */
+    /* float: inline-end; */
+    margin-top: 20px;
+}
+#login__close{
+    float: right;
+    color: rgb(209, 12, 12);
+}

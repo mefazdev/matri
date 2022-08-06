@@ -108,7 +108,7 @@ export default function () {
             {!doneOtp ? <div className="otp__box">
               <div className="otp__box__row  ">
            <h6>PLease enter the verifiction code sent to  </h6>
-           <p> +918594025204   <EditIcon id='opt__phone__edit'/></p>
+           <p> {member[0]?.data().phone}   <EditIcon id='opt__phone__edit'/></p>
    
            
            <div className="otp__row">

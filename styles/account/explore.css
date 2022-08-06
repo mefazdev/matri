@@ -1,0 +1,22 @@
+.explore{
+    
+        background: transparent linear-gradient(135deg, #f4f3f3 30%, #4d52523e 100%)
+        0% 0% no-repeat padding-box;
+        /* min-height: 100vh; */
+        padding-bottom: 50px;
+        min-height: 100vh;
+ 
+}
+ 
+@media only screen and (min-width: 850px) {
+    .explore__content{
+        max-width: 90%;
+        margin: auto;
+         
+    }
+    
+ 
+ }
+ .explore__content{
+    padding-top: 30px;
+ }

@@ -16,7 +16,9 @@ import moment from 'moment'
 import { auth, db } from "../firebase";
 import { useRouter } from 'next/router'
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import shortId from 'short-id'
 export default function Home() {
+  
   const [phone,setPhone] = useState()
   const [check,setCheck] = useState(true)
   const [email,setEmail] = useState('')
@@ -27,7 +29,7 @@ const [brideName,setBridName]  = useState('')
 const router = useRouter()
   const [user,setUser] = useState({})
 
-
+const profId = shortId.generate()
  
   const getUser = ()=>{
  onAuthStateChanged(auth, (currentUser) => {
@@ -55,6 +57,7 @@ await addData(users.user.uid)
       phone:phone,
       gender:gender,
       date:moment(new Date()).unix(),
+      profileId:profId,
       timesTamp:serverTimestamp(),
   
       
@@ -81,7 +84,7 @@ await addData(users.user.uid)
             <div className='home__main__right md:col-span-2'>
 
             <h2 >Join Kerala's No.1 Sunni Matrimonial <br/>  Web App</h2>
-            <h1 onClick={()=>console.log(createFor)}>he;lloo</h1>
+            {/* <h1 onClick={()=>console.log(id)}>he;lloo</h1> */}
             <form
             onSubmit={submitForm}
             >
@@ -96,7 +99,7 @@ await addData(users.user.uid)
                 // required
                 >
                   <option>Select</option>
-                  <option>My self</option>
+                  <option>Myself</option>
                   <option>Daughter</option>
                   <option>Son</option>
                   <option>Sister</option>
@@ -134,12 +137,12 @@ await addData(users.user.uid)
               <p>Gender<span style={{color:'red'}}>*</span></p>
             <div className='flex md:mt-4 main__form__gender'>
               <label >Male</label>
-              <input name='gender' type='radio' value='male' required 
+              <input name='gender' type='radio' value='Male' required 
                     onChange={((e)=>setGender(e.target.value))}
               />
               <label>Female</label>
               <input
-               name='gender' type='radio' value='female' required
+               name='gender' type='radio' value='Female' required
                onChange={((e)=>setGender(e.target.value))}
                />
             </div>

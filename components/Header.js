@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'; 
-export default function Header() {
+import Login from './Login';
+import { useSelector, useDispatch } from "react-redux";
+import {  openLogin,   } from '../redux/actions';
 
+export default function Header() {
+  const dispatch = useDispatch();
+    // const open = useSelector((state) => state.searchControl);
+ 
   const [mobileView,setMobileView] = useState(false)
+
 
   const [changeNav, setChangeNav] = useState(false)
   const changeNavBar = () => {
@@ -16,6 +23,9 @@ export default function Header() {
   useEffect(() => {
     window.addEventListener("scroll", changeNavBar);
   });
+
+  
+ 
   return (
     <>
     <div className='header'>
@@ -33,7 +43,7 @@ export default function Header() {
             <div className='header__right__div flex'>
                 <p>Already a member?</p>
 
-                <button>Login</button>
+                <button onClick={()=>dispatch(openLogin())}>Login</button>
 
             </div>
          </div>
@@ -56,7 +66,7 @@ id='header__menu'/>
     </div>
 
   </div> : ''}
-    
+  <Login/>
     </>
   )
 }

@@ -1,13 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import AccoundSidebar from './AccountSidebar'
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import Display from './Display';
 import Modal from '@mui/material/Modal';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { addDoc, collection, doc, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
+import { db } from '../firebase';
+import { useSelector, useDispatch } from "react-redux";
+import { closeSearch, openSearch } from '../redux/actions';
+
 export default function AccDesktopHome() {
-  const [openSearch, setOpenSearch] = useState(false)
+
+  const dispatch = useDispatch();
+    const open = useSelector((state) => state.searchControl);
+ 
+  // const [openSearch, setOpenSearch] = useState(false)
   const [deatailSearch,setDetailSearch] = useState(true)
   const [idSearch,setIdSearch] = useState(false)
+  const [members,setMembers] = useState([])
   
   const enableDeatailSearch = ()=>{
  setDetailSearch(true)
@@ -17,6 +27,19 @@ export default function AccDesktopHome() {
  setDetailSearch(false)
  setIdSearch(true)
   }
+ 
+  const fetchData = async () => {
+    const q = await query(
+      collection(db, "member"),
+      // orderBy("name")
+       orderBy('timesTamp', "desc")
+    );
+    const data = await getDocs(q);
+    setMembers(data.docs.map((doc) => doc));
+  };
+  useEffect(()=>{
+    fetchData()
+  },[])
   return (
     <div className='acc__desk'>
         <div className='acc__desk__content flex'>
@@ -25,30 +48,62 @@ export default function AccDesktopHome() {
 <div className='acc__desk__right '>
 <div className='acc__desk__right__header flex'>
     <button id='acc__left__btn'
-    onClick={()=>setOpenSearch(true)}
+  
+  onClick={()=>dispatch(openSearch())}
     >Modify Preference <KeyboardDoubleArrowRightIcon/></button>
-
+    {/* <button onClick={notify}>Notify!</button>
+        <ToastContainer /> */}
+       
+        
+  {/* <button   onClick={()=>setShow(!show)}>TeST</button> */}
 <div className='acc__desk__right__header__right flex'>
     <button  >Prev</button>
     <div className='acc__desk__right__header__right__div'>2</div>
     <button  >Next</button>
 </div>
 </div>
-
+ 
 <div className='acc__desk__right__row grid lg:grid-cols-2 gap-2    '>
-    <Display/>
-    <Display/>
-    <Display/>
-    <Display/>
-    <Display/>
-    <Display/>
+     {members.map((data,index)=>{
+      // calculate_age = (dob1) => {
+        var today = new Date();
+        // var birthDate = new Date(dob1);  // create a date object directly from `dob1` argument
+        var age_now = today.getFullYear() - data.data().bYear ;
+        var m = today.getMonth() - data.data().bMonth ;
+        if (m < 0 || (m === 0 && today.getDate() < data.data().bday)) 
+        {
+            age_now--;
+        }
+        // console.log(age_now);
+       
+      // }
+      return(
+        <Display
+        key={index}
+        name={data.data().brideName}
+        height={data.data().height}
+        weight={data.data().weight}
+        city={data.data().city}
+        community={data.data().community}
+        highEdu = {data.data().highEdu}
+        occupation={data.data().profession}
+        gender={data.data().gender}
+        photo={data.data().photo}
+       wtspNumber={data.data().wtspNumber}
+       phone={data.data().phone}
+       age={age_now}
+       id={data.id}
+        />
+      )
+     })}
+   
 </div>
 </div>
         </div>
         
         <Modal
         id='search__modal'
-        open={openSearch}
+        open={open }
         // onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -65,7 +120,7 @@ export default function AccDesktopHome() {
   
 
 <HighlightOffIcon id='search__head__close'
-onClick={()=>setOpenSearch(false)}
+onClick={()=>dispatch(closeSearch())}
 />
   {/* <div className='search__btn'>Saved Search</div> */}
 </div>

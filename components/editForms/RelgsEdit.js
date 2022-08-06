@@ -1,13 +1,63 @@
-import React from 'react'
+import React, { Profiler, useEffect, useState } from 'react'
 import { closeRelgsEdit } from '../../redux/actions'
 import Modal from "@mui/material/Modal";
 import { useSelector, useDispatch } from "react-redux";
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { db } from '../../firebase';
  
  
-export default function RelgsEdit() {
+export default function RelgsEdit({id}) {
     const dispatch = useDispatch();
     const open = useSelector((state) => state.relgsEditControl);
-  
+   
+    const [community, setCommunity] = useState('')
+    const [religiousness, setReligiousness] = useState('')
+    const [namaz, setNamaz] = useState('')
+    const [relgsEdu, setRelgsEdu] = useState('')
+    const [relgsGraduation, setRelgsGraduation] = useState()
+ const [hijab, setHijab] = useState('')
+const [madhab,setMadhab] = useState('')
+const [profiel,setProfile] = useState('')
+const [saving,setSaving] = useState(false)
+
+ const fetchProfile = async () => {
+      if(id){
+        const docRef = doc(db, "member", id);
+        const docSnap = await getDoc(docRef);
+        const data = docSnap.data()
+         
+       setCommunity(data.community)
+       setReligiousness(data.religiousness)
+       setNamaz(data.namaz ? data.namaz : '') 
+       setRelgsEdu(data.relgsEdu ? data.relgsEdu : '')
+       setRelgsGraduation(data.relgsGraduation ? data.relgsGraduation : '')
+       setMadhab(data.madhab? data.madhab :'')
+       setHijab(data.preferHijab ? data.preferHijab : '')
+       
+        
+      }
+      
+    };
+
+    const editProfile = async ()=>{
+      setSaving(true)
+      const docRef = doc(db, "member", id);
+      const updateRef = await updateDoc(docRef, {
+       community:community,
+       religiousness:religiousness,
+       namaz:namaz,
+       relgsEdu:relgsEdu,
+       relgsGraduation:relgsGraduation,
+       madhab:madhab,
+       preferHijab:hijab
+      });
+      dispatch(closeRelgsEdit())
+      setSaving(false)
+    }
+
+    useEffect(()=>{
+      fetchProfile()
+    },[id])
   return (
     <div> <Modal
     id="search__modal"
@@ -22,70 +72,105 @@ export default function RelgsEdit() {
 
         <div className="basic__edit__content">
           <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
-            <p>Groupe</p>
-            <select>
-              <option>Select</option>
-              <option>Ap</option>
-              <option>Ek</option>
-              <option>Samsthana</option>
-              <option>Dakshina</option>
-              <option>Other</option>
-              <option>No Groupe </option>
+            <p>Community</p>
+            <select onChange={(e)=>setCommunity(e.target.value)}>
+              
+              <option selected={community == 'Ap'?true : false}>Ap</option>
+              <option selected={community == 'Ek'?true : false}>Ek</option>
+              <option selected={community == 'Samsthana'?true : false}>Samsthana</option>
+              <option selected={community == 'Daskshina'?true : false}>Dakshina</option>
+              <option selected={community == 'Other'?true : false}>Other</option>
+              <option selected={community == 'No Groupe'?true : false}>No Groupe </option>
             </select>
           </div>
 
           <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
             <p>Religiousness</p>
-            <select>
-              <option>Very Religious</option>
-              <option>Religious</option>
-              <option>Not Religious</option>
-              <option>Prefer not to say</option>
+            <select onChange={(e)=>setReligiousness(true)}>
+              <option selected={religiousness == 'Very Religious'?true : false}>Very Religious</option>
+              <option selected={religiousness == 'Religious'?true : false}>Religious</option>
+              <option selected={religiousness == 'Not Religious'?true : false}>Not Religious</option>
+              <option selected={religiousness == 'Prefer not to say'?true : false}>Prefer not to say</option>
             </select>
           </div>
 
           <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
             <p>Perform namaz</p>
-            <select defaultValue="ffdf">
+            <select onChange={(e)=>setNamaz(e.target.value)}>
               <option>Please select</option>
-              <option>Always</option>
-              <option>Sometimes</option>
-              <option>Never</option>
-              <option>Prefer not to say</option>
+              <option selected={namaz == 'Always'?true : false}>Always</option>
+              <option selected={namaz == 'Sometimes'?true : false}>Sometimes</option>
+              <option selected={namaz == 'Never'?true : false}>Never</option>
+              <option selected={namaz == 'Prefer not to say'?true : false}>Prefer not to say</option>
             </select>
           </div>
           <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
             <p>Religious Education</p>
-            <select defaultValue="ffdf">
-              <option>Please select</option>
-              <option>Basic</option>
-              <option>10</option>
-              <option>+2</option>
-              <option>Graduation</option>
-              <option>Scholar</option>
+            <select onChange={(e)=>setRelgsEdu(e.target.value)}>
+              <option value=''>Please select</option>
+              <option  selected={relgsEdu == 'Basic'? true : false}>Basic</option>
+              <option selected={relgsEdu == '10'? true : false}>10</option>
+              <option selected={relgsEdu == '12'? true : false}>+2</option>
+              <option selected={relgsEdu == 'Graduation'? true : false}>Graduation</option>
+              <option selected={relgsEdu == 'Scholar'? true : false}>Scholar</option>
             </select>
           </div>
           <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
             <p>Religious Graduation</p>
-            <select defaultValue="ffdf">
-              <option>Please select</option>
-              <option>Saqafi</option>
-              <option>Faizy</option>
-              <option>Noorani</option>
-              <option>Hudawi</option>
-              <option>Saadi</option>
-              <option>Latheefi</option>
-              <option>Baqavi</option>
-              <option>Darimi</option>
-              <option>Hadiya</option>
-              <option>Wafiyya</option>
-              <option>other</option>
-              <option>No graduation</option>
+            <select onChange={(e)=>setRelgsGraduation(e.target.value)}>
+              <option value=''>Please select</option>
+              <option selected={relgsGraduation == 'Saqafi'? true : false}>Saqafi</option>
+              <option selected={relgsGraduation == 'Faizy'? true : false}>Faizy</option>
+              <option selected={relgsGraduation == 'Nurani'? true : false}>Nurani</option>
+              <option selected={relgsGraduation == 'Hudawi'? true : false}>Hudawi</option>
+              <option selected={relgsGraduation == "Sa'di"? true : false}>Sa'adi</option>
+              <option selected={relgsGraduation == 'Latheefi'? true : false}>Latheefi</option>
+              <option selected={relgsGraduation == 'Baqavi'? true : false}>Baqavi</option>
+              <option selected={relgsGraduation == 'Darimi'? true : false}>Darimi</option>
+              <option selected={relgsGraduation == 'Hadiya'? true : false}>Hadiya</option>
+              <option selected={relgsGraduation == 'Wafiyya'? true : false}>Wafiyya</option>
+              <option selected={relgsGraduation == 'Other'? true : false}>Other</option>
+              <option selected={relgsGraduation == 'No graduation'? true : false}>No graduation</option>
             </select>
+          </div>
+          <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
+            <p>Religious Education</p>
+            <select onChange={(e)=>setRelgsEdu(e.target.value)}>
+              <option value=''>Please select</option>
+              <option  selected={relgsEdu == 'Basic'? true : false}>Basic</option>
+              <option selected={relgsEdu == '10'? true : false}>10</option>
+              <option selected={relgsEdu == '12'? true : false}>+2</option>
+              <option selected={relgsEdu == 'Graduation'? true : false}>Graduation</option>
+              <option selected={relgsEdu == 'Scholar'? true : false}>Scholar</option>
+            </select>
+          </div>
+          <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
+            <p>Madhab</p>
+            <select onChange={(e)=>setMadhab(e.target.value)}>
+              <option value=''>Select</option>
+              <option selected={madhab == 'Shafi'? true : false}>Shafi</option>
+              <option selected={madhab == 'Hanafi'? true : false}>Hanafi</option>
+              <option selected={madhab == 'Maliki'? true : false}>Maliki</option>
+              <option selected={madhab == 'Hambali'? true : false}>Hambali</option>
+
+                         </select>
+          </div>
+          <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
+            <p>Prefer Hijab?</p>
+            <select onChange={(e)=>setHijab(e.target.value)}>
+              <option value=''>Select</option>
+              <option selected={hijab == 'Yes'? true : false}>Yes</option>
+              <option selected={hijab == 'No'? true : false}>No</option>
+              <option selected={hijab == 'Prefer not to say'? true : false}>Prefer not to say</option>
+                         </select>
           </div>
         </div>
         <div className="edit__desc__modal__btn">
-          <button className="edit__save__button">Save</button>
+          <button className="edit__save__button"
+          onClick={editProfile}
+          >
+          {saving ? 'Saving' : 'Save'}
+          </button>
           <button
             className="edit__cancel__button"
             onClick={()=>dispatch(closeRelgsEdit())}

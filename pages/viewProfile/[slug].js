@@ -1,16 +1,58 @@
-import React from "react";
-import AccountSidebar from "../components/AccountSidebar";
-import AccountNav from "../components/AccountNav";
+import React, { useEffect, useState } from "react";
+import AccountSidebar from "../../components/AccountSidebar";
+import AccountNav from "../../components/AccountNav";
 import PlaceIcon from "@mui/icons-material/Place";
-import imageHolder from "../asset/image/photo-holder.png";
+import imageHolder from "../../asset/image/photo-holder.png";
 import Image from "next/image";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsAccessibilityIcon from "@mui/icons-material/SettingsAccessibility";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import SchoolIcon from "@mui/icons-material/School";
 import FavoriteIcon from '@mui/icons-material/Favorite';
-export default function ViewProfile() {
-  return (
+import { useRouter } from 'next/router'
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { useDispatch } from "react-redux";
+export default function ViewProfile({paths}) {
+  const dispatch = useDispatch();
+  const router = useRouter()
+  const id  = router.query.slug 
+ 
+  const [profile,setProfile] = useState({})
+  const [age,setAge] = useState('')
+
+
+  const fetchData = async () => {
+    if(id){
+      const docRef = doc(db, "member", id);
+      const docSnap = await getDoc(docRef);
+  
+      setProfile(docSnap.data());
+    }
+
+  };
+  useEffect(()=>{
+    fetchData()
+  },[id])
+  
+const calculate_age = ()=>{
+ 
+  var today = new Date();
+  var age_now = today.getFullYear() - profile.bYear ;
+  var m = today.getMonth() - profile.bMonth ;
+  if (m < 0 || (m === 0 && today.getDate() < profile.bday)){
+    
+    age_now--;
+  }
+  // console.log(age_now);
+setAge(age_now)
+}
+
+useEffect(()=>{
+  calculate_age()
+},[profile])
+
+   return (
     <div className="view">
       <AccountNav />
       <div className="view__content flex">
@@ -19,46 +61,49 @@ export default function ViewProfile() {
         <div className="view__right">
           <div className="view__head flex">
             <div className="flex view__head__left ">
-              <h6>FASEEH SHAH</h6>
+              <h6>{profile.brideName}</h6>
               <p>(WR34434)</p>
             </div>
+            {/* <button onClick={()=>console.log(profile )}>CLICKME </button> */}
 
             <div className="view__head__right flex">
               <PlaceIcon id="view__loc__icon" />
-              <p>Manjeri, Malappuram</p>
+              <p>{profile.city}, {profile.district}</p>
             </div>
           </div>
 
           <div className="view__main grid md:grid-cols-3">
             <div className="view__main__img">
-              <Image alt="" src={imageHolder} />
+            
+
+              {profile.photo ? <img src={profile.photo} alt=''/>:   <Image alt="" src={imageHolder} />}
             </div>
             <div className="md:col-span-2 view__main__right">
               <div className="view__main__first__row  flex">
                 <PersonIcon className="view__main__icons" id='view__peron' />
-                <p>19 yrs, 148 cm, Never Married</p>
+                <p>{age} yrs, {profile.height} cm, {profile.maritialStatus}</p>
               </div>
               <div className="view__main__first__row flex ">
                 <SettingsAccessibilityIcon
                 id='sett__icon'
                 className="view__main__icons"/>
-                <p>App Sunni</p>
+                <p>{profile.community}</p>
               </div>
               <div className="view__main__first__row flex ">
                 <AutoAwesomeIcon className="view__main__icons"
                 id='auto__icon'
                 />
-                <p>Never Married</p>
+                <p>{profile.maritialStatus}</p>
               </div>
               <div className="view__main__first__row flex ">
                 <SchoolIcon className="view__main__icons"
                 id='school__icon'
                 />
-                <p>BA English</p>
+                <p>{profile.eduCourse}</p>
               </div>
               <div className="view__main__first__row flex ">
                 <PlaceIcon id='place__icon' className="view__main__icons"/>
-                <p>Manjeri, Malappuram</p>
+                <p>{profile.city}, {profile.district}</p>
               </div>
 
 
@@ -79,22 +124,23 @@ Contact this member directly through Mobile, E-mail and Wahtsapp.
 
           <div className="view__desc">
             <h6> Description</h6>
-            <p>He is currently studying in BCOM (Tax) at National college. We are a nuclear family. My family consists Father mother and daughter .</p>
+            <p>{profile.description}</p>
           </div>
 
           <div className="view__desc">
             <h6>Location & Contact</h6>
            <div className="view__loc__row  ">
              
-            <h5>Cherukulam, Manjeri</h5>
+            {/* <h5>Cherukulam, Manjeri</h5>
              
             <h5>Malappuram</h5>
-            <h5>Kerala</h5>
-            <h5>Elankur (PO)</h5>
+            <h5>Kerala</h5> */}
+            <h5>{profile.address}</h5>  
+            
 
-            <p>Phone: 8738585858</p>
-            <p>Secondary No : 54343435554</p>
-            <p>Whatsapp : 43429858344</p>
+            <p>Phone: {profile.phone}</p>
+            <p>Secondary No : {profile.scndNumber}</p>
+            <p>Whatsapp : {profile.wtspNumber}</p>
            </div>
           </div>
 
@@ -103,38 +149,40 @@ Contact this member directly through Mobile, E-mail and Wahtsapp.
             <div className="view__desc__columns grid grid-cols-2">
             <div>
                 <div className="flex mt-1"><p>Name : </p>
-                 <h5 className="ml-2">Falleh</h5>
+                 <h5 className="ml-2">{profile.brideName}</h5>
                 </div>
                 <div className="flex  "><p>Age : </p>
-                 <h5 className="ml-2">20</h5>
+                 <h5 className="ml-2">{age}</h5>
                 </div>
                 <div className="flex  "><p>Maritial Status : </p>
-                 <h5 className="ml-2">Never Married</h5>
+                 <h5 className="ml-2">{profile.maritialStatus}</h5>
                 </div>
                 <div className="flex mt-1"><p>Marriage Plan : </p>
-                 <h5 className="ml-2">Soon</h5>
+                 <h5 className="ml-2">{profile.mariPlan?mariPlan : 'Never Provided'}</h5>
                 </div>
-                <div className="flex mt-1"><p>Physical Status : </p>
-                 <h5 className="ml-2">Normal</h5>
+                <div className="flex mt-1"><p>Physical Challenged? : </p>
+                 <h5 className="ml-2">{profile.physically}</h5>
                 </div>
 
                 
             </div>
             <div>
             <div className="flex mt-1"><p>Profile ID : </p>
-                 <h5 className="ml-2">D343455</h5>
+                 <h5 className="ml-2">{profile.profileId}</h5>
                 </div>
                 <div className="flex  "><p>Gender : </p>
-                 <h5 className="ml-2">20</h5>
+                 <h5 className="ml-2">{profile.gender}</h5>
                 </div>
                 <div className="flex  "><p>Profile created by : </p>
-                 <h5 className="ml-2">Father</h5>
+                 <h5 className="ml-2">
+                   
+                 </h5>
                 </div>
                 <div className="flex mt-1"><p>Languages known : </p>
-                 <h5 className="ml-2">English, Malayalam</h5>
+                 <h5 className="ml-2">{profile.language ? language :'Never Provided'}</h5>
                 </div>
                 <div className="flex mt-1"><p>Physical Status : </p>
-                 <h5 className="ml-2">Normal</h5>
+                 <h5 className="ml-2">{profile.physicalStatus?physicalStatus :'Never Provided'}</h5>
                 </div>
             </div>
             </div>
@@ -145,14 +193,14 @@ Contact this member directly through Mobile, E-mail and Wahtsapp.
             <div className="view__desc__columns grid grid-cols-2">
             <div>
                 <div className="flex mt-1"><p>Groupe : </p>
-                 <h5 className="ml-2">AP Sunni</h5>
+                 <h5 className="ml-2">{profile.community}</h5>
                 </div>
                 <div className="flex  "><p>Perform Namaz : </p>
-                 <h5 className="ml-2">Always</h5>
+                 <h5 className="ml-2">{profile.namaz ? profile.namaz :"Never Provided"}</h5>
 
                 </div>
                 <div className="flex  "><p>Madhab : </p>
-                 <h5 className="ml-2">Shafi</h5>
+                 <h5 className="ml-2">{profile.madhab? profile.madhab :'Never provided'}</h5>
                  
                 </div>
                  
@@ -162,13 +210,13 @@ Contact this member directly through Mobile, E-mail and Wahtsapp.
             <div>
             
                 <div className="flex  "><p>Religious Education : </p>
-                 <h5 className="ml-2">Scholar</h5>
+                 <h5 className="ml-2">{profile.religiousEdu?religiousEdu:'Not Provided'}</h5>
                 </div>
                 <div className="flex mt-1"><p>Religiousness : </p>
-                 <h5 className="ml-2">Religious</h5>
+                 <h5 className="ml-2">{profile.religiousness}</h5>
                 </div>
                 <div className="flex mt-1"><p>Hijab : </p>
-                 <h5 className="ml-2">Prefer Hijab</h5>
+                 <h5 className="ml-2">{profile.preferHijab? profile.preferHijab:'Not Provided'}</h5>
                 </div>
             </div>
             </div>
@@ -179,10 +227,10 @@ Contact this member directly through Mobile, E-mail and Wahtsapp.
             <div className="view__desc__columns grid grid-cols-2">
             <div>
                 <div className="flex mt-1"><p>Education : </p>
-                 <h5 className="ml-2">Bachlors(Bcom)</h5>
+                 <h5 className="ml-2">{profile.highEdu}({profile.eduCourse})</h5>
                 </div>
                 <div className="flex  "><p>Edu Details : </p>
-                 <h5 className="ml-2">Bcom Tax(1st year)</h5>
+                 <h5 className="ml-2">{profile.eduDetails? profile.eduDetails:"Not Provided"}</h5>
 
                 </div>
                 
@@ -193,10 +241,10 @@ Contact this member directly through Mobile, E-mail and Wahtsapp.
             <div>
             
                 <div className="flex  "><p>Profession : </p>
-                 <h5 className="ml-2">Student</h5>
+                 <h5 className="ml-2">{profile.profession}</h5>
                 </div>
                 <div className="flex  "><p>Professional type : </p>
-                 <h5 className="ml-2">Student</h5>
+                 <h5 className="ml-2">{profile.profType}</h5>
                  
                 </div>
             </div>
@@ -208,16 +256,16 @@ Contact this member directly through Mobile, E-mail and Wahtsapp.
             <div className="view__desc__columns grid grid-cols-2">
             <div>
                 <div className="flex mt-1"><p>Height : </p>
-                 <h5 className="ml-2">150 cm</h5>
+                 <h5 className="ml-2">{profile.height} cm</h5>
                 </div>
                 <div className="flex  "><p>Weight : </p>
-                 <h5 className="ml-2">45 kgs</h5>
+                 <h5 className="ml-2">{profile.weight} kgs</h5>
 
                 </div>
                 
                  
                 <div className="flex  "><p>Complexion : </p>
-                 <h5 className="ml-2">Fair</h5>
+                 <h5 className="ml-2">{profile.skinTone}</h5>
                 </div>
                 
             </div>
@@ -225,11 +273,11 @@ Contact this member directly through Mobile, E-mail and Wahtsapp.
             
                 
                 <div className="flex  "><p>Body type : </p>
-                 <h5 className="ml-2">Average</h5>
+                 <h5 className="ml-2">{profile.bodyType}</h5>
                  
                 </div>
                 <div className="flex  "><p>Hair Color : </p>
-                 <h5 className="ml-2">Black</h5>
+                 <h5 className="ml-2">{profile.hailColor?hailColor:"Not Provided"}</h5>
                  
                 </div>
             </div>
@@ -241,51 +289,53 @@ Contact this member directly through Mobile, E-mail and Wahtsapp.
             <div className="view__desc__columns grid grid-cols-2">
             <div>
                 <div className="flex mt-1"><p>Family Type : </p>
-                 <h5 className="ml-2">Nuclear Family</h5>
+                 <h5 className="ml-2">{profile.famType? profile.famType:"Not Provided"}</h5>
                 </div>
                 <div className="flex  "><p>Financial Status : </p>
-                 <h5 className="ml-2">Middle Class</h5>
+                 <h5 className="ml-2">{profile.financialStatus}</h5>
 
                 </div>
                 
                  
                 
-                <div className="flex  "><p>Living Situation : </p>
-                 <h5 className="ml-2">Live with family</h5>
+                {/* <div className="flex  "><p>Living Situation : </p>
+                 <h5 className="ml-2">{profile.liveWith?liveWith:'Not Provided'}</h5>
                  
-                </div>
-                <div className="flex  "><p>No of younger brother : </p>
-                 <h5 className="ml-2">2</h5>
+                </div> */}
+                {profile.youngerBro? <div className="flex  "><p>No of younger brother : </p>
+                 <h5 className="ml-2">{profile.youngerBro}</h5>
                  
-                </div>
-                <div className="flex  "><p>No of younger sister : </p>
-                 <h5 className="ml-2">2</h5>
+                </div> : ''}
+                {profile.youngerSis ? <div className="flex  "><p>No of younger sister : </p>
+                 <h5 className="ml-2">{profile.youngerSis}</h5>
                  
-                </div>
+                </div> : ''}
+                
             </div>
             <div>
             <div className="flex  "><p>Father : </p>
-                 <h5 className="ml-2">Alive(Enginner)</h5>
+                 <h5 className="ml-2">{profile.father? profile.father:'Not Provided'}({profile.fatherProf?fatherProf:''})</h5>
                 </div>
                 
                 <div className="flex  "><p>Mother : </p>
-                 <h5 className="ml-2">Alive(House Wife)</h5>
+                 <h5 className="ml-2">{profile.mother?fmother:'Not Provided'}({profile.motherProf?motherProf:''})</h5>
                  
                 </div>
                 
 
                 <div className="flex  "><p>Family Value : </p>
-                 <h5 className="ml-2">Liberal</h5>
+                 <h5 className="ml-2">{profile.famValue?profile.famValue:'Not Provided'}</h5>
                  
                 </div>
-                <div className="flex  "><p>No of elder brother : </p>
-                 <h5 className="ml-2">2</h5>
+                {profile.elderBro?<div className="flex  "><p>No of elder brother : </p>
+                 <h5 className="ml-2">{profile.elderBro?profile.elderBro:''}</h5>
                  
-                </div>
-                <div className="flex  "><p>No of elder sister : </p>
-                 <h5 className="ml-2">2</h5>
+                </div>:''}
+                {profile.elderSis?  <div className="flex  "><p>No of elder sister : </p>
+                 <h5 className="ml-2">{profile.elderBro ? profile.elderBro :''}</h5>
                  
-                </div>
+                </div> : ''}
+               
                 
             </div>
             </div>
@@ -295,7 +345,7 @@ Contact this member directly through Mobile, E-mail and Wahtsapp.
 
           <div className="view__desc">
             <h6>Iam looking for</h6>
-            <h5>person who is ready for share my responsibility and happiness. He should also be able to support my family if needed.</h5>
+            <h5>{profile.lookingFor ? lookingFor :'Not Provided'}</h5>
       </div>
 
       <div className="view__intrest__send">
@@ -313,3 +363,7 @@ Contact this member directly through Mobile, E-mail and Wahtsapp.
     </div>
   );
 }
+
+
+
+
