@@ -27,10 +27,10 @@ function MyApp({ Component, pageProps }) {
       <>
     <Head>
   <style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400&family=Rubik+Moonrocks&display=swap');
+@import url(&apos;https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400&family=Rubik+Moonrocks&display=swap&apos;);
 </style>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400&family=Poppins:wght@300&family=Rubik+Moonrocks&display=swap');
+@import url(&apos;https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400&family=Poppins:wght@300&family=Rubik+Moonrocks&display=swap&apos;);
 
 </style>
 <style><link rel="stylesheet" href="bootstrap-multiselect.css" type="text/css" /></style>

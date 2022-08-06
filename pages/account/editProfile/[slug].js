@@ -94,7 +94,7 @@ export default function EditProfile() {
   }, [user]);
   useEffect(()=>{
     getUser()
-  },[])
+  })
 
   const calculate_age = () => {
     var today = new Date();

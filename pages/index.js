@@ -83,7 +83,7 @@ await addData(users.user.uid)
             </div>
             <div className='home__main__right md:col-span-2'>
 
-            <h2 >Join Kerala's No.1 Sunni Matrimonial <br/>  Web App</h2>
+            <h2 >Join Kerala&apos;s No.1 Sunni Matrimonial <br/>  Web App</h2>
             {/* <h1 onClick={()=>console.log(id)}>he;lloo</h1> */}
             <form
             onSubmit={submitForm}

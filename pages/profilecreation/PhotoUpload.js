@@ -93,7 +93,7 @@ export default function PhotoUpload() {
                         id="img3"
                         onChange={handlePhoto}
                       />
-                      <label for="img3">SELECT PHOTO</label>
+                      <label htmlFor="img3">SELECT PHOTO</label>
                     </div>
                   </div>
                 </div>

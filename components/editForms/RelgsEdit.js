@@ -123,7 +123,7 @@ const [saving,setSaving] = useState(false)
               <option selected={relgsGraduation == 'Faizy'? true : false}>Faizy</option>
               <option selected={relgsGraduation == 'Nurani'? true : false}>Nurani</option>
               <option selected={relgsGraduation == 'Hudawi'? true : false}>Hudawi</option>
-              <option selected={relgsGraduation == "Sa'di"? true : false}>Sa'adi</option>
+              <option selected={relgsGraduation == "Sa'di"? true : false}>Sa&apos;adi</option>
               <option selected={relgsGraduation == 'Latheefi'? true : false}>Latheefi</option>
               <option selected={relgsGraduation == 'Baqavi'? true : false}>Baqavi</option>
               <option selected={relgsGraduation == 'Darimi'? true : false}>Darimi</option>

@@ -15,7 +15,7 @@ import Router, { useRouter } from "next/router";
 import { collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
  
 
-export default function () { 
+export default function VerifyNumber () { 
     const [otp,setOtp] = useState('')
     const [doneOtp,setDoneOtp] = useState(false)
     const [user, setUser] = useState({})
@@ -109,7 +109,7 @@ export default function () {
               <div className="otp__box__row  ">
            <h6>PLease enter the verifiction code sent to  </h6>
            <p> {member[0]?.data().phone}   <EditIcon id='opt__phone__edit'/></p>
-   
+    
            
            <div className="otp__row">
            <OtpInput
