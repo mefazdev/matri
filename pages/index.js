@@ -195,7 +195,7 @@ await addData(users.user.uid)
       </main>
 
       <footer >
-      <Footer/>
+      {/* <Footer/> */}
       </footer>
     </div>
   )

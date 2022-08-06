@@ -14,15 +14,15 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 export default function Footer() {
   return (
-    <div className="footer">
-      <div className="footer__content ">
+    <div className="footers">
+      <div className="footer__contents ">
         <div className="footer__logo">
           {/* <Link href="/">
             <Image src={logo} />
           </Link> */}
         </div>
         <div className="footer__columns  lg:gap-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-          <div className="footer__adress">
+          {/* <div className="footer__adress">
             <div className="flex">
               <BusinessIcon id="footer__icon" />
               <div className="pl-2">
@@ -52,9 +52,9 @@ export default function Footer() {
                 <ArrowForwardIcon id="footer__arrow" />
               </span>
             </div>
-          </div>
+          </div> */}
 
-          <div className="footer__service mt-8 lg:mt-0">
+          {/* <div className="footer__service mt-8 lg:mt-0">
             <div className="footer__service__div">
               <Link href="/web">
                 <p>Web development</p>
@@ -69,22 +69,17 @@ export default function Footer() {
                 <p>Game development</p>
               </Link>
 
-              {/*            
-            <Link href='/web'>
-              <p>React App development</p>
-            </Link> */}
+         
               <Link href="/graphicdesign">
                 <p>Graphic design</p>
               </Link>
               <Link href="/animation">
                 <p>Animation</p>
               </Link>
-              {/* <Link href='/web'>
-              <p>App designs</p>
-            </Link> */}
+              
             </div>
-          </div>
-          <div className="footer__service">
+          </div> */}
+          {/* <div className="footer__service">
             <div className="footer__service__div">
               <Link href="/digitalmarketing">
                 <p>Digital marketing</p>
@@ -129,7 +124,7 @@ export default function Footer() {
                 <p>Business consultancy</p>
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="footer__bottom">

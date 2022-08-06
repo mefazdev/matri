@@ -237,7 +237,7 @@ const router = useRouter()
           
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
