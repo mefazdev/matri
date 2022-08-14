@@ -11,7 +11,7 @@ export default function About() {
           <p>
             Marrisunni.com is a premium matrimonial website for Sunni community
             in Kerala. Our aim is to help Sunni community to find their suitable
-            life partner in an Islamic way. We do not support anything that's
+            life partner in an Islamic way. We do not support anything that&apos;s
             not Halal in Islam so Marrisunni.com is not a dating portal at all.
             Only matured Muslim men and women with an intention of marriage are
             allowed to register at Marrisunni.com. <br />

@@ -75,7 +75,7 @@ export default function ShortList({ id }) {
               const d = data.data().shortList;
 
               return (
-                <div className="interest__row">
+                <div className="interest__row" key={index}>
                   <div className="interest__row__left grid lg:gap-4 grid-cols-4">
                     <div className="intrest__row__img">
                       {" "}
