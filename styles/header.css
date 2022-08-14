@@ -6,6 +6,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
+    
 }
 
 .header__content{
@@ -121,7 +122,12 @@ display: none;
   .header__collapse{
     padding-bottom: 20px;
     padding-top: 10px;
-    background-color: rgba(0, 128, 0, 0.47);
+    position: fixed;
+    /* top: 0; */
+    width: 100%;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.753);
+    /* background-color: rgba(0, 128, 0, 0.644); */
   }
 
   .collapse__row{

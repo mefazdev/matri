@@ -7,6 +7,12 @@
 }
 .dpy__img{
     max-width: 130px;
+    
+}
+.dpy__img img{
+    max-width: 130px;
+    max-height: 100px;
+    
 }
 .dpy__right {
     /* border: solid red; */
@@ -110,3 +116,8 @@ color: orange;
     padding: 4px;
     color: rgb(62, 61, 61);
  }
+
+.dpy__right h6{
+    cursor: pointer;
+    
+}

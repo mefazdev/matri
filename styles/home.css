@@ -222,3 +222,48 @@ box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       /* text-align: ; */
    }
 }
+
+.animate-spin{
+  animation: bounce 1s infinite;
+ 
+/* color: #fff; */
+height: 30px;
+/* background-color: #fff; */
+}
+
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+#l{
+  color: #fff;
+  width: 300px;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+ .larg__view{
+ display: none;
+ }
+ 
+
+}
+ 
+
+@media only screen and (min-width: 801px) {
+  
+  .mobile__view{
+   display: none;
+   
+  }
+ 
+ }
+

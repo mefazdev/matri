@@ -75,12 +75,12 @@ const [saving,setSaving] = useState(false)
             <p>Community</p>
             <select onChange={(e)=>setCommunity(e.target.value)}>
               
-              <option selected={community == 'Ap'?true : false}>Ap</option>
-              <option selected={community == 'Ek'?true : false}>Ek</option>
+              <option selected={community == 'Ap'?true : false}>AP</option>
+              <option selected={community == 'Ek'?true : false}>EK</option>
               <option selected={community == 'Samsthana'?true : false}>Samsthana</option>
               <option selected={community == 'Daskshina'?true : false}>Dakshina</option>
               <option selected={community == 'Other'?true : false}>Other</option>
-              <option selected={community == 'No Groupe'?true : false}>No Groupe </option>
+              {/* <option selected={community == 'No Groupe'?true : false}>No Groupe </option> */}
             </select>
           </div>
 
@@ -127,6 +127,7 @@ const [saving,setSaving] = useState(false)
               <option selected={relgsGraduation == 'Latheefi'? true : false}>Latheefi</option>
               <option selected={relgsGraduation == 'Baqavi'? true : false}>Baqavi</option>
               <option selected={relgsGraduation == 'Darimi'? true : false}>Darimi</option>
+              <option selected={relgsGraduation == 'Wafi'? true : false}>Wafi</option>
               <option selected={relgsGraduation == 'Hadiya'? true : false}>Hadiya</option>
               <option selected={relgsGraduation == 'Wafiyya'? true : false}>Wafiyya</option>
               <option selected={relgsGraduation == 'Other'? true : false}>Other</option>

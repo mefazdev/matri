@@ -9,20 +9,28 @@ import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Overlay from "react-bootstrap/Overlay";
-import { addDoc, collection, deleteDoc, doc, serverTimestamp } from "firebase/firestore";
-import { auth, db } from "../firebase";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import {
-  
-  onAuthStateChanged,
-} from "firebase/auth";
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+  serverTimestamp,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { auth, db } from "../firebase";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
 export default function Display({
   name,
   height,
-  weight,
+  maritialStatus,
   gender,
   city,
   community,
@@ -32,68 +40,231 @@ export default function Display({
   wtspNumber,
   phone,
   age,
-  id
-})
+  id,
+  userId,
+  eduCourse,
+  district
 
-{
+}) {
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
+  const [user, setUser] = useState({});
+  const [member, setMember] = useState([]);
+  const [addedToShort, setAddedToShort] = useState(false);
+  // const [starIcon,setStarIcon] = useState(false)
+  const [docRefId, setDocRefId] = useState("");
+  const notifyAdded = () => toast("This profile is shortlisted!");
+  const notifyRemoved = () => toast("This profile is removed from shortlist!");
+  
+  const notifyInterest = () => toast("Interest sent!");
+  const notifyCantInterest = () => toast("You can't sent to your own profile!");
+  const [memberAge, setMemberAge] = useState('')
+  const [interest,setInterest] = useState([])
 
-   
-const [show, setShow] = useState(false);
-const target = useRef(null);
-const [user,setUser] = useState({})
-const [addedToShort,setAddedToShort] = useState(false)
-// const [starIcon,setStarIcon] = useState(false)
-const [docRefId, setDocRedId] = useState('')
-const notifyAdded = () => toast("This profile is shortlisted!");
-const notifyRemoved = () => toast("This profile is removed from shortlist!");
-const getUser = ()=>{
-  onAuthStateChanged(auth, (currentUser) => {
-     setUser(currentUser);
-   
-   });
-   }
+  const [send,setSend] = useState(false)
+  const [ignored,setIgnored] = useState(false)
+  const [accepted,setAccepted] = useState(false)
+  const getUser = () => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  };
 
-   const controlShortList = ()=>{
-    if(addedToShort){
-    removeFromShort()
-    }
-   else {
-    addToShortList()
-     }
-   }
-   
+  
+  const fetchMember = async () => {
+    const userId = (await user) ? user.uid : null;
 
-   const addToShortList = async() =>{
-    setAddedToShort(true)
-      notifyAdded()
-    const docRef  = await addDoc(collection(db, "shortList"), {
-        userId:user.uid,
-        profileId : id,
-        timestamp: serverTimestamp(),
-      
+    if (userId) {
+      const q = await query(
+        collection(db, "member"),
+        where("userId", "==", user?.uid)
+      );
+      onSnapshot(q, (snapshot) => {
+        const data = snapshot;
+        setMember(data.docs.map((doc) => doc));
       });
+    }
+  };
+  const controlShortList = () => {
+    if (addedToShort) {
+      removeFromShort();
+    } else {
+      addToShortList();
+    }
+  };
+
+  const addToShortList = async () => {
+    setAddedToShort(true);
+    notifyAdded();
+
+    await addDoc(collection(db, "shortList"), {
+      userId:user.uid,
+      shortList:{
+        userId:userId,
+        brideName:name,
+        age:age,
+        maritialStatus:maritialStatus,
+        height:height,
+        highEdu:highEdu,
+        eduCourse:eduCourse,
+        city:city,
+        district:district,
+        occupation:occupation,
+        photo: photo,
+        id:id
+      }
+      ,       timestamp :serverTimestamp()
+    })
+  };
+
+  const fetchInterest = async () => {
     
+    const q = await query(
+      collection(db, "interest"),
+      // orderBy("timestamp", "desc")
       
-      setDocRedId(docRef.id)
-    }
+    );
+    onSnapshot(q, (snapshot) => {
+      setInterest(snapshot.docs.map((doc) => doc));
+ 
+       
+    });
+ 
+  };
 
-    const removeFromShort =async ()=>{
-      notifyRemoved()
-      setAddedToShort(false)
-        await deleteDoc(doc(db, "shortList", docRefId));
+  const checkInterest = async ()=>{
+    {interest.map((data)=>{
       
+      if(data.data().from.userId == user.uid){
+        if(data.data().to.userId == userId){
+          if(data.data().status == 'accepted'){
+            setAccepted(true)
+          }else if(data.data().status == 'ignored'){
+            setIgnored(true)
+          }else{
+            setSend(true)
+          }
      
+    //  console.log('kkk')
+        }else{
+          
+        }
+      }
+    })}
+  }
+  useEffect(() => {
+    getUser();
+    fetchInterest()
+  }, []);
+
+  useEffect(() => {
+    fetchMember();
+  }, [user]);
+
+  useEffect(()=>{
+    checkInterest()
+  },)
+
+  const removeFromShort = async () => {
+    // notifyRemoved();
+    // setAddedToShort(false);
      
+      // await deleteDoc(doc(db, "shortList", id));
+  
+  
+
+     
+  };
+
+  const addToVisited = async ()=>{
+
+   
+    await addDoc(collection(db, "visited"), {
+      userId:user.uid,
+      visitedProfile:{
+        userId:userId,
+        brideName:name,
+        age:age,
+        maritialStatus:maritialStatus,
+        height:height,
+        highEdu:highEdu,
+        eduCourse:eduCourse,
+        city:city,
+        district:district,
+        occupation:occupation,
+        photo: photo,
+        id:id
+      }
+      ,       timestamp :serverTimestamp()
+    })
+    
+  }
+
+  const sentInterest = async ()=>{
+    if(userId != user.uid){
+      notifyInterest()
+      await addDoc(collection(db, "interest"), {
+       to : {
+        userId:userId,
+       brideName:name,
+       age:age,
+       maritialStatus:maritialStatus,
+       height:height,
+       highEdu:highEdu,
+       eduCourse:eduCourse,
+       city:city,
+       district:district,
+       occupation:occupation,
+       photo: photo,
+       id:id
+       },
+       from: {
+        userId: user.uid,
+        brideName:member[0].data().brideName,
+        age:memberAge,
+        maritialStatus:member[0].data().maritialStatus,
+        height:member[0].data().height,
+        highEdu:member[0].data().highEdu,
+        eduCourse:member[0].data().eduCourse ? member[0].data().eduCourse : '',
+        city:member[0].data().city,
+        district:member[0].data().district,
+        occupation:member[0].data().profession ? member[0].data().profession : '',
+        photo:member[0].data().photo ? member[0].data().photo:'',
+        id:member[0].id
+       },
+       status:'sent',
+      
+       timestamp :serverTimestamp()
+       
+      });
+    }else{
+      notifyCantInterest()
     }
-useEffect(()=>{
-  getUser()
-},[])
-  return (
-
-
+   
+   
+  }
+   
+ const calculate_member_age = () => {
+    var today = new Date();
+    // var birthDate = new Date(dob1);  // create a date object directly from `dob1` argument
+    var age_now = today.getFullYear() - member[0]?.data().bYear ;
+    var m = today.getMonth() - member[0]?.data().bMonth ;
+    if (m < 0 || (m === 0 && today.getDate() < member[0]?.data().bday)) 
+    {
+        age_now--;
+      
+    }
+     
+    setMemberAge(age_now)
+  }
+  useEffect(()=>{
+    calculate_member_age()
+  },[member])
+   return (
     <div className="dpy">
-      {/* <button onClick={notify}>Notify!</button> */}
-        <ToastContainer />
+      {/* <button onClick={()=>console.log(memberAge)}>Notify!</button> */}
+      {/* <button onClick={check}>func!</button> */}
+      <ToastContainer />
       <div className="flex">
         <div className="dpy__img">
           {photo ? (
@@ -103,12 +274,14 @@ useEffect(()=>{
           )}
         </div>
         <div className="dpy__right">
-          <Link href={`/viewProfile/${encodeURIComponent(id)}`}><h6>{name} </h6></Link>
-          
+          <Link href={`/viewProfile/${encodeURIComponent(id)}`}>
+            <h6 onClick={addToVisited}>{name} </h6>
+          </Link>
+
           <p>
             {age} Yrs, {height} cm, {gender}
           </p>
-          <p>{city}, Kerala, India</p>
+          <p >{city}, {district}, Kerala </p>
           <p>{community}</p>
           <p>
             <span style={{ color: "gray" }}>Education : </span> {highEdu}
@@ -120,15 +293,17 @@ useEffect(()=>{
       </div>
       <div className="dpy__footer flex">
         <div className="dpy__foot__left flex">
-          <StarIcon  
-          id={addedToShort ? 'star__active': 'dpy__icon'}
-           onClick={controlShortList}
+          <StarIcon
+            id={addedToShort ? "star__active" : "dpy__icon"}
+            onClick={controlShortList}
           />
-          <ShareIcon onClick={()=>setShow(!show)} ref={target} id="dpy__icon" />
+          <ShareIcon
+            onClick={() => setShow(!show)}
+            ref={target}
+            id="dpy__icon"
+          />
           <Overlay target={target.current} show={show} placement="right">
-            <div className="share__overlay">
-              Share on Whatsapp
-            </div>
+            <div className="share__overlay">Share on Whatsapp</div>
           </Overlay>
           <a href={`tel:${phone}`}>
             <CallIcon id="dpy__icon" />{" "}
@@ -141,17 +316,60 @@ useEffect(()=>{
             <WhatsAppIcon id="dpy__icon" />
           </a>
         </div>
-        <div className="dpy__foot__right flex">
-          <p>Like this profile? </p>
-          <div className="dpy__close__div">
-            <CloseIcon id="dpy__close__icon" />
-          </div>
-          <div className="dpy__fav__div">
-            {" "}
-            <FavoriteIcon id="dpy__fav__icon" />
-          </div>
-        </div>
+        {/* {interest.map((data)=>{
+          <p>Hello</p>
+          if(data.data().from.userId == user.uid){
+            if(data.data().to.userId == userId){
+          //  setSend(true)
+          console.log('hh')
+            }else{
+              
+            }
+          }
+        })} */}
+         {send ? <button id='intr__send__btn'> Sent Interest</button> :  accepted ? <button id='intr__acc__btn'>Interest Accepted </button>
+         : ignored ? 
+         <button id='intr__igno__btn'>Interest Ignored</button>
+        
+          :
+         
+         <div className="dpy__foot__right flex">
+         <p>Like this profile? </p>
+         
+         <div className="dpy__fav__div">
+           {" "}
+           <FavoriteIcon id="dpy__fav__icon"
+           onClick={sentInterest}
+           />
+         </div>
+       </div>
+         }
+       
+       
       </div>
+    
+      
     </div>
   );
 }
+
+
+
+
+
+// key id = rzp_test_TKJroRBJf9pJH6
+
+// key secret = whPyoQ6w6y6EvEUMaIc417GZ
+
+
+
+
+// const mid = member[0].id;
+// let vList = member[0].data().visited
+//   ? [...member[0].data().visited, id]
+//   : [id];
+// //  await sList.push(id)
+// const docRef = doc(db, "member", mid);
+// const updateRef = await updateDoc(docRef, {
+//   visited: vList,
+// });

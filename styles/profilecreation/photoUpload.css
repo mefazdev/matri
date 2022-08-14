@@ -14,9 +14,9 @@ padding-bottom: 50px    ;
 
 @media screen and (min-width: 800px){
     .photo__upload__div{
-max-width: 80%;
-margin: auto;
-    }
+        max-width: 80%;
+        margin: auto;
+            }
 }
 
 .photo__upload__right h4{
@@ -43,9 +43,10 @@ padding: 25px;
 
 .photo__upload__box__row__left{
     background-color: aliceblue;
-display: flex;
-align-items: center;
+    display: flex;
+    align-items: center;
 }
+ 
 #photo__upload__cam__icon{
  margin: auto; 
  font-size: 70px;  
@@ -108,9 +109,41 @@ align-items: center;
     width: 100px;
     border-radius: 4px;
   }
+  .photo__skip {
+    float: right;
+    background-color: rgba(7, 104, 49, 0.785);
+    color: #fff;
+    padding: 3px;
+    width: 70px;
+    border-radius: 5px;
+}
+.photo__upload__box__row__left__div label{
+    background-color: rgba(128, 128, 128, 0.347);
+    max-width: 200px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 5px;
+}
 
   @media screen and (max-width: 800px){
     .photo__upload__left{
         display: none;
     }
+    .photo__upload{
+       
+        /* border: solid red; */
+        background: transparent linear-gradient(135deg, #ffffff 30%, #5cb3b21b 100%) 0% 0% no-repeat padding-box;
+    padding-top: 30px;
+ 
+    padding-bottom: 30px    ;
+    }
+    .photo__upload__div{
+       
+       padding: 15px;
+            }
+            .photo__skip{
+               margin-top: 15px;
+             margin-right: 5px;
+               /* width: 100px; */
+            }
 }

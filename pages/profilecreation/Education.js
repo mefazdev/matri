@@ -28,6 +28,7 @@ function Education() {
 
   const [user, setUser] = useState({})
   const [member, setMember] = useState([])
+  const [saving,setSaving] = useState(false)
 
 
 const router = useRouter()
@@ -52,9 +53,9 @@ const router = useRouter()
   };
   
   const submitForm = async (e)=>{
-    
+  
     e.preventDefault();
-    
+    setSaving(true)
     const id = member[0].id;
     const docRef = doc(db, "member", id);
     const updateRef = await updateDoc(docRef, {
@@ -66,8 +67,9 @@ const router = useRouter()
    district:district,
    address:address
     });
-
+    
     router.push('/profilecreation/Description')
+    setSaving(false)
   };
 
   useEffect(() => {
@@ -84,7 +86,7 @@ const router = useRouter()
         <div className= 'edu__div grid md:grid-cols-3'>
         <div className='edu__left'>
             <h3>Tell us about your education & location</h3>
-            <p>Greate you have completed <span style={{color:'rgb(0, 128, 51)'}}> 90%</span> </p>
+            {/* <p>Greate you have completed <span style={{color:'rgb(0, 128, 51)'}}> 90%</span> </p> */}
          <div className='edu__left__img'><Image src={couples} /></div>
                 
          </div>
@@ -95,7 +97,7 @@ const router = useRouter()
           >
             <div className='edu__row '>
                <p>Highest Education<span style={{color:'red'}}>*</span></p>
-             <div className='gap-5 grid grid-cols-2'>
+             <div className='gap-2 md:gap-5 grid md:grid-cols-2'>
              <select onChange={(e)=>setHighEdu(e.target.value)} required>
                 <option value=''>Please Select</option>
                 <option>Bachlors</option>
@@ -107,7 +109,7 @@ const router = useRouter()
                 <option>High/Seceondary school</option>
                 <option>Less than high school</option>
               </select>
-              <select  onChange={(e)=>setEduCourse(e.target.value)} required>
+              <select  onChange={(e)=>setEduCourse(e.target.value)} >
               <option value=''>Please Select</option>
               {courses.map((course,index)=>{
                
@@ -121,7 +123,7 @@ const router = useRouter()
              
             </div>
 
-            <div className='edu__second__row gap-5 md:gap-10 grid grid-cols-2'>
+            <div className='edu__second__row   gap-2 md:gap-10 grid md:grid-cols-2'>
               <div >
                 <p>Profession<span style={{color:'red'}}>*</span></p>
               
@@ -157,7 +159,7 @@ const router = useRouter()
                 <div className='edu__location'>
                   <div className='edu__location__row '>
                    <p>Location</p>
-                  <div className='grid grid-cols-3 gap-5'>
+                  <div className='grid md:grid-cols-3 gap-2 md:gap-5'>
                     <select>
                       <option>Kerala</option>
                     </select>
@@ -214,9 +216,9 @@ const router = useRouter()
 
                
                <div className='pr__crtn__third__row'>
-                <Link href='/profilecreation/Education'><button id='pr__crtn__btn__one' >Prev</button></Link>
+                <Link href='/profilecreation/Basic'><button id='pr__crtn__btn__one' >Prev</button></Link>
                 {/* <Link href='/profilecreation/Description'> */}
-                  <button type='submit' id='pr__crtn__btn__two'>Next</button>
+                  <button type='submit' id='pr__crtn__btn__two'>{saving ? 'Saving' : 'Next'}</button>
                   {/* </Link> */}
                 
                </div>

@@ -26,6 +26,7 @@ export default function Description() {
   const [callTime, setCallTime] = useState('')
   const [description, setDescription] = useState('')
  const  [member,setMember] = useState([])
+ const [saving,setSaving] = useState(false)
 const [user,setUser] = useState({})
   const router  = useRouter()
   const getUser = ()=>{
@@ -49,7 +50,7 @@ const [user,setUser] = useState({})
   };
   const submitForm = async (e) => {
     e.preventDefault();
-    
+    setSaving(true)
     const id = member[0].id;
     const docRef = doc(db, "member", id);
     const updateRef = await updateDoc(docRef, {
@@ -66,6 +67,7 @@ const [user,setUser] = useState({})
     });
 
     router.push('/profilecreation/PhotoUpload')
+    setSaving(false)
   };
 
   useEffect(()=>{
@@ -82,7 +84,7 @@ const [user,setUser] = useState({})
         <div className= 'edu__div grid md:grid-cols-3'>
         <div className='edu__left'>
             <h3>Tell us about your Details</h3>
-            <p>Greate you have completed <span style={{color:'rgb(0, 128, 51)'}}> 70%</span> </p>
+            {/* <p>Greate you have completed <span style={{color:'rgb(0, 128, 51)'}}> 70%</span> </p> */}
          <div className='edu__left__img'><Image src={couples} /></div>
                 
          </div>
@@ -91,7 +93,7 @@ const [user,setUser] = useState({})
           <form
           onSubmit={submitForm}
           >
-            <div className='edu__row  gap-5 grid grid-cols-2 '>
+            <div className='edu__row  gap-2 md:gap-5 grid md:grid-cols-2 '>
                 <div>
                 <p>Mother Tongue<span style={{color:'red'}}>*</span></p>
                 <select required onChange={(e)=>setmotherTongue(e.target.value)}>
@@ -108,8 +110,8 @@ const [user,setUser] = useState({})
              <p>Community<span style={{color:'red'}}>*</span></p>
               <select required onChange={(e)=>setCommunity(e.target.value)}>
                 <option value=''>Select</option>
-                <option>Ap</option>
-                <option>Ek</option>
+                <option>AP</option>
+                <option>EK</option>
                 <option>Samsthana</option>
                 <option>Dakshina</option>
                 <option>Other</option>
@@ -119,7 +121,7 @@ const [user,setUser] = useState({})
               </div>  
              
             </div>
-            <div className='edu__row  gap-5 grid grid-cols-2 mt-5'>
+            <div className='edu__row  gap-2 md:gap-5 grid md:grid-cols-2 mt-5'>
                 <div>
                 <p>Religiousness<span style={{color:'red'}}>*</span></p>
                 <select required onChange={(e)=>setReligiousness(e.target.value)}>
@@ -147,7 +149,7 @@ const [user,setUser] = useState({})
               </div>  
              
             </div>
-            <div className='edu__phone__row gap-5 grid grid-cols-2 mt-5'>
+            <div className='edu__phone__row gap-2 md:gap-5 grid md:grid-cols-2 mt-5'>
             <div>
              <p>Secondary Number<span style={{color:'red'}}>*</span></p>
                <div className='phone__input '>
@@ -157,7 +159,7 @@ const [user,setUser] = useState({})
               placeholder="Phone"
               value={scndNumber}
               onChange={setScndNumber}
-              required
+              // required
               defaultCountry='IN'
       />
      
@@ -186,7 +188,7 @@ const [user,setUser] = useState({})
              
             </div>
 
-            <div className='edu__row  gap-5 grid grid-cols-2 mt-5'>
+            <div className='edu__row gap-2 md:gap-5 grid md:grid-cols-2 mt-5'>
                 <div>
                 <p>Contact Person & Relationship<span style={{color:'red'}}>*</span></p>
                 <input
@@ -196,9 +198,9 @@ const [user,setUser] = useState({})
                 </div>
              
              <div >
-             <p>Convenient time to call<span style={{color:'red'}}>*</span></p>
+             <p>Convenient time to call</p>
               <input
-              required
+              // required
               onChange={(e)=>setCallTime(e.target.value)}
               placeholder='Eg: 10 AM - 05 PM'
               />
@@ -226,9 +228,9 @@ const [user,setUser] = useState({})
             
                
                <div className='pr__crtn__third__row'>
-                <Link href='//profilecreation/Education'><button id='pr__crtn__btn__one' >Prev</button></Link>
+                <Link href='/profilecreation/Education'><button id='pr__crtn__btn__one' >Prev</button></Link>
                 {/* <Link href='/profilecreation/PhotoUpload'> */}
-                  <button type='submit' id='pr__crtn__btn__two'>Next</button>
+                  <button type='submit' id='pr__crtn__btn__two'>{saving ? 'Saving' : 'Next'}</button>
                   {/* </Link> */}
                 
                </div>

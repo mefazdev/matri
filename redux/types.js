@@ -28,3 +28,13 @@ export const CLOSE__SEARCH = 'CLOSE__SEARCH'
 
 export const OPEN__LOGIN = 'OPEN__LOGIN'
 export const CLOSE__LOGIN = 'CLOSE__LOGIN'
+
+export const OPEN__PHOTO__EDIT = 'OPEN__PHOTO__EDIT'
+export const CLOSE__PHOTO__EDIT = 'CLOSE__PHOTO__EDIT'
+
+
+export const OPEN__PROFILE__HIDE = 'OPEN__PROFILE__HIDE'
+export const CLOSE__PROFILE__HIDE = 'CLOSE__PROFILE__HIDE'
+
+export const OPEN__PROFILE__DELETE = 'OPEN__PROFILE__DELETE'
+export const CLOSE__PROFILE__DELETE = 'CLOSE__PROFILE__DELETE'

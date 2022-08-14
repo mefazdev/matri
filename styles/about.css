@@ -1,0 +1,44 @@
+ 
+.about{
+    /* border: saddlebrown solid; */
+    /* margin-top: 30px; */
+    height: 90vh;
+    background-color: aliceblue;
+}
+    .about__main{
+    /* border: solid red; */
+    margin: auto;
+    padding-top: 30px; 
+}
+    @media only screen and (min-width: 850px) {
+        .about__main{
+            max-width: 80%;
+        }
+        
+     
+     }
+
+
+
+     .about__main h1{
+        font-size: 24px;
+        font-weight: 600;
+        font-family: 'Heebo',sans-serif;
+         
+     }
+
+     .about__main p{
+        /* font-size: 14px; */
+        /* font-weight: 600; */
+        font-family: 'Heebo',sans-serif;
+        color: rgb(48, 46, 46);
+         
+     }
+
+     .about__txt{
+        padding: 20px;
+        
+    background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;    
+    
+     }

@@ -31,3 +31,12 @@ export const closeSearch = () => ({type:types.CLOSE__SEARCH})
 export const openLogin = () => ({type:types.OPEN__LOGIN})
 export const closeLogin = () => ({type:types.CLOSE__LOGIN})
 
+export const openPotoEdit = () => ({type:types.OPEN__PHOTO__EDIT})
+export const closePotoEdit = () => ({type:types.CLOSE__PHOTO__EDIT})
+
+export const openProfielHide = () => ({type:types.OPEN__PROFILE__HIDE})
+export const closeProfielHide = () => ({type:types.CLOSE__PROFILE__HIDE})
+
+export const openProfielDelete = () => ({type:types.OPEN__PROFILE__DELETE})
+export const closeProfielDelete = () => ({type:types.CLOSE__PROFILE__DELETE})
+

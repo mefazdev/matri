@@ -21,6 +21,7 @@ import {
   openLocEdit,
   openLookingEdit,
   openPhysiEdit,
+  openPotoEdit,
   openRelgsEdit,
 } from "../../../redux/actions";
 import BasicEdit from "../../../components/editForms/BasicEdit";
@@ -79,9 +80,9 @@ export default function EditProfile() {
   const fetchData = async () => {
     if (id) {
       const q = await doc(db, "member", id);
-      onSnapshot(q, (snapshot) => {
-        setProfile(snapshot.data());
-      });
+        onSnapshot(q, (snapshot) => {
+          setProfile(snapshot.data());
+        });
     }
   };
   useEffect(() => {
@@ -176,7 +177,7 @@ export default function EditProfile() {
                 )}
               </div>
               <button 
-              onClick={()=>setModal(true)}
+              onClick={()=>dispatch(openPotoEdit())}
               >{profile.photo ? "Change" : "Add"}</button>
             </div>
 
@@ -341,8 +342,6 @@ export default function EditProfile() {
                       </h4>
                     )}
                   </div>
-                </div>
-                <div>
                   <div className="flex  ">
                     <p>Religious Education : </p>
                     {profile.relgsEdu ? (
@@ -356,6 +355,22 @@ export default function EditProfile() {
                       </h4>
                     )}
                   </div>
+                </div>
+                <div>
+                <div className="flex  ">
+                    <p>Religious Graduation : </p>
+                    {profile.relgsGraduation ? (
+                      <h5 className="ml-2">{profile.relgsGraduation}</h5>
+                    ) : (
+                      <h4
+                        onClick={() => dispatch(openRelgsEdit())}
+                        className="ml-2"
+                      >
+                        Add
+                      </h4>
+                    )}
+                  </div>
+                  {/* relgsGraduation */}
                   {profile.relgsEdu == "Graduation" ? (
                     <div className="flex  ">
                       <p>Religious Education : </p>

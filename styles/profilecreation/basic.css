@@ -123,7 +123,7 @@ max-width: 700px;
 .pr__crtn__third__row{
     margin: auto;
     margin-top: 30px;
-    /* border: solid red; */
+     
     max-width: 260px;
 
 
@@ -187,9 +187,7 @@ max-width: 700px;
         color: rgb(95, 93, 93);
      
     }
-    .pr__crtn__third__row{
-        margin-top: 2px;
-    }
+    
     .pr__crtn__row p{
         font-size: 14px;
         color: rgb(95, 93, 93);
@@ -210,4 +208,25 @@ max-width: 700px;
     .pr__crtn__second__row{
         margin-top: 10px;
     }
+}
+
+@media screen and (max-width: 800px){
+   .pf__crtn__left__img{
+    display: none;
+   }
+   .pf__crtn__right form{
+    margin: auto;
+ 
+    background-color: #fff;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+ padding: 15px;
+ 
+}
+.pr__crtn__third__row{
+ 
+    /* padding-top: 20px; */
+    padding-bottom: 10px;
+}
 }

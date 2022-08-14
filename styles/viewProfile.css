@@ -68,6 +68,10 @@
 .view__main__right {
   /* border: saddlebrown solid; */
 }
+.view__main__img img{
+  max-height: 250px;
+  max-width: 200px;
+}
 
 .view__main__first__left {
   align-items: center;

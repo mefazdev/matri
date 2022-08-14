@@ -3,6 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Login from './Login';
 import { useSelector, useDispatch } from "react-redux";
 import {  openLogin,   } from '../redux/actions';
+import Link from 'next/link';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -31,13 +32,15 @@ export default function Header() {
     <div className='header'>
       <div className='header__content flex'>
         <div className='header__left'>
-        <h1>Marry sunni</h1>
+          <Link href='/'><h1>Marry sunni</h1></Link>
+        
         <div className='header__left__right'>
-    <h4>Home</h4>
-    <h4>About</h4>
+        <Link href='/'><h4>Home</h4></Link>
+    <Link href='/About'><h4>About</h4></Link>
+    
     <h4>Contact</h4>
         </div>
-        </div>
+        </div>  
          
          <div className='header__right'>
             <div className='header__right__div flex'>
@@ -56,13 +59,16 @@ id='header__menu'/>
     </div>
   {mobileView  ? <div className='header__collapse'>
     <div className='collapse__row'>
-      <p>Home</p>
+      <Link href='/'><p>Home</p></Link>
+      
     </div>
     <div className='collapse__row'>
-      <p>About</p>
+      <Link href='/About'><p>About</p></Link>
+      
     </div>
     <div className='collapse__row'>
-      <p>Contact</p>
+      <Link href='/'><p>Contact</p></Link>
+      
     </div>
 
   </div> : ''}

@@ -112,6 +112,41 @@ const descEditControl = (state = false, { type }) => {
         return state
     }
   }
+
+  const photoEditControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__PHOTO__EDIT:
+        return state =  true
+      case types.CLOSE__PHOTO__EDIT :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
+  const profileHideControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__PROFILE__HIDE:
+        return state =  true
+      case types.CLOSE__PROFILE__HIDE :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
+
+  const profileDeleteControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__PROFILE__DELETE:
+        return state =  true
+      case types.CLOSE__PROFILE__DELETE :
+        return state= false
+      
+      default:
+        return state
+    }
+  }
   const reducers= {
 basicEditControl :basicEditControl,
    descEditControl : descEditControl,
@@ -122,7 +157,10 @@ locEditControl : locEditControl,
 lookingEditControl: lookingEditControl,
 physiEditControl:physiEditControl,
 searchControl:searchControl,
-loginControl:loginControl
+loginControl:loginControl,
+photoEditControl:photoEditControl,
+profileHideControl:profileHideControl,
+profileDeleteControl:profileDeleteControl,
 
 
 

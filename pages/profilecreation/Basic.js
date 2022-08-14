@@ -67,6 +67,7 @@ const router = useRouter()
       bodyType: bodyType,
       physically: physically,
       maritialStatus: maritialStatus,
+      status:"Active"
    
     });
 
@@ -81,8 +82,7 @@ const router = useRouter()
   }, [user]);
 
   
-// KV7egQny2b6DKHIuCVLH
-// KV7egQny2b6DKHIuCVLH
+ 
   return (
 
     <>
@@ -91,10 +91,10 @@ const router = useRouter()
         <div className="pf__crtn__div grid md:grid-cols-3">
           <div className="pf__crtn__left">
             <h3>Tell us about your basic details</h3>
-            <p>
+            {/* <p>
               Greate you have completed{" "}
               <span style={{ color: "rgb(0, 128, 51)" }}> 20%</span>{" "}
-            </p>
+            </p> */}
             <div className="pf__crtn__left__img">
               <Image src={couples} />
             </div>
@@ -112,7 +112,7 @@ const router = useRouter()
               <p>
                 Date of Birth<span style={{ color: "red" }}>*</span>
               </p>
-              <div className="gap-5 grid grid-cols-3">
+              <div className=" gap-1 md:gap-5 grid  md:grid-cols-3">
                 <select
                   onChange={(e) => setDay(e.target.value)} required>
                 <option value=''>Day</option>
@@ -135,7 +135,7 @@ const router = useRouter()
               </div>
             </div> 
 
-          <div className="pr__crtn__second__row gap-5 md:gap-10 grid grid-cols-2">
+          <div className="pr__crtn__second__row gap-2 md:gap-10 grid md:grid-cols-2">
               <div>
                 <p>
                   Height<span style={{ color: "red" }}>*</span>
@@ -162,7 +162,7 @@ const router = useRouter()
                 />
               </div>
             </div> 
-              <div className="pr__crtn__second__row gap-5 md:gap-10 grid grid-cols-2">
+              <div className="pr__crtn__second__row gap-2 md:gap-10 grid md:grid-cols-2">
               <div>
                 <p>
                   {" "}
@@ -193,7 +193,7 @@ const router = useRouter()
                 
               </div>
             </div>  
-            <div className="pr__crtn__second__row gap-5 md:gap-10 grid grid-cols-2">
+            <div className="pr__crtn__second__row gap-2 md:gap-10 grid md:grid-cols-2">
               <div>
                 <p>
                   Physically challenged?<span style={{ color: "red" }}>*</span>
@@ -215,6 +215,7 @@ const router = useRouter()
                   <option>Awaiting Divorce</option>
                   <option>Nikah Divorce</option>
                   <option>Married</option>
+                  <option>Awaiting Divorce</option>
                 </select>
               </div> 
             </div>  

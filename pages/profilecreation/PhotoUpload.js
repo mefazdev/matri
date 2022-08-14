@@ -59,7 +59,7 @@ export default function PhotoUpload() {
         photo: downloadURL1,
       });
    });
-   router.push('/profilecreation/VerifyNumber')
+   router.push('/account/Home')
   }
   useEffect(()=>{
     getUser()
@@ -71,20 +71,20 @@ export default function PhotoUpload() {
     <div>
       <Header />
       <div className="photo__upload">
-        <div className="photo__upload__div grid md:grid-cols-3 gap-10">
-          <div className="photo__upload__left">
+        <div className="photo__upload__div  ">
+          <div className="grid md:grid-cols-3 gap-10"><div className="photo__upload__left">
             <div className="photo__upload__left__img">
               <Image src={upload} />
             </div>
           </div>
-{/* <button onClick={()=>console.log(member[0].id)}>Check</button> */}
+ 
           <div className="photo__upload__right md:col-span-2">
             <h4 >Add photo</h4>
             <div className="photo__upload__box">
               <div className="photo__upload__box__row grid md:grid-cols-3">
                 <div className="photo__upload__box__row__left">
-                  {/* <div className=''></div> */}
-                  <div className="photo__upload__box__row__left__div">
+               
+              <div className="photo__upload__box__row__left__div">
                 {photo?  <img src={photo} /> :  <AddAPhotoOutlinedIcon id="photo__upload__cam__icon" />}
                    
                     <div className="file-input">
@@ -93,24 +93,37 @@ export default function PhotoUpload() {
                         id="img3"
                         onChange={handlePhoto}
                       />
-                      <label htmlFor="img3">SELECT PHOTO</label>
+                     <label htmlFor="img3">{photo ? 'CHANGE' :'SELECT PHOTO'}</label>
+              
                     </div>
-                  </div>
+                   
+                    
+              </div>
+                  
+                  
                 </div>
                 <div className="photo__upload__box__row__right md:col-span-2">
                   <div className="photo__upload__right__div">
                     <p>Please make sure your photo clearly shows your face</p>
-                    {/* <Link href="/profilecreation/VerifyNumber"> */}
-                      <button onClick={uploadPhoto}>
+                    
+                      <button onClick={uploadPhoto}
+                      disabled= {photo ? false :true}
+                      >
                         {uploading ? 'Uploading' : 'UPLOAD'}
                          </button>
-                    {/* </Link> */}
+              
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div></div>
+          
+          {/* <Link href='/profilecreation/VerifyNumber'><button className="photo__skip">SKIP</button></Link> */}
+          <Link href='/account/Home'><button className="photo__skip">SKIP</button></Link>
+          
         </div>
+
+       
       </div>
     </div>
   );
