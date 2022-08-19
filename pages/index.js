@@ -80,7 +80,7 @@ await addData(users.user.uid)
    }
 
    const navigate = ()=>{
-     if(user && member[0]?.data().allStage == true){
+     if(user && member[0]?.data().accDesc == true){
        router.push('/account/Home')
      }
    }

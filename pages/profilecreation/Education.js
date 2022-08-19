@@ -66,7 +66,7 @@ const router = useRouter()
     city:city,
    district:district,
    address:address,
-   education:true
+   accEdu:true
     });
     
     router.push('/profilecreation/Description')

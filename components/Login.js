@@ -60,15 +60,15 @@ const [user,setUser] = useState({})
   const navigate = ()=>{
     console.log(member)
     if(!member[0]?.data().basic ){
-      console.log('hello')
+ 
        router.push('/profilecreation/Basic')
-    }else if(!member[0]?.data().education  ){
+    }else if(!member[0]?.data().accEdu  ){
       router.push('/profilecreation/Education')
     
     
-  }else if(!member[0]?.data().description  ){
+  }else if(!member[0]?.data().accDesc  ){
     router.push('/profilecreation/Description')
-  } else if (member[0]?.data().description == true) {
+  } else if (member[0]?.data().accDesc == true) {
     router.push('/account/Home')
   }
 
