@@ -19,6 +19,7 @@
     "moment": "^2.29.4",
     "next": "12.1.6",
     "next-redux-wrapper": "^7.0.5",
+    "razorpay": "^2.8.3",
     "react": "18.2.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "18.2.0",
@@ -31,7 +32,8 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
-    "short-id": "^0.1.0-1"
+    "short-id": "^0.1.0-1",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
