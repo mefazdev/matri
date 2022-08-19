@@ -326,8 +326,8 @@ export default function MobileDisplay({
         <div >
         <WhatsappShareButton
           url={`https://www.marrysunni.com/shareView/${id}`}
-          children={<WhatsAppIcon id='mob__share__wtsp'/>}
-          />
+          // children={}
+          ><WhatsAppIcon id='mob__share__wtsp'/></WhatsappShareButton>
           {/* <FacebookShareButton
           children={<FacebookOutlinedIcon
             id='mob__share__fb'
@@ -337,9 +337,9 @@ export default function MobileDisplay({
           /> */}
 
           <TelegramShareButton
-          children={<TelegramIcon id='mob__share__tg'/>}
+          // children={}
           url={`https://www.marrysunni.com/shareView/${id}`}
-          />
+          ><TelegramIcon id='mob__share__tg'/></TelegramShareButton>
         </div>
          <CancelIcon onClick={()=>setShare(false)} id='mob__share__cancel'/>
         </div> : ''}

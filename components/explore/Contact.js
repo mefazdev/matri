@@ -107,7 +107,7 @@ useEffect(()=>{
                 // setAge(age_now)
                 // }
                 return(
-                  <div className="interest__row">
+                  <div key={index} className="interest__row">
                   <div className="interest__row__left grid grid-cols-2" >
                       <div className="intrest__row__img"> 
                       {d.photo ? <img src={d.photo} alt=''/> : 

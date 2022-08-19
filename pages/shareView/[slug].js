@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { openProfielHide } from "../../redux/actions";
  
 import logo from '../../asset/image/logo.png'
-export default function shareView() {
+export default function ShareView() {
    
   const router = useRouter()
   const id  = router.query.slug 
