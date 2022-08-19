@@ -49,6 +49,7 @@
   margin-left: 5px;
   margin-left: -1px;
   color: rgb(56, 54, 54);
+ 
 }
 #view__loc__icon {
   font-size: 18px;
@@ -81,7 +82,7 @@
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   margin-left: 5px;
-  /* margin-left: -1px; */
+ 
   color: rgb(90, 88, 88);
   
 }
@@ -225,3 +226,130 @@ padding-bottom: 10px;
     font-size: 14px;
     padding: 5px;
  }
+
+ .share__logo__div{
+  max-width: 50px;
+  margin-left: 100px;
+  /* border: solid red; */
+ }
+
+
+
+ @media only screen and (max-width: 800px) {
+  .sidebar__div{
+display: none;
+/* border: solid red; */
+  }
+ 
+  .view__main__img{
+    max-height: 250px;
+    max-width: 300px;
+    /* width: 100%; */
+    margin: auto;
+    /* border: saddlebrown solid ; */
+  }
+   .view__main__img__div{
+    max-height: 250px;
+    max-width: 300px;
+    /* width: 100%; */
+    margin: auto;
+   }
+  .view__intrest__send__div button{
+    background-color: rgb(193, 13, 13);
+    margin-right: 0px;
+    margin-top: 20px;
+    width: 100%
+  
+ }
+ .view__intrest__send__div{
+  padding-bottom: 0px;
+  justify-content: space-between;
+  padding-top: 20px;
+  /* height: 200px; */
+  margin-bottom: 10px;
+  background-color: rgb(244, 243, 243);
+}
+.view__right {
+  /* border: solid red; */
+  /* height: 100vh; */
+  margin-left: 0px;
+ 
+  padding: 10px;
+}
+}
+ 
+
+
+.blur__address p{
+  color: transparent;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+.blur__address h5{
+  color: transparent;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+#view__loc__btn{
+  color: #fff;
+  font-family: 'Poppins',sans-serif;
+  background-color: rgb(8, 64, 8);
+  font-size: 14px;
+  padding: 2px;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+.pay__not__modal{
+  max-width: 100px;
+  border: #4d52523d solid;
+  height: 100%;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+.pay__not__not{
+  /* border: solid red; */
+  /* height: 300px; */
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  /* display: flex; */
+  padding-top: 60px;
+  padding-bottom: 50px;
+}
+.pay__not__not p{
+  font-family: 'Poppins',sans-serif;
+}
+
+.pay__not__not button{
+color: #fff;
+padding: 3px;
+font-size: 14px;
+border-radius: 5px;
+margin-top: 30px;
+}
+.pay__ok__btn{
+  background-color: rgb(0, 89, 255);
+  width: 50px;
+  margin-left: 50px;
+}
+.pay__cncl__btn{
+  background-color: red;
+  width: 100px;
+}
+
+#saved__btn{
+  background-color: rgb(10, 137, 192);
+  color: #fff;
+  padding: 3px;
+  font-size: 14px;
+  margin-top: 10px;
+  border-radius: 4px;
+  font-family: "Poppins",sans-serif;
+}

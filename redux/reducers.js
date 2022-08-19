@@ -124,6 +124,8 @@ const descEditControl = (state = false, { type }) => {
         return state
     }
   }
+
+
   const profileHideControl = (state = false, { type }) => {
     switch (type) {
       case types.OPEN__PROFILE__HIDE:
@@ -147,6 +149,18 @@ const descEditControl = (state = false, { type }) => {
         return state
     }
   }
+
+  const accMenuEditControl = (state = false, { type }) => {
+    switch (type) {
+      case types.OPEN__ACC__MENU:
+        return state =  true
+      case types.CLOSE__ACC__MENU:
+        return state= false
+      
+      default:
+        return state
+    }
+  }
   const reducers= {
 basicEditControl :basicEditControl,
    descEditControl : descEditControl,
@@ -161,6 +175,7 @@ loginControl:loginControl,
 photoEditControl:photoEditControl,
 profileHideControl:profileHideControl,
 profileDeleteControl:profileDeleteControl,
+accMenuEditControl:accMenuEditControl,
 
 
 

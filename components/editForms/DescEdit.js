@@ -70,7 +70,7 @@ export default function DescEdit({id}) {
                 Cancel
               </button>
 
-              <button onClick={()=>console.log(id)}>TEST</button>
+              {/* <button onClick={()=>console.log(id)}>TEST</button> */}
             </div>
           </div>
         </div>

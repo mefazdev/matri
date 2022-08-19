@@ -46,6 +46,9 @@ font-size: 16px;
     max-width: 80%;
      
 }
+.nav__logo{
+    max-width: 80px;
+}
 .header__right{
     position: relative;
     width: 100%;
@@ -104,11 +107,26 @@ margin-top: -12px;
     }
   }
 
+
+   
+
+#mob__login__btn{
+    margin-top: -3px;
+    background-color: #fff;
+    padding: 1px;
+    font-family: 'Poppins', sans-serif;
+    width: 100px;
+    /* border-radius: 2px;   */
+    /* margin-left: 20px; */
+}
 @media only screen and (min-width: 850px) {
     #header__menu{
 display: none;
     }
     .header__collapse{
+        display: none;
+    }
+    #mob__login__btn{
         display: none;
     }
   }

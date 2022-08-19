@@ -4,7 +4,7 @@ import Header from '../components/Header'
 import arab from '../asset/image/arab.png' 
 import PhoneInput from 'react-phone-number-input'
 // import PhoneInput from "react-phone-number-input/react-hook-form-input"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Footer from '../components/Footer'
 import Link from 'next/link'
 import {
@@ -15,7 +15,7 @@ import moment from 'moment'
 
 import { auth, db } from "../firebase";
 import { useRouter } from 'next/router'
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, serverTimestamp, where } from "firebase/firestore";
 import shortId from 'short-id'
 export default function Home() {
   
@@ -30,14 +30,28 @@ const router = useRouter()
   const [user,setUser] = useState({})
 
 const profId = shortId.generate()
+
+const [member,setMember] = useState([])
  
   const getUser = ()=>{
  onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
-  
+   
   });
   }
- 
+  const fetchMember = async () => {
+    const userId = await user ? user.uid : null;
+
+    if (userId) {
+      const q = await query(
+        collection(db, "member"),
+        where("userId", "==", user?.uid)
+      );
+
+      const data = await getDocs(q);
+      setMember(data.docs.map((doc) => doc));
+    }
+  };
  
 const submitForm = async (e)=>{
 e.preventDefault();
@@ -64,6 +78,22 @@ await addData(users.user.uid)
     })
 
    }
+
+   const navigate = ()=>{
+     if(user && member[0]?.data().allStage == true){
+       router.push('/account/Home')
+     }
+   }
+
+   useEffect(()=>{
+    fetchMember()
+   },[user])
+   useEffect(()=>{
+    getUser()
+   },[])
+   useEffect(()=>{
+    navigate()
+   },[member])
   return (
     
     <div  >
@@ -96,9 +126,9 @@ await addData(users.user.uid)
                   <p>Create profile for<span style={{color:'red'}}>*</span> </p>
                 <select 
                 onChange={((e)=>setCrateFor(e.target.value))}
-                // required
+                required
                 >
-                  <option>Select</option>
+                  <option value=''>Select</option>
                   <option>Myself</option>
                   <option>Daughter</option>
                   <option>Son</option>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AccountNav from "../../../components/AccountNav";
-import AccoundSidebar from "../../../components/AccountSidebar";
+import AccountSidebar from "../../../components/AccountSidebar";
 import imageHolder from "../../../asset/image/photo-holder.png";
 import Image from "next/image";
 import PersonIcon from "@mui/icons-material/Person";
@@ -38,6 +38,8 @@ import { collection, doc, getDoc, onSnapshot, query, updateDoc } from "firebase/
 import Link from "next/link";
 import { textFieldClasses } from "@mui/material";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import MobFooterNav from "../../../components/MobFooterNav";
+import MobileMenu from "../../../components/MobileMenu";
 
 export default function EditProfile() {
   const [user, setUser] = useState({});
@@ -140,8 +142,12 @@ export default function EditProfile() {
   return (
     <div className="edit__prof">
       <AccountNav />
+      <MobileMenu/>
       <div className="edit__content flex">
-        <AccoundSidebar />
+      
+        <div className="sidebar__div">
+        <AccountSidebar />
+        </div>
 
         <div className="edit__right">
          <div className="edit__head grid md:grid-cols-2">
@@ -168,7 +174,8 @@ export default function EditProfile() {
 {/* <button  onClick={()=>setcheck('hellp')}>Edit</button> */}
             
           <div className="view__main grid md:grid-cols-3">
-            <div className="view__main__img__div">
+          <div className="view__main__img__div"> 
+            
               <div className="view__main__img">
                 {profile.photo ? (
                   <img src={profile.photo} alt="" />
@@ -179,7 +186,7 @@ export default function EditProfile() {
               <button 
               onClick={()=>dispatch(openPotoEdit())}
               >{profile.photo ? "Change" : "Add"}</button>
-            </div>
+            </div>  
 
             <div className="md:col-span-2 view__main__right">
               <div className="view__main__first__row  flex">
@@ -241,7 +248,7 @@ export default function EditProfile() {
                 </div>
               </div>
 
-              <div className="view__desc__columns grid grid-cols-2">
+              <div className="view__desc__columns grid md:grid-cols-2">
                 <div>
                   <div className="flex mt-1">
                     <p>Name : </p>
@@ -310,7 +317,7 @@ export default function EditProfile() {
                   Edit
                 </div>
               </div>
-              <div className="view__desc__columns grid grid-cols-2">
+              <div className="view__desc__columns grid md:grid-cols-2">
                 <div>
                   <div className="flex mt-1">
                     <p>Groupe : </p>
@@ -420,7 +427,7 @@ export default function EditProfile() {
                   Edit
                 </div>
               </div>
-              <div className="view__desc__columns grid grid-cols-2">
+              <div className="view__desc__columns grid md:grid-cols-2">
                 <div>
                   <div className="flex mt-1">
                     <p>Education : </p>
@@ -465,7 +472,7 @@ export default function EditProfile() {
                   Edit
                 </div>
               </div>
-              <div className="view__desc__columns grid grid-cols-2">
+              <div className="view__desc__columns grid md:grid-cols-2">
                 <div>
                   <div className="flex mt-1">
                     <p>Height : </p>
@@ -552,7 +559,7 @@ export default function EditProfile() {
                 </div>
               </div>
 
-              <div className="view__desc__columns grid grid-cols-2">
+              <div className="view__desc__columns grid md:grid-cols-2">
                 <div>
                   <div className="flex mt-1">
                     <p>Family Type : </p>
@@ -726,6 +733,8 @@ export default function EditProfile() {
       <DescEdit id={id} />
       <BasicEdit id={id} />
       <PhysiEdit id={id} />
+
+      <MobFooterNav/>
     </div>
   );
 }

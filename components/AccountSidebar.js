@@ -10,6 +10,7 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { onAuthStateChanged } from "firebase/auth";
+import girlHolder from '../asset/image/girls-place.png'
 
 import {
   addDoc,
@@ -84,7 +85,8 @@ export default function AccoundSidebar() {
           {member[0]?.data().photo ? (
             <img src={member[0]?.data().photo} alt="" />
           ) : (
-            <Image src={imageHolder} alt="" />
+            member[0]?.data().gender == 'Male' ?  <Image src={imageHolder} alt="" /> :
+            <Image src={girlHolder} alt="" />
           )}
         </div>
         <div className="sbar__first__row__right">
@@ -95,8 +97,8 @@ export default function AccoundSidebar() {
             </span>
             ({member[0]?.data().profileId}){" "}
           </h6>
-          <p>Account : Free</p>
-          <button>Upgrade</button>
+          {/* <p>Account : Free</p>
+          <button>Upgrade</button> */}
         </div>
       </div>
       <div className="sbar__second__row ">

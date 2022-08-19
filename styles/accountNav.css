@@ -6,6 +6,10 @@
     top: 0;
     z-index: 100;
 }
+.acc__nav__logo{
+    max-width: 60px;
+    margin-top: 5px;
+}
 .acc__nav__cnt{
     max-width: 90%;
     margin: auto;

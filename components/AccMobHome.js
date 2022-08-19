@@ -7,7 +7,12 @@ import AccoundSidebar from "./AccountSidebar";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import Display from "./Display";
 import Modal from "@mui/material/Modal";
+import GroupIcon from '@mui/icons-material/Group';
+import SearchIcon from '@mui/icons-material/Search';
+import BrowseGalleryIcon from '@mui/icons-material/BrowseGallery';
+import MenuIcon from '@mui/icons-material/Menu';
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+ 
 import {
   addDoc,
   collection,
@@ -22,14 +27,19 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { useSelector, useDispatch } from "react-redux";
-import { closeSearch, openSearch } from "../redux/actions";
+import { closeAccMenu, closeSearch, openAccMenu, openSearch } from "../redux/actions";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from 'next/router';
+import MobileMenu from './MobileMenu';
+import MobileDisplay from './MobielDispaly';
+import Link from 'next/link';
+import MobFooterNav from './MobFooterNav';
 
 export default function AccMobHome() {
-    const [menu,setMenu] = useState(false)
+     
     const dispatch = useDispatch();
   const open = useSelector((state) => state.searchControl);
+  const openMenu = useSelector((state) => state.accMenuEditControl);
   const [user, setUser] = useState({});
   // const [openSearch, setOpenSearch] = useState(false)
   const [deatailSearch, setDetailSearch] = useState(true);
@@ -393,86 +403,142 @@ if(limitFrom > 1){
 }
  
   }
+
+
   return (
     <div className='mob'>
         <AccountNav/>
-       {menu ?  <div className='mob__menu'>
-            <AccoundSidebar />
 
-        </div> :''}
+        <MobileMenu />
+<div className='mob__content'>
 
-        <div className="menu__flot__btn">
-            {menu ?    <CloseIcon id='menu__flot__icon' onClick={()=>setMenu(false)}/> : <MenuOpenIcon id='menu__flot__icon' onClick={()=>setMenu(true)}/>
-        }
-         
-      </div>
 
-        <div className="acc__mob__profiles ">
-                
-                    <div className="acc__desk__right__header flex">
-                    <button
-                        id="acc__left__btn"
-                        onClick={() => dispatch(openSearch())}
-                    >
-                        Modify Preference <KeyboardDoubleArrowRightIcon />
-                    </button>
-                     
-                    {/* <div className="acc__desk__right__header__right flex">
-                            <button onClick={prev}>Prev</button>
-                            <div className="acc__desk__right__header__right__div">
-                            {pageCount}
-                            </div>
-                            <button onClick={next}>Next</button>
-                        </div> */}
-                       
-                        
-                    </div>  
+  {members.map((data,index) => {
+     if (data.data().gender !== member[0]?.data().gender)
+   
+     
+     {
+      var today = new Date();
 
-                    <div className="acc__desk__right__row grid lg:grid-cols-2 gap-2    ">
-                    {members.map((data, index) => {
-                        
-                        if (data.data().gender !== member[0]?.data().gender) {
-                        var today = new Date();
+      var age_now = today.getFullYear() - data.data().bYear;
+      var m = today.getMonth() - data.data().bMonth;
+      if (
+        m < 0 ||
+        (m === 0 && today.getDate() < data.data().bday)
+      ) {
+        age_now--;
+      }
+return(
+  <MobileDisplay
+  key={index}
+  name={data.data().brideName}
+  height={data.data().height}
+  weight={data.data().weight}
+  city={data.data().city}
+  community={data.data().community}
+  highEdu={data.data().highEdu}
+  occupation={
+    data.data().profession ? data.data().profession : ""
+  }
+  gender={data.data().gender}
+  photo={data.data().photo ? data.data().photo : ""}
+  wtspNumber={data.data().wtspNumber}
+  phone={data.data().phone}
+  age={age_now}
+  id={data.id}
+  userId={data.data().userId}
+  maritialStatus={data.data().maritialStatus}
+  eduCourse={
+    data.data().eduCourse ? data.data().eduCourse : ""
+  }
+  district={data.data().district}
+  profileId = {data.data().profileId}
 
-                        var age_now = today.getFullYear() - data.data().bYear;
-                        var m = today.getMonth() - data.data().bMonth;
-                        if (
-                            m < 0 ||
-                            (m === 0 && today.getDate() < data.data().bday)
-                        ) {
-                            age_now--;
-                        }
+  />
+)
 
-                        return (
-                            <Display
-                            key={index}
-                            name={data.data().brideName}
-                            height={data.data().height}
-                            weight={data.data().weight}
-                            city={data.data().city}
-                            community={data.data().community}
-                            highEdu={data.data().highEdu}
-                            occupation={
-                                data.data().profession ? data.data().profession : ""
-                            }
-                            gender={data.data().gender}
-                            photo={data.data().photo ? data.data().photo : ""}
-                            wtspNumber={data.data().wtspNumber}
-                            phone={data.data().phone}
-                            age={age_now}
-                            id={data.id}
-                            userId={data.data().userId}
-                            maritialStatus={data.data().maritialStatus}
-                            eduCourse={
-                                data.data().eduCourse ? data.data().eduCourse : ""
-                            }
-                            district={data.data().district}
-                            />
-                        );
-                        }
-                    })}
-                    </div>
-                </div>
+    }
+  })}
+
+</div>
+
+
+
+
+ 
+            
+
+ 
+
+       
+
+       
+
+      
+      <MobFooterNav/>
+      
+      
     </div>
   )
 }
+
+
+{/* <div className="acc__mob__profiles ">
+                
+<div className="acc__desk__right__header flex">
+<button
+    id="acc__left__btn"
+    onClick={() => dispatch(openSearch())}
+>
+    Modify Preference <KeyboardDoubleArrowRightIcon />
+</button>
+
+   
+    
+</div>  
+
+<div className="acc__desk__right__row grid lg:grid-cols-2 gap-2    ">
+{members.map((data, index) => {
+    
+    if (data.data().gender !== member[0]?.data().gender) {
+    var today = new Date();
+
+    var age_now = today.getFullYear() - data.data().bYear;
+    var m = today.getMonth() - data.data().bMonth;
+    if (
+        m < 0 ||
+        (m === 0 && today.getDate() < data.data().bday)
+    ) {
+        age_now--;
+    }
+
+    return (
+        <Display
+        key={index}
+        name={data.data().brideName}
+        height={data.data().height}
+        weight={data.data().weight}
+        city={data.data().city}
+        community={data.data().community}
+        highEdu={data.data().highEdu}
+        occupation={
+            data.data().profession ? data.data().profession : ""
+        }
+        gender={data.data().gender}
+        photo={data.data().photo ? data.data().photo : ""}
+        wtspNumber={data.data().wtspNumber}
+        phone={data.data().phone}
+        age={age_now}
+        id={data.id}
+        userId={data.data().userId}
+        maritialStatus={data.data().maritialStatus}
+        eduCourse={
+            data.data().eduCourse ? data.data().eduCourse : ""
+        }
+        district={data.data().district}
+        />
+    );
+    }
+})}
+</div>
+</div> */}

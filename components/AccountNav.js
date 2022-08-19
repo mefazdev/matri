@@ -19,7 +19,7 @@ import { useRouter } from 'next/router';
 import { getAuth } from "firebase/auth";
 import { async } from '@firebase/util';
 import Link from 'next/link';
-
+import logo from '../asset/image/logo.png'
 
 export default function AccountNav() {
   
@@ -146,14 +146,15 @@ useEffect(()=>{
       
 
        <div className='acc__nav__left flex'>
-       <AccountTreeIcon id='logo' />
+        <div className='acc__nav__logo'><Image src={logo} alt=''/></div>
+     
        <Link href='/account/Home'><p>HOME</p></Link>
         
         <p onClick={()=>dispatch(openSearch())}>SEARCH</p>
         <Link href={`/account/explore/${encodeURIComponent(member[0]?.id)}`}>
         <p>EXPLORE</p></Link>
         
-        <p>UPGRADE</p>
+        {/* <p>UPGRADE</p> */}
         <p>HELP</p>
        
        </div>

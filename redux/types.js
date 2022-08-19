@@ -38,3 +38,6 @@ export const CLOSE__PROFILE__HIDE = 'CLOSE__PROFILE__HIDE'
 
 export const OPEN__PROFILE__DELETE = 'OPEN__PROFILE__DELETE'
 export const CLOSE__PROFILE__DELETE = 'CLOSE__PROFILE__DELETE'
+
+export const OPEN__ACC__MENU = 'OPEN__ACC__MENU'
+export const CLOSE__ACC__MENU = 'CLOSE__ACC__MENU'

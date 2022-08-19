@@ -67,7 +67,8 @@ const router = useRouter()
       bodyType: bodyType,
       physically: physically,
       maritialStatus: maritialStatus,
-      status:"Active"
+      status:"Active",
+      basic : true
    
     });
 

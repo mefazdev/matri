@@ -9,6 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Overlay from "react-bootstrap/Overlay";
+import girlHolder from '../asset/image/girls-place.png'
 import {
   addDoc,
   collection,
@@ -267,10 +268,11 @@ export default function Display({
       <ToastContainer />
       <div className="flex">
         <div className="dpy__img">
-          {photo ? (
-            <img src={photo} alt="" />
+          {photo ? (<img src={photo} alt="" />
           ) : (
-            <Image src={photoHolder} alt="" />
+            
+            gender == 'Male' ?  <Image src={photoHolder} alt="" /> :
+            <Image src={girlHolder} alt="" />
           )}
         </div>
         <div className="dpy__right">

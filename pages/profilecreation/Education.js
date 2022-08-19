@@ -65,7 +65,8 @@ const router = useRouter()
     profType:profType,
     city:city,
    district:district,
-   address:address
+   address:address,
+   education:true
     });
     
     router.push('/profilecreation/Description')

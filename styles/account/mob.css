@@ -1,17 +1,20 @@
  
  .mob__menu{
-    /* border: solid red; */
+  
     width: 100%;
-    /* position: absolute; */
+    position: fixed;
     margin: auto;
     /* width: fit-content; */
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     z-index: 100;
     background-color: #fff;
     justify-content: center;
     /* margin-top: 30px; */
+    top: 0;
+    margin-top:70px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 
 .menu__flot__btn{
@@ -50,4 +53,40 @@
     .acc__desk__right__row{
       margin-top: 40px;
      }
+   }
+
+   .mob{
+    /* height: 200vh; */
+    /* border: solid red; */
+   }
+   .b__bar{
+    background-color: #fff;
+    /* height: 50px; */
+    padding: 14px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    /* border-top: 1px solid gray; */
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+    /* top: 0; */
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+   }
+
+#b__bar__icons{
+font-size: 35px;
+}
+
+.mob__content{
+    /* margin-top: 10px; */
+    padding: 10px;
+    padding-bottom: 100px;
+}
+
+
+@media only screen and (min-width: 801px) {
+    .b__bar{
+display: none;
+    }
    }

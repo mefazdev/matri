@@ -40,3 +40,6 @@ export const closeProfielHide = () => ({type:types.CLOSE__PROFILE__HIDE})
 export const openProfielDelete = () => ({type:types.OPEN__PROFILE__DELETE})
 export const closeProfielDelete = () => ({type:types.CLOSE__PROFILE__DELETE})
 
+export const openAccMenu  = () =>  ({type:types.OPEN__ACC__MENU})
+export const closeAccMenu = () => ({type:types.CLOSE__ACC__MENU})
+
