@@ -55,7 +55,10 @@ font-size: 20px;
     width: 100%;
     max-width: 160px;
     /* border: solid red; */
-   justify-content: space-between; 
+    align-items: center;
+    
+    /* border: solid red; */
+   /* justify-content: space-between;  */
 }
 .dpy__foot__right{
     align-items: center;
@@ -115,9 +118,41 @@ color: orange;
     font-size: 14px;
     padding: 4px;
     color: rgb(62, 61, 61);
+   
  }
 
 .dpy__right h6{
     cursor: pointer;
     
+}
+
+#dis__share__wtsp{
+    color: rgb(47, 159, 28);
+    font-size: 22px;
+    margin-left: 10px;
+   }
+   #dis__share__fb{
+    margin-left: 10px;
+    font-size: 30px;
+    color: rgb(18, 91, 150);
+    /* background-color: blue; */
+   }
+   #dis__share__tg{
+    margin-left: 10px;
+    font-size: 25px;
+    color: rgb(27, 142, 184);
+   }
+  
+   #dis__share__cancel{
+    color: rgb(225, 13, 13);
+    font-size: 25px;
+   }
+#dis__share{
+
+}
+#dis__share{
+
+}
+#dis__share{
+ 
 }

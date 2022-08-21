@@ -102,3 +102,7 @@
   color: rgb(225, 13, 13);
   font-size: 30px;
  }
+ .dis__share__div{
+  display: flex;
+  font-size: 14px;
+ }

@@ -11,6 +11,16 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Overlay from "react-bootstrap/Overlay";
 import girlHolder from '../asset/image/girls-place.png'
 import {
+  FacebookShareButton,
+  InstapaperShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from "react-share";
+import CancelIcon from '@mui/icons-material/Cancel';
+
+import TelegramIcon from '@mui/icons-material/Telegram';
+import {
   addDoc,
   collection,
   deleteDoc,
@@ -303,32 +313,38 @@ export default function Display({
             onClick={() => setShow(!show)}
             ref={target}
             id="dpy__icon"
+            className="ml-5"
           />
           <Overlay target={target.current} show={show} placement="right">
-            <div className="share__overlay">Share on Whatsapp</div>
-          </Overlay>
-          <a href={`tel:${phone}`}>
-            <CallIcon id="dpy__icon" />{" "}
-          </a>
+          <div className="dis__share__div">
+        
+        <div >
+        <WhatsappShareButton
+          url={`https://www.marrysunni.com/shareView/${id}`}
+          // children={}
+          ><WhatsAppIcon id='dis__share__wtsp'/></WhatsappShareButton>
+          {/* <FacebookShareButton
+          children={<FacebookOutlinedIcon
+            id='mob__share__fb'
+           
+          />}
+          url={`https://www.marrysunni.com/viewProfile/${id}`}
+          /> */}
 
-          <a
-            href={`whatsapp://send?phone=${wtspNumber}`}
-            data-action="share/whatsapp/share"
-          >
-            <WhatsAppIcon id="dpy__icon" />
-          </a>
+          <TelegramShareButton
+          // children={}
+          url={`https://www.marrysunni.com/shareView/${id}`}
+          ><TelegramIcon id='dis__share__tg'/></TelegramShareButton>
         </div>
-        {/* {interest.map((data)=>{
-          <p>Hello</p>
-          if(data.data().from.userId == user.uid){
-            if(data.data().to.userId == userId){
-          //  setSend(true)
-          console.log('hh')
-            }else{
-              
-            }
-          }
-        })} */}
+          
+        </div>
+           
+            
+          </Overlay>
+    
+ 
+        </div>
+         
          {send ? <button id='intr__send__btn'> Sent Interest</button> :  accepted ? <button id='intr__acc__btn'>Interest Accepted </button>
          : ignored ? 
          <button id='intr__igno__btn'>Interest Ignored</button>

@@ -321,7 +321,8 @@ export default function MobileDisplay({
         </div>
          }
        
-        {share ? <div className="bob__doy__share__div" onClick={()=>console.log(`https://www.marrysunni.com/shareView/${id}`)}>
+        {share ? 
+        <div className="bob__doy__share__div" onClick={()=>console.log(`https://www.marrysunni.com/shareView/${id}`)}>
         
         <div >
         <WhatsappShareButton

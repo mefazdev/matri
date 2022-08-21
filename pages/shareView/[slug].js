@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { openProfielHide } from "../../redux/actions";
  
 import logo from '../../asset/image/logo.png'
+import Link from "next/link";
 export default function ShareView() {
    
   const router = useRouter()
@@ -154,6 +155,7 @@ if(profile?.status == 'Inactive'){
                
               <h5>Malappuram</h5>
               <h5>Kerala</h5> */}
+              <div className= 'blur__address'>
               <h5>{profile.address}</h5>  
               
   
@@ -161,6 +163,9 @@ if(profile?.status == 'Inactive'){
               <p>Secondary No : {profile.scndNumber}</p>
               <p>Whatsapp : {profile.wtspNumber}</p>
              </div>
+             </div>
+             <Link href='/'><button className="share__view__button">Please login to view </button></Link>
+             
             </div>
   
             <div className="view__desc">

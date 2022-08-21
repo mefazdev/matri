@@ -58,19 +58,25 @@ const [user,setUser] = useState({})
   };
  
   const navigate = ()=>{
-    console.log(member)
-    if(!member[0]?.data().basic ){
+
+      // if(member[0].data().basic !== true){
+      //   console.log(member[0]?.data().basic)
+      // }
+      if(member[0]){
+        if(member[0]?.data().basic !== true ){
  
-       router.push('/profilecreation/Basic')
-    }else if(!member[0]?.data().accEdu  ){
-      router.push('/profilecreation/Education')
+          router.push('/profilecreation/Basic')
+       }else if(member[0]?.data().accEdu !== true ){
+         router.push('/profilecreation/Education')
+       
+       
+     }else if(member[0]?.data().accDesc !== true   ){
+       router.push('/profilecreation/Description')
+     } else if (member[0]?.data().accDesc == true) {
+       router.push('/account/Home')
+     }
+      }
     
-    
-  }else if(!member[0]?.data().accDesc  ){
-    router.push('/profilecreation/Description')
-  } else if (member[0]?.data().accDesc == true) {
-    router.push('/account/Home')
-  }
 
 }
 useEffect(()=>{

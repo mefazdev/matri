@@ -353,3 +353,14 @@ margin-top: 30px;
   border-radius: 4px;
   font-family: "Poppins",sans-serif;
 }
+.share__view__button{
+  background-color: rgb(9, 111, 79);
+  color: #fff;
+  padding: 3px;
+  margin-top: 10px;
+  font-family: "Poppins",sans-serif;
+  font-size: 14px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 3px;
+}
