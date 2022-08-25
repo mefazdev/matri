@@ -21,7 +21,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { closeSearch, openSearch } from "../redux/actions";
 import { onAuthStateChanged } from "firebase/auth";
 import AccountNav from "./AccountNav";
- 
+
 import { useRouter } from "next/router";
 import { districts } from "../asset/data/districts";
 import { cities } from "../asset/data/cities";
@@ -52,11 +52,11 @@ export default function AccDesktopHome() {
   const [prof, setProf] = useState("");
   const [dist, setDist] = useState("");
   const [city, setCity] = useState("");
- const [onSpin,setOnSpin] = useState(false)
+  const [onSpin, setOnSpin] = useState(false);
 
- const [limitFrom,setLimitFrom] = useState(0)
- const [limitTo,setLimitTo] = useState(30)
- const [pageCount, setPageCount] = useState(1)
+  const [limitFrom, setLimitFrom] = useState(0);
+  const [limitTo, setLimitTo] = useState(30);
+  const [pageCount, setPageCount] = useState(1);
   const router = useRouter();
   const enableDeatailSearch = () => {
     setDetailSearch(true);
@@ -90,7 +90,7 @@ export default function AccDesktopHome() {
         collection(db, "member"),
 
         where("gender", "==", gender),
-        where("status", "==", "Active"),
+        where("status", "==", "Active")
         // limit(1)
 
         // where('district','==','Kannur')
@@ -108,6 +108,7 @@ export default function AccDesktopHome() {
   useEffect(() => {
     fetchData();
   }, [member]);
+
   useEffect(() => {
     getUser();
   }, []);
@@ -132,8 +133,8 @@ export default function AccDesktopHome() {
   };
 
   const searchProfiles = async () => {
-    dispatch(closeSearch())
-    setOnSpin(true)
+    dispatch(closeSearch());
+    setOnSpin(true);
     let ar = [];
     if (fromAge && toAge) {
       members.map((d) => {
@@ -361,49 +362,44 @@ export default function AccDesktopHome() {
       }
     }
 
-    dispatch(closeSearch())
-    
- setOnSpin(false)
-  
+    dispatch(closeSearch());
+
+    setOnSpin(false);
   };
+
+
   useEffect(() => {
     if (open == true) {
       fetchData();
     }
   }, [open]);
 
+  const next = () => {
+    setPageCount((pageCount += 1));
+    setLimitFrom((limitFrom += 30));
+    setLimitTo((limitTo += 30));
+  };
+  const prev = () => {
+    if (pageCount > 1) {
+      setPageCount((pageCount -= 1));
+    }
 
-
-  const next = ()=>{
-    setPageCount( pageCount += 1)
-    setLimitFrom(limitFrom+=30)
-    setLimitTo(limitTo+=30)
-   
-  }
-  const prev = ()=>{
-if(pageCount > 1){
-  setPageCount( pageCount -= 1)
-
-}
-
-
-if(limitFrom > 1){
-  setLimitFrom(limitFrom-=30)
-  setLimitTo(limitTo-=30)
-}
- 
-  }
+    if (limitFrom > 1) {
+      setLimitFrom((limitFrom -= 30));
+      setLimitTo((limitTo -= 30));
+    }
+  };
   return (
     <>
       {user ? (
         <>
-          <AccountNav  />
-          <div className="acc__desk" >
+          <AccountNav    />
+        
+          <div className="acc__desk">
             <div className="acc__desk__content flex">
               <AccoundSidebar />
-             
+
               <div className="acc__desk__right ">
-             
                 <div className="acc__desk__right__header flex">
                   <button
                     id="acc__left__btn"
@@ -411,7 +407,7 @@ if(limitFrom > 1){
                   >
                     Modify Preference <KeyboardDoubleArrowRightIcon />
                   </button>
- 
+
                   <div className="acc__desk__right__header__right flex">
                     <button onClick={prev}>Prev</button>
                     <div className="acc__desk__right__header__right__div">
@@ -666,8 +662,8 @@ if(limitFrom > 1){
                 <div className="search__row flex">
                   <p>District</p>
                   <div className=" search__madhab">
-                    <select onChange={(e)=>setDist(e.target.value)}>
-                      <option value=''>Plaease select</option>
+                    <select onChange={(e) => setDist(e.target.value)}>
+                      <option value="">Plaease select</option>
                       {districts.map((d, index) => {
                         return <option key={index}>{d}</option>;
                       })}
@@ -677,8 +673,8 @@ if(limitFrom > 1){
                 <div className="search__row flex">
                   <p>City</p>
                   <div className=" search__madhab">
-                    <select onChange={(e)=>setCity(e.target.value)}>
-                      <option value=''>Plaease select</option>
+                    <select onChange={(e) => setCity(e.target.value)}>
+                      <option value="">Plaease select</option>
                       {cities.map((d, index) => {
                         return <option key={index}>{d}</option>;
                       })}
@@ -705,17 +701,17 @@ if(limitFrom > 1){
               </div>
             )}
           </div>
-         
         </div>
       </Modal>
 
-     {onSpin ?  <span className="flex h-3 w-3">
-  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-  <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-</span> : ''}
-
+      {onSpin ? (
+        <span className="flex h-3 w-3">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+        </span>
+      ) : (
+        ""
+      )}
     </>
   );
 }
-
- 

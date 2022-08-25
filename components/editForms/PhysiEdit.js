@@ -18,19 +18,21 @@ const [saving,setSaving] = useState(false)
 
   
     const fetchProfile = async () => {
-      if(id){
-        const docRef = doc(db, "member", id);
-        const docSnap = await getDoc(docRef);
-        const data = docSnap.data()
-        setHeight(data.height)
-        setWeight(data.weight)
-        setComplexion(data.skinTone)
-        setBodyType(data.bodyType)
-        setAppearence(data.appearence ? data.appearence : '')
-      
-       
-        
+      if(open){
+        if(id){
+          const docRef = doc(db, "member", id);
+          const docSnap = await getDoc(docRef);
+          const data = docSnap.data()
+          setHeight(data.height)
+          setWeight(data.weight)
+          setComplexion(data.skinTone)
+          setBodyType(data.bodyType)
+          setAppearence(data.appearence ? data.appearence : '')
+  
+          
+        }
       }
+      
       
     };
 
@@ -51,7 +53,7 @@ const [saving,setSaving] = useState(false)
 
     useEffect(()=>{
       fetchProfile()
-    },[id])
+    },[open])
   return (
     <div><Modal
     id="search__modal"

@@ -475,7 +475,7 @@ return(
        
 
       
-      <MobFooterNav/>
+      <MobFooterNav member ={member}/>
       
       
     </div>

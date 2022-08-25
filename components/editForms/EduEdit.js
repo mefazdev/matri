@@ -21,21 +21,24 @@ const [saving,setSaving] = useState(false)
 
     
  const fetchProfile = async () => {
-  if(id){
-    const docRef = doc(db, "member", id);
-    const docSnap = await getDoc(docRef);
-    const data = docSnap.data()
-
-    setHighEdu(data.highEdu)
-    setEduCourse(data.eduCourse)
-    setEduDetails(data.eduDetails ? data.eduDetails : '')
-    setProfession(data.profession)
-    setProfType(data.profType)
-   setJobDetails(data.jobDetails ? data.jobDetails : '')
-
-   
-    
+  if(open){
+    if(id){
+      const docRef = doc(db, "member", id);
+      const docSnap = await getDoc(docRef);
+      const data = docSnap.data()
+  
+      setHighEdu(data.highEdu)
+      setEduCourse(data.eduCourse)
+      setEduDetails(data.eduDetails ? data.eduDetails : '')
+      setProfession(data.profession)
+      setProfType(data.profType)
+     setJobDetails(data.jobDetails ? data.jobDetails : '')
+     
+     
+      
+    }
   }
+  
   
 };
 
@@ -56,7 +59,7 @@ const editProfile = async ()=>{
 
 useEffect(()=>{
   fetchProfile()
-},[id])
+},[open])
   return (
     <div>      <Modal
     id="search__modal"

@@ -35,6 +35,7 @@ export default function ProfVisit({ id }) {
       onSnapshot(q, (snapshot) => {
         setProfile(snapshot.data());
       });
+     
     }
   };
   useEffect(() => {
@@ -52,6 +53,7 @@ export default function ProfVisit({ id }) {
         setVisitedList(snapshot.docs.map((doc) => doc));
       });
     }
+ 
   };
 
 

@@ -18,13 +18,17 @@ export default function DescEdit({id}) {
     const [description,setDescription] = useState('')
     
     const fetchProfile = async () => {
-      if(id){
-        const docRef = doc(db, "member", id);
-        const docSnap = await getDoc(docRef);
-    
-        setProfile(docSnap.data());
-        setDescription(docSnap.data().description)
+      if(open){
+        if(id){
+          const docRef = doc(db, "member", id);
+          const docSnap = await getDoc(docRef);
+      
+          setProfile(docSnap.data());
+          setDescription(docSnap.data().description)
+      
+        }
       }
+     
       
     };
 
@@ -38,7 +42,7 @@ export default function DescEdit({id}) {
 
     useEffect(()=>{
       fetchProfile()
-    },[id])
+    },[open])
     return (
     <div>
          <Modal

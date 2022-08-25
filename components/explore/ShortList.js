@@ -7,10 +7,8 @@ import {
   collection,
   deleteDoc,
   doc,
-
   onSnapshot,
   query,
-  
   where,
 } from "firebase/firestore";
 import Link from "next/link";
@@ -36,6 +34,7 @@ export default function ShortList({ id }) {
       });
     }
   };
+  
   useEffect(() => {
     fetchData();
   }, [id]);

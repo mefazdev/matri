@@ -87,9 +87,7 @@ useEffect(()=>{
   fetchMember()
 },[user])
   
-useEffect(()=>{
-  // navigate()
-},[member])
+ 
   return (
     <div>
         <Modal

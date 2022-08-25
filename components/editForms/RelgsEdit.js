@@ -21,21 +21,24 @@ const [profiel,setProfile] = useState('')
 const [saving,setSaving] = useState(false)
 
  const fetchProfile = async () => {
-      if(id){
-        const docRef = doc(db, "member", id);
-        const docSnap = await getDoc(docRef);
-        const data = docSnap.data()
-         
-       setCommunity(data.community)
-       setReligiousness(data.religiousness)
-       setNamaz(data.namaz ? data.namaz : '') 
-       setRelgsEdu(data.relgsEdu ? data.relgsEdu : '')
-       setRelgsGraduation(data.relgsGraduation ? data.relgsGraduation : '')
-       setMadhab(data.madhab? data.madhab :'')
-       setHijab(data.preferHijab ? data.preferHijab : '')
+  if(open){
+    if(id){
+      const docRef = doc(db, "member", id);
+      const docSnap = await getDoc(docRef);
+      const data = docSnap.data()
        
-        
-      }
+     setCommunity(data.community)
+     setReligiousness(data.religiousness)
+     setNamaz(data.namaz ? data.namaz : '') 
+     setRelgsEdu(data.relgsEdu ? data.relgsEdu : '')
+     setRelgsGraduation(data.relgsGraduation ? data.relgsGraduation : '')
+     setMadhab(data.madhab? data.madhab :'')
+     setHijab(data.preferHijab ? data.preferHijab : '')
+     
+      
+    }
+  }
+      
       
     };
 
@@ -57,7 +60,7 @@ const [saving,setSaving] = useState(false)
 
     useEffect(()=>{
       fetchProfile()
-    },[id])
+    },[open])
   return (
     <div> <Modal
     id="search__modal"

@@ -28,47 +28,45 @@ import {
   import { useRouter } from 'next/router';
   import MobileMenu from './MobileMenu';
   import MobileDisplay from './MobielDispaly';
-export default function MobFooterNav() {
+export default function MobFooterNav({member}) {
 
     const router = useRouter()
     const dispatch = useDispatch();
   const open = useSelector((state) => state.searchControl);
   const openMenu = useSelector((state) => state.accMenuEditControl);
   const [user, setUser] = useState({})
-  const [member, setMember] = useState([]);
+  // const [member, setMember] = useState([]);
 
   const getUser = () => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
   };
-  const fetchMember = async () => {
-    const userId = (await user) ? user.uid : null;
+  // const fetchMember = async () => {
+  //   const userId = (await user) ? user.uid : null;
 
-    if (userId) {
-      const q = await query(
-        collection(db, "member"),
-        where("userId", "==", user?.uid)
-      );
-      onSnapshot(q, (snapshot) => {
-        setMember(snapshot.docs.map((doc) => doc));
-      });
+  //   if (userId) {
+  //     const q = await query(
+  //       collection(db, "member"),
+  //       where("userId", "==", user?.uid)
+  //     );
+  //     onSnapshot(q, (snapshot) => {
+  //       setMember(snapshot.docs.map((doc) => doc));
+  //     });
 
-      // const data = await getDocs(q);
-      // setMember(data.docs.map((doc) => doc));
-    }
-  };
+  //     // const data = await getDocs(q);
+  //     // setMember(data.docs.map((doc) => doc));
+  //   }
+  // };
 
   const searchOpenControl = ()=>{
     router.push('/account/Home')
     dispatch(openSearch())
   }
-  useEffect(() => {
-    getUser();
-  }, []);
-  useEffect(() => {
-    fetchMember();
-  }, [user]);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
+  // useEffect(()  
   return (
     <div className='b__bar flex'>
 

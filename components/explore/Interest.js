@@ -29,7 +29,7 @@ export default function Interest({ id }) {
   const [sentData, setSendData] = useState([]);
   const [user, setUser] = useState({});
   const [member, setMember] = useState([]);
-  const [recivedData,setRecievedData] = useState([1,2,3,4,5])
+  const [recivedData, setRecievedData] = useState([1, 2, 3, 4, 5]);
   const getUser = () => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -77,75 +77,52 @@ export default function Interest({ id }) {
   };
 
   const fetchInterest = async () => {
-    
     const q = await query(
       collection(db, "interest"),
       orderBy("timestamp", "desc")
-      
     );
     onSnapshot(q, (snapshot) => {
       setInterest(snapshot.docs.map((doc) => doc));
- 
-       
     });
- 
   };
-
- 
- 
-     
-  
- 
 
   useEffect(() => {
     fetchInterest();
   }, [member]);
 
- 
   useEffect(() => {
     getUser();
   }, []);
 
   const cancelSent = async (id) => {
-await deleteDoc(doc(db, "interest", id));
-    
+    await deleteDoc(doc(db, "interest", id));
   };
-  const declineRecieved = async (id ) => {
- 
+  const declineRecieved = async (id) => {
     const docRef = doc(db, "interest", id);
     const updateRef = await updateDoc(docRef, {
-      status:'ignored'
-   
+      status: "ignored",
     });
-   
-};
-const acceptInterest = async (id ) => {
- 
-  const docRef = doc(db, "interest", id);
-  const updateRef = await updateDoc(docRef, {
-    status:'accepted'
- 
-  });
- 
-};
+  };
+  const acceptInterest = async (id) => {
+    const docRef = doc(db, "interest", id);
+    const updateRef = await updateDoc(docRef, {
+      status: "accepted",
+    });
+  };
 
-  
-const hideInterest = async (id,dest)=>{
-  const docRef = doc(db, "interest", id);
-  if(dest == 'to'){
-    const updateRef = await updateDoc(docRef, {
-       
-   toStatus : 'remove'
-    });
-    // console.log(docRef)
-  }else if(dest == 'from'){
-    const updateRef = await updateDoc(docRef, {
-       
-      fromStatus : 'remove'
-       });
-  }
- 
-}
+  const hideInterest = async (id, dest) => {
+    const docRef = doc(db, "interest", id);
+    if (dest == "to") {
+      const updateRef = await updateDoc(docRef, {
+        toStatus: "remove",
+      });
+      // console.log(docRef)
+    } else if (dest == "from") {
+      const updateRef = await updateDoc(docRef, {
+        fromStatus: "remove",
+      });
+    }
+  };
   useEffect(() => {
     fetchMember();
   }, [user]);
@@ -186,117 +163,119 @@ const hideInterest = async (id,dest)=>{
             <h5>Interests Received</h5>
             {interest.map((data, index) => {
               const prof = data.data();
-              const d = data.data().from
-             if(prof.status == 'sent'){
-              if(prof.to.userId == user.uid){
-                return (
-                  <div className="interest__row">
-                    <div className="interest__row__left grid  grid-cols-2">
-                      <div className="intrest__row__img">
-                        {d.photo ? (
-                          <img src={d.photo} alt="" />
-                        ) : (
-                          <Image src={photo_holder} />
-                        )}
+              const d = data.data().from;
+              if (prof.status == "sent") {
+                if (prof.to.userId == user.uid) {
+                  return (
+                    <div className="interest__row">
+                      <div className="interest__row__left grid  grid-cols-2">
+                        <div className="intrest__row__img">
+                          {d.photo ? (
+                            <img src={d.photo} alt="" />
+                          ) : (
+                            <Image src={photo_holder} />
+                          )}
+                        </div>
+
+                        <div className="interest__row__left__text ">
+                          <Link
+                            href={`/viewProfile/${encodeURIComponent(d.id)}`}
+                          >
+                            <h6>{d.brideName}</h6>
+                          </Link>
+                          <p>
+                            {d.age} Yrs, {d.height} cm, {d.maritialStatus}
+                          </p>
+                          <p>
+                            {d.highEdu} ({d.eduCourse}), {d.occupation}
+                          </p>
+                          <p>
+                            {d.city}, {d.district}
+                          </p>
+                        </div>
                       </div>
-  
-                      <div className="interest__row__left__text ">
-                      <Link href={`/viewProfile/${encodeURIComponent(d.id)}`}><h6>{d.brideName}</h6></Link>
-                        <p>
-                          {d.age} Yrs, {d.height} cm, {d.maritialStatus}
-                        </p>
-                        <p>
-                          {d.highEdu} ({d.eduCourse}), {d.occupation}
-                        </p>
-                        <p>
-                          {d.city}, {d.district}
-                        </p>
-                      </div>
-                    </div>
-  
+
                       <div className="interest__row__right">
                         <div className="interest__row__right__div">
-                          <button id='intr__acc__btn'
-                              onClick={()=>acceptInterest(data.id)}
-                              >Accept</button>
+                          <button
+                            id="intr__acc__btn"
+                            onClick={() => acceptInterest(data.id)}
+                          >
+                            Accept
+                          </button>
                           <button
                             id="intr__dec__btn"
-                            onClick={()=> declineRecieved(data.id)}
+                            onClick={() => declineRecieved(data.id)}
                           >
-                          Ignore
+                            Ignore
                           </button>
                         </div>
                       </div>
-                    {/* <HighlightOffIcon id="intr__close" /> */}
-                  </div>
-                );
+                      {/* <HighlightOffIcon id="intr__close" /> */}
+                    </div>
+                  );
+                }
               }
-             }
-             
-        
-                 
-                
             })}
-
-            
           </div>
         ) : (
           ""
         )}
         {sent ? (
           <div className="interest__content">
-            <h5  >Interests Sent</h5>
-            {interest.map(  (data, index) => {
+            <h5>Interests Sent</h5>
+            {interest.map((data, index) => {
               const prof = data.data();
               const d = data.data().to;
- if(prof.status == 'sent'){
-  if(prof.from.userId == user.uid ){
-    return(
-      <div key={index} className="interest__row">
-    <div className="interest__row__left grid grid-cols-2">
-      <div className="intrest__row__img">
-        {d.photo ? (
-          <img src={d.photo} alt="" />
-        ) : (
-          <Image src={photo_holder} />
-        )}
-      </div>
+              if (prof.status == "sent") {
+                if (prof.from.userId == user.uid) {
+                  return (
+                    <div key={index} className="interest__row">
+                      <div className="interest__row__left grid grid-cols-2">
+                        <div className="intrest__row__img">
+                          {d.photo ? (
+                            <img src={d.photo} alt="" />
+                          ) : (
+                            <Image src={photo_holder} />
+                          )}
+                        </div>
 
-      <div className="interest__row__left__text">
-      <Link href={`/viewProfile/${encodeURIComponent(d.id)}`}><h6>{d.brideName}</h6></Link>
-        <p>
-          {d.age} Yrs, {d.height} cm, {d.maritialStatus}
-        </p>
-        <p>
-          {d.highEdu} ({d.eduCourse}), {d.occupation}
-        </p>
-        <p>
-          {d.city}, {d.district}
-        </p>
-      </div>
-    </div>
+                        <div className="interest__row__left__text">
+                          <Link
+                            href={`/viewProfile/${encodeURIComponent(d.id)}`}
+                          >
+                            <h6>{d.brideName}</h6>
+                          </Link>
+                          <p>
+                            {d.age} Yrs, {d.height} cm, {d.maritialStatus}
+                          </p>
+                          <p>
+                            {d.highEdu} ({d.eduCourse}), {d.occupation}
+                          </p>
+                          <p>
+                            {d.city}, {d.district}
+                          </p>
+                        </div>
+                      </div>
 
-    <div className="interest__row__right">
-      <div className="interest__row__right__div">
-        {/* <button id='intr__acc__btn'
+                      <div className="interest__row__right">
+                        <div className="interest__row__right__div">
+                          {/* <button id='intr__acc__btn'
             
             >Accept</button> */}
-        <button
-          id="intr__dec__btn"
-          onClick={() => cancelSent(data.id)}
-        >
-          Cancel
-        </button>
-      </div>
-    </div>
-    {/* <HighlightOffIcon id="intr__close" /> */}
-  </div>
-     )
-  }
- }
-                  
-   
-           
+                          <button
+                            id="intr__dec__btn"
+                            onClick={() => cancelSent(data.id)}
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                      {/* <HighlightOffIcon id="intr__close" /> */}
+                    </div>
+                  );
+                }
+              }
             })}
           </div>
         ) : (
@@ -306,110 +285,115 @@ const hideInterest = async (id,dest)=>{
           <div className="interest__content">
             <h5>Accepted Interests</h5>
 
-            {interest.map((data,index)=>{
-    const prof = data.data()
-    const fd = data.data().from
-    const td = data.data().to
+            {interest.map((data, index) => {
+              const prof = data.data();
+              const fd = data.data().from;
+              const td = data.data().to;
 
-    if(prof.status == 'accepted'){
-     if(td.userId == user.uid && prof.toStatus != 'remove'){
-      return(
-      
-          <div className="interest__row">
-            <div className="interest__row__left grid grid-cols-2">
-              <div className="intrest__row__img">
-                {fd.photo ? (
-                  <img src={fd.photo} alt="" />
-                ) : (
-                  <Image src={photo_holder} />
-                )}
-              </div>
+              if (prof.status == "accepted") {
+                if (td.userId == user.uid && prof.toStatus != "remove") {
+                  return (
+                    <div className="interest__row">
+                      <div className="interest__row__left grid grid-cols-2">
+                        <div className="intrest__row__img">
+                          {fd.photo ? (
+                            <img src={fd.photo} alt="" />
+                          ) : (
+                            <Image src={photo_holder} />
+                          )}
+                        </div>
 
-              <div className="interest__row__left__text">
-                <Link href={`/viewProfile/${encodeURIComponent(fd.id)}`}><h6>{fd.brideName}</h6></Link>
-                
-                <p>
-                  {fd.age} Yrs, {fd.height} cm, {fd.maritialStatus}
-                </p>
-                <p>
-                  {fd.highEdu} ({fd.eduCourse}), {fd.occupation}
-                </p>
-                <p>
-                  {fd.city}, {fd.district}
-                </p>
-              </div>
-            </div>
+                        <div className="interest__row__left__text">
+                          <Link
+                            href={`/viewProfile/${encodeURIComponent(fd.id)}`}
+                          >
+                            <h6>{fd.brideName}</h6>
+                          </Link>
 
-            <div className="interest__row__right">
-              <div className="interest__row__right__div">
-                <button id='intr__acc__btn'
-                    
-                    >You accepted {fd.brideName}</button>
-                {/* <button
+                          <p>
+                            {fd.age} Yrs, {fd.height} cm, {fd.maritialStatus}
+                          </p>
+                          <p>
+                            {fd.highEdu} ({fd.eduCourse}), {fd.occupation}
+                          </p>
+                          <p>
+                            {fd.city}, {fd.district}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="interest__row__right">
+                        <div className="interest__row__right__div">
+                          <button id="intr__acc__btn">
+                            You accepted {fd.brideName}
+                          </button>
+                          {/* <button
                   id="intr__dec__btn"
                   onClick={()=> declineRecieved(data.id)}
                 >
                 Ignore
                 </button> */}
-              </div>
-            </div>
-            <HighlightOffIcon
-            onClick={()=>hideInterest(data.id,'to')}
-            id="intr__close" />
-          </div>
-        
-      )
-     } 
-      if(fd.userId == user.uid && prof.fromStatus != 'remove'){
-      return(
-      
-          <div className="interest__row">
-            <div className="interest__row__left grid grid-cols-2">
-              <div className="intrest__row__img">
-                {td.photo ? (
-                  <img src={td.photo} alt="" />
-                ) : (
-                  <Image src={photo_holder} />
-                )}
-              </div>
+                        </div>
+                      </div>
+                      <HighlightOffIcon
+                        onClick={() => hideInterest(data.id, "to")}
+                        id="intr__close"
+                      />
+                    </div>
+                  );
+                }
+                if (fd.userId == user.uid && prof.fromStatus != "remove") {
+                  return (
+                    <div className="interest__row">
+                      <div className="interest__row__left grid grid-cols-2">
+                        <div className="intrest__row__img">
+                          {td.photo ? (
+                            <img src={td.photo} alt="" />
+                          ) : (
+                            <Image src={photo_holder} />
+                          )}
+                        </div>
 
-              <div className="interest__row__left__text">
-              <Link href={`/viewProfile/${encodeURIComponent(td.id)}`}><h6>{td.brideName}</h6></Link>
-                <p>
-                  {td.age} Yrs, {td.height} cm, {td.maritialStatus}
-                </p>
-                <p>
-                  {td.highEdu} ({td.eduCourse}), {td.occupation}
-                </p>
-                <p>
-                  {td.city}, {td.district}
-                </p>
-              </div>
-            </div>
+                        <div className="interest__row__left__text">
+                          <Link
+                            href={`/viewProfile/${encodeURIComponent(td.id)}`}
+                          >
+                            <h6>{td.brideName}</h6>
+                          </Link>
+                          <p>
+                            {td.age} Yrs, {td.height} cm, {td.maritialStatus}
+                          </p>
+                          <p>
+                            {td.highEdu} ({td.eduCourse}), {td.occupation}
+                          </p>
+                          <p>
+                            {td.city}, {td.district}
+                          </p>
+                        </div>
+                      </div>
 
-            <div className="interest__row__right">
-              <div className="interest__row__right__div">
-                <button id='intr__acc__btn'
-                    
-                    >{td.brideName} Accepted you</button>
-                {/* <button
+                      <div className="interest__row__right">
+                        <div className="interest__row__right__div">
+                          <button id="intr__acc__btn">
+                            {td.brideName} Accepted you
+                          </button>
+                          {/* <button
                   id="intr__dec__btn"
                   onClick={()=> declineRecieved(data.id)}
                 >
                 Ignore
                 </button> */}
-              </div>
-            </div>
-            <HighlightOffIcon id="intr__close"
-                onClick={()=>hideInterest(data.id,'from')}
-            />
-          </div>
-        
-      )
-     } 
-    }
-
-})}
+                        </div>
+                      </div>
+                      <HighlightOffIcon
+                        id="intr__close"
+                        onClick={() => hideInterest(data.id, "from")}
+                      />
+                    </div>
+                  );
+                }
+              }
+            })}
           </div>
         ) : (
           ""
@@ -418,109 +402,111 @@ const hideInterest = async (id,dest)=>{
         {ignored ? (
           <div className="interest__content">
             <h5>Ignored Interests</h5>
-{interest.map((data,index)=>{
-    const prof = data.data()
-    const fd = data.data().from
-    const td = data.data().to
+            {interest.map((data, index) => {
+              const prof = data.data();
+              const fd = data.data().from;
+              const td = data.data().to;
 
-    if(prof.status == 'ignored'){
-     if(td.userId == user.uid && prof.toStatus != 'remove'){
-      return(
-      
-          <div className="interest__row">
-            <div className="interest__row__left grid grid-cols-2">
-              <div className="intrest__row__img">
-                {fd.photo ? (
-                  <img src={fd.photo} alt="" />
-                ) : (
-                  <Image src={photo_holder} />
-                )}
-              </div>
+              if (prof.status == "ignored") {
+                if (td.userId == user.uid && prof.toStatus != "remove") {
+                  return (
+                    <div className="interest__row">
+                      <div className="interest__row__left grid grid-cols-2">
+                        <div className="intrest__row__img">
+                          {fd.photo ? (
+                            <img src={fd.photo} alt="" />
+                          ) : (
+                            <Image src={photo_holder} />
+                          )}
+                        </div>
 
-              <div className="interest__row__left__text">
-              <Link href={`/viewProfile/${encodeURIComponent(fd.id)}`}><h6>{fd.brideName}</h6></Link>
-                <p>
-                  {fd.age} Yrs, {fd.height} cm, {fd.maritialStatus}
-                </p>
-                <p>
-                  {fd.highEdu} ({fd.eduCourse}), {fd.occupation}
-                </p>
-                <p>
-                  {fd.city}, {fd.district}
-                </p>
-              </div>
-            </div>
+                        <div className="interest__row__left__text">
+                          <Link
+                            href={`/viewProfile/${encodeURIComponent(fd.id)}`}
+                          >
+                            <h6>{fd.brideName}</h6>
+                          </Link>
+                          <p>
+                            {fd.age} Yrs, {fd.height} cm, {fd.maritialStatus}
+                          </p>
+                          <p>
+                            {fd.highEdu} ({fd.eduCourse}), {fd.occupation}
+                          </p>
+                          <p>
+                            {fd.city}, {fd.district}
+                          </p>
+                        </div>
+                      </div>
 
-            <div className="interest__row__right">
-              <div className="interest__row__right__div">
-                {/* <button id='intr__acc__btn'
+                      <div className="interest__row__right">
+                        <div className="interest__row__right__div">
+                          {/* <button id='intr__acc__btn'
                     
                     >You ignored {fd.brideName}</button> */}
-                <button
-                  id="intr__dec__btn"
-                  onClick={()=> declineRecieved(data.id)}
-                >
-               You ignored {fd.brideName}
-                </button>
-              </div>
-            </div>
-            <HighlightOffIcon id="intr__close"
-            onClick={()=>hideInterest(data.id,'to')}
-            />
-          </div>
-        
-      )
-     } 
-      if(fd.userId == user.uid && prof.fromStatus != 'remove'){
-      return(
-      
-          <div className="interest__row">
-            <div className="interest__row__left grid grid-cols-2">
-              <div className="intrest__row__img">
-                {td.photo ? (
-                  <img src={td.photo} alt="" />
-                ) : (
-                  <Image src={photo_holder} />
-                )}
-              </div>
+                          <button
+                            id="intr__dec__btn"
+                            onClick={() => declineRecieved(data.id)}
+                          >
+                            You ignored {fd.brideName}
+                          </button>
+                        </div>
+                      </div>
+                      <HighlightOffIcon
+                        id="intr__close"
+                        onClick={() => hideInterest(data.id, "to")}
+                      />
+                    </div>
+                  );
+                }
+                if (fd.userId == user.uid && prof.fromStatus != "remove") {
+                  return (
+                    <div className="interest__row">
+                      <div className="interest__row__left grid grid-cols-2">
+                        <div className="intrest__row__img">
+                          {td.photo ? (
+                            <img src={td.photo} alt="" />
+                          ) : (
+                            <Image src={photo_holder} />
+                          )}
+                        </div>
 
-              <div className="interest__row__left__text">
-              <Link href={`/viewProfile/${encodeURIComponent(td.id)}`}><h6>{td.brideName}</h6></Link>
-                <p>
-                  {td.age} Yrs, {td.height} cm, {td.maritialStatus}
-                </p>
-                <p>
-                  {td.highEdu} ({td.eduCourse}), {td.occupation}
-                </p>
-                <p>
-                  {td.city}, {td.district}
-                </p>
-              </div>
-            </div>
+                        <div className="interest__row__left__text">
+                          <Link
+                            href={`/viewProfile/${encodeURIComponent(td.id)}`}
+                          >
+                            <h6>{td.brideName}</h6>
+                          </Link>
+                          <p>
+                            {td.age} Yrs, {td.height} cm, {td.maritialStatus}
+                          </p>
+                          <p>
+                            {td.highEdu} ({td.eduCourse}), {td.occupation}
+                          </p>
+                          <p>
+                            {td.city}, {td.district}
+                          </p>
+                        </div>
+                      </div>
 
-            <div className="interest__row__right">
-              <div className="interest__row__right__div">
-                {/* <button id='intr__acc__btn'
+                      <div className="interest__row__right">
+                        <div className="interest__row__right__div">
+                          {/* <button id='intr__acc__btn'
                     
                     > {td.brideName} ignored you</button> */}
-                <button
-                  id="intr__dec__btn"
-                  
-                >
-            
-                {td.brideName} ignored you</button>
-              </div>
-            </div>
-            <HighlightOffIcon id="intr__close" 
-             onClick={()=>hideInterest(data.id,'from')}/>
-          </div>
-        
-      )
-     } 
-    }
-
-})}
-             
+                          <button id="intr__dec__btn">
+                            {td.brideName} ignored you
+                          </button>
+                        </div>
+                      </div>
+                      <HighlightOffIcon
+                        id="intr__close"
+                        onClick={() => hideInterest(data.id, "from")}
+                      />
+                    </div>
+                  );
+                }
+              }
+            })}
           </div>
         ) : (
           ""

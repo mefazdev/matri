@@ -34,7 +34,14 @@ import PhysiEdit from "../../../components/editForms/PhysiEdit";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db, storage } from "../../../firebase";
 import { Router, useRouter } from "next/router";
-import { collection, doc, getDoc, onSnapshot, query, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  onSnapshot,
+  query,
+  updateDoc,
+} from "firebase/firestore";
 import Link from "next/link";
 import { textFieldClasses } from "@mui/material";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
@@ -45,20 +52,20 @@ export default function EditProfile() {
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(true);
-  const [previews, setPreview ] = useState(false);
+  const [previews, setPreview] = useState(false);
   const [profile, setProfile] = useState({});
   const router = useRouter();
   const [age, setAge] = useState("");
-  const [check, setcheck] = useState('')
-  const [saving,setSaving] = useState(false)
-  const [photo,setPhoto] = useState('')
-  const [modal,setModal] = useState(false)
+  const [check, setcheck] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [photo, setPhoto] = useState("");
+  const [modal, setModal] = useState(false);
   const id = router.query.slug;
 
   const onPreview = () => {
     setEdit(false);
     setPreview(true);
-     
+
     // router.push(``)
   };
   const onEdit = () => {
@@ -66,38 +73,37 @@ export default function EditProfile() {
     setPreview(false);
   };
 
- const getUser = ()=>{
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-   
-  });
- }
+  const getUser = () => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  };
 
   const redirect = () => {
     if (!user) {
       router.push("/");
     }
   };
-  
+
   const fetchData = async () => {
     if (id) {
       const q = await doc(db, "member", id);
-        onSnapshot(q, (snapshot) => {
-          setProfile(snapshot.data());
-        });
+      onSnapshot(q, (snapshot) => {
+        setProfile(snapshot.data());
+      });
     }
   };
   useEffect(() => {
     fetchData();
-
   }, [id]);
 
   useEffect(() => {
     redirect();
   }, [user]);
-  useEffect(()=>{
-    getUser()
-  })
+  
+  useEffect(() => {
+    getUser();
+  },[]);
 
   const calculate_age = () => {
     var today = new Date();
@@ -114,43 +120,40 @@ export default function EditProfile() {
     calculate_age();
   }, [profile]);
 
-  const handlePhoto = (e)=>{
+  const handlePhoto = (e) => {
     const reader = new FileReader();
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
     }
-  
+
     reader.onload = (readerEvent) => {
       setPhoto(readerEvent.target.result);
-     
     };
-  }
-  const changePhoto = async ()=>{
-    setSaving(true)
+  };
+  const changePhoto = async () => {
+    setSaving(true);
     // const id = member[0].id;
     const photoRef = ref(storage, `upload/${id}/photo`);
     await uploadString(photoRef, photo, "data_url").then(async (snapshot) => {
       const downloadURL1 = await getDownloadURL(photoRef);
-    await updateDoc(doc(db, "member", id), {
+      await updateDoc(doc(db, "member", id), {
         photo: downloadURL1,
       });
-   });
- setSaving(false)
-   setModal(false)
-
-  }
+    });
+    setSaving(false);
+    setModal(false);
+  };
   return (
     <div className="edit__prof">
       <AccountNav />
-      <MobileMenu/>
+      <MobileMenu />
       <div className="edit__content flex">
-      
         <div className="sidebar__div">
-        <AccountSidebar />
+          <AccountSidebar />
         </div>
 
         <div className="edit__right">
-         <div className="edit__head grid md:grid-cols-2">
+          <div className="edit__head grid md:grid-cols-2">
             {/* <button onClick={() => console.log(user)}>CLICKME </button> */}
             <div
               onClick={onEdit}
@@ -158,24 +161,23 @@ export default function EditProfile() {
             >
               <h6>Edit Profile</h6>
             </div>
-            <Link href={`/viewProfile/${encodeURIComponent(id)}`}><div
-               onClick={onPreview}
-                
-              className={
-                  previews? "edit__head__div__active" : "edit__head__div"
+            <Link href={`/viewProfile/${encodeURIComponent(id)}`}>
+              <div
+                onClick={onPreview}
+                className={
+                  previews ? "edit__head__div__active" : "edit__head__div"
                 }
               >
                 <h6>View my profile</h6>
-                
-              </div></Link>
+              </div>
+            </Link>
 
             <div></div>
-          </div>  
-{/* <button  onClick={()=>setcheck('hellp')}>Edit</button> */}
-            
+          </div>
+          {/* <button  onClick={()=>setcheck('hellp')}>Edit</button> */}
+
           <div className="view__main grid md:grid-cols-3">
-          <div className="view__main__img__div"> 
-            
+            <div className="view__main__img__div">
               <div className="view__main__img">
                 {profile.photo ? (
                   <img src={profile.photo} alt="" />
@@ -183,10 +185,10 @@ export default function EditProfile() {
                   <Image alt="" src={imageHolder} />
                 )}
               </div>
-              <button 
-              onClick={()=>dispatch(openPotoEdit())}
-              >{profile.photo ? "Change" : "Add"}</button>
-            </div>  
+              <button onClick={() => dispatch(openPotoEdit())}>
+                {profile.photo ? "Change" : "Add"}
+              </button>
+            </div>
 
             <div className="md:col-span-2 view__main__right">
               <div className="view__main__first__row  flex">
@@ -219,11 +221,9 @@ export default function EditProfile() {
                   {profile.city}, {profile.district}
                 </p>
               </div>
-
-            
             </div>
-          </div> 
-           <div className="edit__right__content">
+          </div>
+          <div className="edit__right__content">
             <div className="edit__row">
               <div className="edit__row__head flex">
                 <h6>Description</h6>
@@ -285,7 +285,7 @@ export default function EditProfile() {
                     <p>Gender : </p>
                     <h5 className="ml-2">{profile.gender}</h5>
                   </div>
-                  
+
                   <div className="flex mt-1">
                     <p>Physical Challenged? : </p>
                     <h5 className="ml-2">{profile.physically}</h5>
@@ -364,7 +364,7 @@ export default function EditProfile() {
                   </div>
                 </div>
                 <div>
-                <div className="flex  ">
+                  <div className="flex  ">
                     <p>Religious Graduation : </p>
                     {profile.relgsGraduation ? (
                       <h5 className="ml-2">{profile.relgsGraduation}</h5>
@@ -535,8 +535,6 @@ export default function EditProfile() {
               </div>
 
               <div className="view__loc__row  ">
-                
-
                 <h5> {profile.address}</h5>
                 <p>City: {profile.city}</p>
                 <p>District: {profile.district}</p>
@@ -579,7 +577,6 @@ export default function EditProfile() {
                     <h5 className="ml-2">{profile.financialStatus}</h5>
                   </div>
 
-                  
                   <div className="flex  ">
                     <p>No of younger brother : </p>
                     {profile.youngerBro ? (
@@ -690,41 +687,36 @@ export default function EditProfile() {
                 </h4>
               )}
             </div>
-          </div>  
+          </div>
         </div>
       </div>
 
       {/* FAMILY EDIT */}
-      <  Modal
-    id="search__modal"
-    open={modal}
-    // onClose={handleClose}
-    aria-labelledby="modal-modal-title"
-    aria-describedby="modal-modal-description"
-  >
-    <div className="edit__modal">
-      <div className="edit__desc__modal">
-        <h6>Change your photo</h6>
-         <input
-         type='file'
-         onChange={handlePhoto}
-         />
-        <div className="edit__desc__modal__btn">
-          <button className="edit__save__button"
-          onClick={changePhoto}
-          >
-            {saving ? 'Saving' :'Save'}
-          </button>
-          <button
-            className="edit__cancel__button"
-            // onClick={() => dispatch(closeLookingEdit())}
-          >
-            Cancel
-          </button>
+      <Modal
+        id="search__modal"
+        open={modal}
+        // onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="edit__modal">
+          <div className="edit__desc__modal">
+            <h6>Change your photo</h6>
+            <input type="file" onChange={handlePhoto} />
+            <div className="edit__desc__modal__btn">
+              <button className="edit__save__button" onClick={changePhoto}>
+                {saving ? "Saving" : "Save"}
+              </button>
+              <button
+                className="edit__cancel__button"
+                // onClick={() => dispatch(closeLookingEdit())}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </Modal>
+      </Modal>
       <RelgsEdit id={id} />
       <EduEdit id={id} />
       <FamEdit id={id} />
@@ -734,7 +726,7 @@ export default function EditProfile() {
       <BasicEdit id={id} />
       <PhysiEdit id={id} />
 
-      <MobFooterNav/>
+      <MobFooterNav />
     </div>
   );
 }

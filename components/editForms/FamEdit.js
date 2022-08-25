@@ -28,30 +28,32 @@ const [saving, setSaving] = useState(false)
 
 
     const fetchProfile = async () => {
-      if(id){
-        const docRef = doc(db, "member", id);
-        const docSnap = await getDoc(docRef);
-        const data = docSnap.data()
+      if(open){
+        if(id){
+          const docRef = doc(db, "member", id);
+          const docSnap = await getDoc(docRef);
+          const data = docSnap.data()
+          
+  
+          setelderBro(data.elderBro ? data.elderBro : '')
+          setyoungerBro(data.youngerBro ? data.youngerBro : '')
+          setelderSis(data.elderSis ? data.elderSis: '')
+          setyoungerBro(data.youngerBro ? data.youngerBro : '')
+          setmarriedBro(data.marriedBro ? data.marriedBro : '')
+          setelderBro(data.marriedBro ? data.marriedBro : '')
+          setfamType(data.famType ? data.famType : '')
+          setfamValue(data.famValue ? data.famValue : '')
+          sethomeType(data.homeType ? data.homeType : '')
+          setfinancialStatus(data.financialStatus)
+          setfather(data.father  ? data.father: '')
+          setmother(data.mother ? data.mother : '')
+          setfathersProf(data.fathersProf ? data.fathersProf : '')
+          setmothersProf(data.mothersProf ? data.mothersProf :'')
         
-
-        setelderBro(data.elderBro ? data.elderBro : '')
-        setyoungerBro(data.youngerBro ? data.youngerBro : '')
-        setelderSis(data.elderSis ? data.elderSis: '')
-        setyoungerBro(data.youngerBro ? data.youngerBro : '')
-        setmarriedBro(data.marriedBro ? data.marriedBro : '')
-        setelderBro(data.marriedBro ? data.marriedBro : '')
-        setfamType(data.famType ? data.famType : '')
-        setfamValue(data.famValue ? data.famValue : '')
-        sethomeType(data.homeType ? data.homeType : '')
-        setfinancialStatus(data.financialStatus)
-        setfather(data.father  ? data.father: '')
-        setmother(data.mother ? data.mother : '')
-        setfathersProf(data.fathersProf ? data.fathersProf : '')
-        setmothersProf(data.mothersProf ? data.mothersProf :'')
-      
-       
-        
+         
+        }
       }
+      
       
     };
 
@@ -83,7 +85,7 @@ const [saving, setSaving] = useState(false)
 
     useEffect(()=>{
       fetchProfile()
-    },[id])
+    },[open])
   return (
     <div><Modal
     id="search__modal"

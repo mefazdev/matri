@@ -21,7 +21,7 @@ import { async } from '@firebase/util';
 import Link from 'next/link';
 import logo from '../asset/image/logo.png'
 
-export default function AccountNav() {
+export default function AccountNav( ) {
   
 const [collapse,setCollapse] = useState(false)
 //   const auth = getAuth();
@@ -62,6 +62,7 @@ const [collapse,setCollapse] = useState(false)
       // const data = await getDocs(q);
       // setMember(data.docs.map((doc) => doc));
     }
+    console.log('heee')
   };
   const handlePhoto = (e)=>{
     const reader = new FileReader();
@@ -106,11 +107,11 @@ const [collapse,setCollapse] = useState(false)
   const deleteProfile = async ()=>{
     setDeleting(true)
     // deleteUser(user)
-
+    deleteDoc(doc(db, "member", member[0]?.id));
     deleteUser(user).then(async() => {
-      alert('user deleted')
+      // alert('user deleted')
     //  await deleteDoc(doc(db, "member", member[0]?.id));
-    //   router.push('/')
+      router.push('/')
     }).catch((error) => {
       // An error ocurred
       alert(error)
@@ -137,6 +138,7 @@ useEffect(()=>{
     fetchMember()
 
   },[user])
+
   useEffect(()=>{
     setPhoto(member[0]?.data().photo)
   },[member])
@@ -151,7 +153,7 @@ useEffect(()=>{
        <Link href='/account/Home'><p>HOME</p></Link>
         
         <p onClick={()=>dispatch(openSearch())}>SEARCH</p>
-        <Link href={`/account/explore/${encodeURIComponent(member[0]?.id)}`}>
+        <Link href={`/account/explore/${encodeURIComponent(  member[0]?.id )}`}>
         <p>EXPLORE</p></Link>
         
         {/* <p>UPGRADE</p> */}
@@ -163,7 +165,7 @@ useEffect(()=>{
         <div className='acc__nav__img'
         onClick={()=>dispatch(openPotoEdit())}
         >
-          {member[0]?.data().photo ? <img src={member[0].data().photo} alt=''/>:  <Image src={photoHolder} alt='' />}
+          {member[0]?.data().photo ? <img src={ member[0].data().photo  } alt=''/>:  <Image src={photoHolder} alt='' />}
         
         </div>
         {/* <img src={member[0]?.data().photo} /> */}
