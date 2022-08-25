@@ -100,18 +100,10 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Sunni Matrimonial Website</title>
-        <meta name="description" content=" Marrisunni.com is a premium matrimonial website for Sunni community
-            in Kerala. Our aim is to help Sunni community to find their suitable
-            life partner in an Islamic way. We do not support anything that's
-            not Halal in Islam so Marrisunni.com is not a dating portal at all.
-            Only matured Muslim men and women with an intention of marriage are
-            allowed to register at Marrisunni.com.  
-            We are among the most trustworthy and technically advanced
-            matrimonial portals. Marrisunni.com will make your matrimonial
-            searches and online-match making a simple, easy and happy
-            experience. No wonder as the number of memberships of Marrisunni.com
-            is greatly increasing day by day." />
+        <title>Sunni Matrimonial Website Kerala</title>
+        <meta name="description" content="Best Sunni Matrimonial Website in Kerala | Best Muslim Matrimonial website in Kerala" />
+        <meta property="og:title" content="Home" key="title" />
+        <link rel="canonical" href="https://marrysunni.com" />
         <link rel="icon" 
         href="/logo-black.png"
         // href="/favicon.ico" 
