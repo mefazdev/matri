@@ -104,7 +104,7 @@ useEffect(()=>{
             <h4>Welcome Back </h4>
             
             <div className='login__row'>
-               <p>Username</p>
+               <p>Email</p>
                 <input onChange={(e)=>setEmail(e.target.value)} />
             </div>
             <div className='login__row'>
