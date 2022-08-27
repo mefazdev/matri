@@ -92,25 +92,6 @@ export default function VerifyNumber () {
     },[member])
 
 
-    const phoneNumber = 8594025204;
-const appVerifier = window.recaptchaVerifier;
-    const signin = () => {
-  
-      signInWithPhoneNumber(auth, phoneNumber )
-      .then((confirmationResult) => {
-        alert('sent')
-        // SMS sent. Prompt user to type the code from the message, then sign the
-        // user in with confirmationResult.confirm(code).
-        window.confirmationResult = confirmationResult;
-        // ...
-      }).catch((error) => {
-        alert(error)
-        // Error; SMS not sent
-        // ...
-      });
-      console.log("hello")
-  }
-
  
 
   // const phoneNumber = 8594025204;
@@ -128,7 +109,7 @@ const auth = getAuth();
             <div className="otp__left__img">
               <Image src={otpImg} />
             </div>
-            <button onClick={signin}>Check</button>
+            {/* <button onClick={signin}>Check</button> */}
           </div>
 {/* <button onClick={()=>console.log(otpDoc.otp)}>Check</button>   */}
           <div className="otp__right md:col-span-2">
