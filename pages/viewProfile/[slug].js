@@ -245,8 +245,8 @@ const makePayment = async () => {
   const data = await fetch("/api/razorpay", { method: "POST" }).then((t) =>
     t.json()
   );
-  console.log(data);
-  var options = {
+  // console.log(data);
+  var options =   {
     key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
     name: "Marrysunni.com",
     currency: data.currency,
@@ -259,6 +259,8 @@ const makePayment = async () => {
       // alert(response.razorpay_payment_id);
       // alert(response.razorpay_order_id);
       // alert(response.razorpay_signature);
+
+      saveAddress()
     },
     prefill: {
       name: "Marrysunni.com",
@@ -270,7 +272,7 @@ const makePayment = async () => {
 
   const paymentObject = new window.Razorpay(options);
   paymentObject.open();
-  saveAddress()
+  // saveAddress()
 };
 
 
