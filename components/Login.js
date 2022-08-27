@@ -20,9 +20,12 @@ const dispatch = useDispatch();
 const open = useSelector((state) => state.loginControl);
 const [member,setMember] = useState([])
 const [user,setUser] = useState({})
+
+
+
     const login = async () => {
         try {
-          const user = await signInWithEmailAndPassword(auth, email, password);
+           await signInWithEmailAndPassword(auth, email, password);
  
        
   

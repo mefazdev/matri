@@ -13,7 +13,7 @@ import {
 import { auth, db } from "../../firebase";
 import Router, { useRouter } from "next/router";
 import { collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
- 
+import { getAuth, signInWithPhoneNumber } from "firebase/auth";
 
 export default function VerifyNumber () { 
     const [otp,setOtp] = useState('')
@@ -90,7 +90,35 @@ export default function VerifyNumber () {
     useEffect(()=>{
       addOtp()
     },[member])
+
+
+    const phoneNumber = 8594025204;
+const appVerifier = window.recaptchaVerifier;
+    const signin = () => {
+  
+      signInWithPhoneNumber(auth, phoneNumber )
+      .then((confirmationResult) => {
+        alert('sent')
+        // SMS sent. Prompt user to type the code from the message, then sign the
+        // user in with confirmationResult.confirm(code).
+        window.confirmationResult = confirmationResult;
+        // ...
+      }).catch((error) => {
+        alert(error)
+        // Error; SMS not sent
+        // ...
+      });
+      console.log("hello")
+  }
+
  
+
+  // const phoneNumber = 8594025204;
+// const appVerifier = window.recaptchaVerifier;
+
+const auth = getAuth();
+
+
   return ( 
     <div> 
       <Header />    
@@ -100,6 +128,7 @@ export default function VerifyNumber () {
             <div className="otp__left__img">
               <Image src={otpImg} />
             </div>
+            <button onClick={signin}>Check</button>
           </div>
 {/* <button onClick={()=>console.log(otpDoc.otp)}>Check</button>   */}
           <div className="otp__right md:col-span-2">
