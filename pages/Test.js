@@ -51,12 +51,12 @@ export default function Test() {
   return (
     <div>Test
 
-        <button id='sign-in-button' onClick={reqOtp}>CHECK</button>
+        {/* <button id='sign-in-button' onClick={reqOtp}>CHECK</button>
 
         <input  style={{border:'solid'}} onChange={(e)=>{
       setOtp(e.target.value)
         }}/>
-        <button onClick={verify}> Verify</button>
+        <button onClick={verify}> Verify</button> */}
     </div>
   )
 }
