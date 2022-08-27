@@ -259,7 +259,7 @@ const makePayment = async () => {
       // alert(response.razorpay_payment_id);
       // alert(response.razorpay_order_id);
       // alert(response.razorpay_signature);
-
+ 
       saveAddress()
     },
     prefill: {
@@ -272,6 +272,7 @@ const makePayment = async () => {
 
   const paymentObject = new window.Razorpay(options);
   paymentObject.open();
+  
   // saveAddress()
 };
 
