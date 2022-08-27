@@ -75,6 +75,7 @@ export default function Home() {
       createFor: createFor,
       brideName: brideName,
       phone: phone,
+      email:email,
       gender: gender,
       date: moment(new Date()).unix(),
       profileId: profId,

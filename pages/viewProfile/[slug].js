@@ -248,7 +248,7 @@ const makePayment = async () => {
   // console.log(data);
   var options =   {
     key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
-    name: "Marrysunni.com",
+    name: "marrysunni.com",
     currency: data.currency,
     amount: data.amount,
     order_id: data.id,
@@ -264,13 +264,13 @@ const makePayment = async () => {
     },
     prefill: {
       name: "Marrysunni.com",
-      email: "marrysunni.com@gmail.com",
-      contact: "9995974895",
+      email: profile.email,
+      contact:profile.phone,
     },
-   
+    // marrysunni.com@gmail.com   
   };
 
-  const paymentObject = new window.Razorpay(options);
+  const paymentObject = new window.Razorpay(options); 
   paymentObject.open();
   
   // saveAddress()
