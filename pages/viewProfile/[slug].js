@@ -393,7 +393,7 @@ const saveAddress = async ()=>{
              
              >
                
-              <div className= {addressDoc[0]?.data().id == id ? "" : 'blur__address'}>
+              {/* <div className= {addressDoc[0]?.data().id == id ? "" : 'blur__address'}> */}
                 
                 <h5>{profile.address}</h5>  
               
@@ -402,17 +402,17 @@ const saveAddress = async ()=>{
               <p>Secondary No : {profile.scndNumber}</p>
               <p>Whatsapp : {profile.wtspNumber}</p>
               
-              </div>
+              {/* </div> */}
               
              </div>
-             {addressDoc[0]?.data().id == id ? 
+             {/* {addressDoc[0]?.data().id == id ? 
              
          ''
              
              
              : <button id='view__loc__btn'
              onClick={()=>setPayModal(true)}
-             >View Location & Contact</button>}
+             >View Location & Contact</button>} */}
              
             </div>
   
