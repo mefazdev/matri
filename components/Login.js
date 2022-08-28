@@ -24,8 +24,9 @@ const [da,setDa] = useState('')
 
 
     const login = async () => {
+    
         try {
-           await signInWithEmailAndPassword(auth, email, password);
+           await signInWithEmailAndPassword(auth,email, password);
  
        
   
@@ -34,7 +35,7 @@ const [da,setDa] = useState('')
         // router.push('/account/Home')
         } catch (error) {
           alert(error);
-          
+              
         }
       };
 
@@ -90,11 +91,7 @@ useEffect(()=>{
   fetchMember()
 },[user])
   
- const testing = ()=>{
-  // alert(auth.config)
-  console.log(auth.config.authDomain)
-  setDa(auth.config.authDomain)
- }
+ 
   return (
     <div>
         <Modal
@@ -112,7 +109,7 @@ useEffect(()=>{
             
             <div className='login__row'>
                <p>Email</p>
-                <input onChange={(e)=>setEmail(e.target.value)} />
+                <input onChange={(e)=>setEmail(e.target.value.trim())} />
             </div>
             <div className='login__row'>
                <p>Password</p>
