@@ -111,7 +111,7 @@ export default function Home() {
         />
       </Head>
       <Header />
-      <main className="home">
+      <div className="home">
         {/* <button onClick={()=>console.log(phone)}>CLICK</button> */}
         <div className="home__main ">
           <div className="home__main__div  grid    md:grid-cols-3  ">
@@ -234,8 +234,8 @@ export default function Home() {
                   />
                   <p>
                     {" "}
-                    By clicking register free, you accept our T&C and Privacy
-                    Policy
+                    By clicking register free, you accept our <Link  href='/Terms'><span style={{color:'blue',cursor:'pointer'}}>T&C</span></Link> and <Link href='/Privacy'><span style={{color:'blue',cursor:'pointer'}}>Privacy
+                    Policy</span></Link> 
                   </p>
 
                   {/* </div> */}
@@ -258,9 +258,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </main>
+   </div>
 
-      <footer>{/* <Footer/> */}</footer>
+    <Footer/> 
     </div>
   );
 }

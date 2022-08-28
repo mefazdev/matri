@@ -85,18 +85,23 @@ export default function AccDesktopHome() {
   };
   const fetchData = async () => {
     const gender = member[0]?.data().gender == "Male" ? "Female" : "Male";
+    const dist = await member[0]?.data().district
     if (gender) {
-      const q = await query(
-        collection(db, "member"),
 
-        where("gender", "==", gender),
-        where("status", "==", "Active")
-        // limit(1)
-
-        // where('district','==','Kannur')
-      );
-      const data = await getDocs(q);
-      setMembers(data.docs.map((doc) => doc));
+      if(dist){
+        const q = await query(
+          collection(db, "member"),
+  
+          where("gender", "==", gender),
+          where("status", "==", "Active"),
+          // limit(1)
+  
+          where('district','==',dist)
+        );
+        const data = await getDocs(q);
+        setMembers(data.docs.map((doc) => doc));
+      }
+      
     }
   };
 
@@ -136,19 +141,84 @@ export default function AccDesktopHome() {
     dispatch(closeSearch());
     setOnSpin(true);
     let ar = [];
-    if (fromAge && toAge) {
-      members.map((d) => {
-        var today = new Date();
+    
+    if (dist) {
+     if(dist == 'Any'){
+      const gender = member[0]?.data().gender == "Male" ? "Female" : "Male";
+      
+      
+        const q = await query(
+          collection(db, "member"),
+  
+          where("gender", "==", gender),
+          where("status", "==", "Active"),
+       
+        );
+        const data = await getDocs(q);
+        const d = data.docs.map((doc) => doc)
+       
+        setMembers(d)
+     }else{
+      // alert(dist)
+      const gender = member[0]?.data().gender == "Male" ? "Female" : "Male";
+      
+      
+      const q = await query(
+        collection(db, "member"),
 
-        var age_now = today.getFullYear() - d.data().bYear;
-        var m = today.getMonth() - d.data().bMonth;
-        if (m < 0 || (m === 0 && today.getDate() < d.data().bday)) {
-          age_now--;
-        }
-        if (fromAge <= age_now && toAge >= age_now) {
-          ar = [...ar, d];
-        }
-      });
+        where("gender", "==", gender),
+        where("status", "==", "Active"),
+        // limit(1)
+
+        where('district','==',dist)
+      );
+      const data = await getDocs(q);
+      const d = data.docs.map((doc) => doc)
+ 
+    
+      ar = d;
+    setMembers(d)
+
+     }
+         
+
+
+    }
+    if (fromAge && toAge) {
+
+      if(ar.length){
+        var today = new Date();
+        ar.map(async (d,  ) => {
+          var age_now = today.getFullYear() - d.data().bYear;
+          var m = today.getMonth() - d.data().bMonth;
+          if (m < 0 || (m === 0 && today.getDate() < d.data().bday)) {
+            age_now--;
+          }
+
+          if (fromAge > age_now || toAge < age_now) {
+            await ar.splice(index, 1);
+       
+           
+          }
+         
+ 
+        });
+      }else{
+        members.map((d) => {
+          var today = new Date();
+  
+          var age_now = today.getFullYear() - d.data().bYear;
+          var m = today.getMonth() - d.data().bMonth;
+          if (m < 0 || (m === 0 && today.getDate() < d.data().bday)) {
+            age_now--;
+          }
+          if (fromAge <= age_now && toAge >= age_now) {
+            ar = [...ar, d];
+            setMembers(ar)
+          }
+        });
+      }
+     
     }
 
     if (fromHeight && toHeight) {
@@ -160,12 +230,12 @@ export default function AccDesktopHome() {
           ) {
             await ar.splice(index, 1);
 
-            console.log("ind", d.data().height);
+            // console.log("ind", d.data().height);
           }
           // console.log('arr')
         });
       } else {
-        let f = "11";
+      
         members.map((d) => {
           if (
             d.data().height > parseInt(fromHeight) &&
@@ -181,7 +251,7 @@ export default function AccDesktopHome() {
 
     if (mariStatus) {
       if (ar.length) {
-        console.log("lenght und");
+   console.log(ar)
         ar.map((d, index) => {
           if (d.data().maritialStatus !== mariStatus) {
             ar.splice(index, 1);
@@ -221,7 +291,7 @@ export default function AccDesktopHome() {
 
     if (edu) {
       if (ar.length) {
-        console.log("its org", ar);
+        
         ar.map((d, index) => {
           if (d.data().community !== edu) {
             ar.splice(index, 1);
@@ -322,25 +392,6 @@ export default function AccDesktopHome() {
       }
     }
 
-    if (dist) {
-      if (ar.length) {
-        ar.map((d, index) => {
-          if (d.data().district !== dist) {
-            ar.splice(index, 1);
-          }
-        });
-      } else {
-        members.map(async (d) => {
-          if (d.data().district === dist) {
-            ar = await [...ar, d];
-
-            setMembers(ar);
-          } else {
-            setMembers(ar);
-          }
-        });
-      }
-    }
 
     if (city) {
       if (ar.length) {
@@ -361,7 +412,18 @@ export default function AccDesktopHome() {
         });
       }
     }
-
+   setFromAge('')
+   setToAge('')
+   setFromHeight ("");
+ setToHeight ("");
+  setMariStatus ("");
+   setOrg ("");
+    setEdu   ("");
+  setRlgsEdu   ("");
+  setRlgsGradu   ("");
+  setProf   ("");
+  setDist  ("");
+   setCity  ("");
     dispatch(closeSearch());
 
     setOnSpin(false);
@@ -407,7 +469,7 @@ export default function AccDesktopHome() {
                   >
                     Modify Preference <KeyboardDoubleArrowRightIcon />
                   </button>
-
+{/* <button onClick={()=>console.log(member[0]?.data().district)}>JFF</button> */}
                   <div className="acc__desk__right__header__right flex">
                     <button onClick={prev}>Prev</button>
                     <div className="acc__desk__right__header__right__div">
@@ -664,6 +726,7 @@ export default function AccDesktopHome() {
                   <div className=" search__madhab">
                     <select onChange={(e) => setDist(e.target.value)}>
                       <option value="">Plaease select</option>
+                      <option>Any</option>
                       {districts.map((d, index) => {
                         return <option key={index}>{d}</option>;
                       })}
@@ -680,6 +743,8 @@ export default function AccDesktopHome() {
                       })}
                     </select>
                   </div>
+
+                  {/* <p>{dist}</p> */}
                 </div>
                 <div className="search__btn__div">
                   <button onClick={searchProfiles}>Search</button>

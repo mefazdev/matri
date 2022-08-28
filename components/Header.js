@@ -42,8 +42,8 @@ export default function Header() {
         <div className='header__left__right'>
         <Link href='/'><h4>Home</h4></Link>
     <Link href='/About'><h4>About</h4></Link>
+    <Link href='/Contact'><h4>Contact</h4></Link>
     
-    <h4>Contact</h4>
         </div>
         </div>  
          
@@ -74,7 +74,7 @@ id='header__menu'/>
       
     </div>
     <div className='collapse__row'>
-      <Link href='/'><p>Contact</p></Link>
+      <Link href='/Contact'><p>Contact</p></Link>
       
     </div>
 
