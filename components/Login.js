@@ -20,7 +20,7 @@ const dispatch = useDispatch();
 const open = useSelector((state) => state.loginControl);
 const [member,setMember] = useState([])
 const [user,setUser] = useState({})
-
+const [da,setDa] = useState('')
 
 
     const login = async () => {
@@ -90,7 +90,11 @@ useEffect(()=>{
   fetchMember()
 },[user])
   
- 
+ const testing = ()=>{
+  // alert(auth.config)
+  console.log(auth.config.authDomain)
+  setDa(auth.config.authDomain)
+ }
   return (
     <div>
         <Modal
@@ -123,6 +127,8 @@ useEffect(()=>{
             onClick={login}            
             >Login</button>
 
+<button onClick={testing}>Testing</button>
+<p>{da}</p>
             <div>
                 <Link href='/'><h5 onClick={()=>dispatch(closeLogin())}>New Here? <span style={{color:'rgb(10, 65, 127)'}}>Register Free</span> </h5></Link>
                 
