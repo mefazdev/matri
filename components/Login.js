@@ -129,6 +129,7 @@ useEffect(()=>{
 
 <button onClick={testing}>Testing</button>
 <p>{da}</p>
+<p>{email}</p>
             <div>
                 <Link href='/'><h5 onClick={()=>dispatch(closeLogin())}>New Here? <span style={{color:'rgb(10, 65, 127)'}}>Register Free</span> </h5></Link>
                 
