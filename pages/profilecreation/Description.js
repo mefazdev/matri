@@ -152,7 +152,7 @@ const [user,setUser] = useState({})
             </div>
             <div className='edu__phone__row gap-2 md:gap-5 grid md:grid-cols-2 mt-5'>
             <div>
-             <p>Secondary Number<span style={{color:'red'}}>*</span></p>
+             <p>Secondary Number</p>
                <div className='phone__input '>
                <PhoneInput
               name='phone'
