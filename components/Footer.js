@@ -81,7 +81,7 @@ export default function Footer() {
               {/* <FavoriteBorderIcon id="footer__favorite__icon" />   */}
 
            
-              <a href="whatsapp://send?phone=+918606256402" data-action="share/whatsapp/share"  class="float"  >
+              <a href="whatsapp://send?phone=+918606256402" data-action="share/whatsapp/share"   >
               <p style={{textDecoration:'underline',cursor:'pointer'}} className="ml-2">
                 
                
