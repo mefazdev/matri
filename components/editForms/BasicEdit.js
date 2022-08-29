@@ -38,9 +38,9 @@ export default function BasicEdit({ id }) {
         setMaritialStatus(data.maritialStatus);
         setCreateFor(data.createFor);
         setMarriagePlan(
-          data.marriagePlan ? data.marriagePlan : "As soon as possible"
+          data.marriagePlan ? data.marriagePlan : ""
         );
-        setPhysiStatus(data.physiStatus ? data.physiStatus : "Normal Person");
+        setPhysiStatus(data.physiStatus ? data.physiStatus : "");
         setPhysically(data.physically);
       }
          
@@ -152,7 +152,7 @@ export default function BasicEdit({ id }) {
                   <option
                     selected={maritialStatus == "Never Married" ? true : false}
                   >
-                    Never Married{" "}
+                    Never Married 
                   </option>
                   <option
                     selected={maritialStatus == "Divorced" ? true : false}
@@ -216,9 +216,11 @@ export default function BasicEdit({ id }) {
               </div>
               <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
                 <p>When are you hoping to get married?</p>
+              
                 <select onChange={(e) => setMarriagePlan(e.target.value)}>
+                 
                   <option value="">Please select</option>
-
+             
                   <option
                     selected={
                       marriagePlan == "As soon as possible" ? true : false

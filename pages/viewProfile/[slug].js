@@ -426,12 +426,22 @@ const saveAddress = async ()=>{
                   <div className="flex  "><p>Age : </p>
                    <h5 className="ml-2">{age}</h5>
                   </div>
-                  <div className="flex  "><p>Maritial Status : </p>
+                    <div className="flex  "><p>Maritial Status : </p>
                    <h5 className="ml-2">{profile.maritialStatus}</h5>
-                  </div>
-                  <div className="flex mt-1"><p>Marriage Plan : </p>
-                   <h5 className="ml-2">{profile.mariPlan?mariPlan : 'Never Provided'}</h5>
-                  </div>
+                  </div>   
+                  {profile.marriagePlan ? <div className="flex mt-1"><p>Marriage Plan : </p>
+
+                   <h5  
+                   className = 
+                  //  {member[0]?.marriagePlan?
+                     'ml-2'
+                    //  :
+                      // 'blur__text'
+                    // }
+                   
+                   >{profile.marriagePlan? profile.marriagePlan : 'Never Provided'}</h5>
+                  </div> :' '}
+                  
                   <div className="flex mt-1"><p>Physical Challenged? : </p>
                    <h5 className="ml-2">{profile.physically}</h5>
                   </div>
