@@ -114,7 +114,7 @@ useEffect(()=>{
             <div className='login__row'>
                <p>Password</p>
                 <input
-                onChange={(e)=>setPassword(e.target.value)}
+                onChange={(e)=>setPassword(e.target.value.trim())}
                 type='password' />
             </div>
             <h6>Forgot password?</h6>
