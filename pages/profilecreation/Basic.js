@@ -69,7 +69,7 @@ export default function Basic() {
       bodyType: bodyType,
       physically: physically,
       maritialStatus: maritialStatus,
-      status: "Active",
+      
       basic: true,
     });
 

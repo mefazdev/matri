@@ -82,6 +82,14 @@ padding: 25px;
     max-width: fit-content;
     margin: auto;
    }
+   .otp__right{
+    background-color: #fff;
+   }
+   #verfyModal{
+    max-width: 500px;
+    margin: auto;
+    margin-top: 100px;
+   }
    .otp__div__btn__right{
     font-family: 'Poppins',sans-serif;
     color: #fff;
@@ -134,4 +142,31 @@ padding: 25px;
     width: 80px;
     margin-top: 20px;
     font-size: 14px;
+   }
+
+
+   #change__otp__input{
+    border: solid gray 1px;
+    margin: auto;
+   }
+   .otp__box__row{
+    /* display: flex; */
+    flex-direction: column;
+   }
+   .otp__box__row__button{
+    /* border: solid red;    */
+    background-color: rgb(14, 95, 64) ;
+ 
+    width: 50px;
+    color: #fff;
+     margin-top: 10px;
+     padding: 4px;
+
+     border-radius: 4px;
+   }
+   .otp__box__row__button__div{
+    /* border: solid firebrick */
+    
+    display: flex;
+    justify-content: center;
    }

@@ -8,13 +8,18 @@ import OtpInput from 'react-otp-input';
 import EditIcon from '@mui/icons-material/Edit';
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
+  onAuthStateChanged, multiFactor, PhoneAuthProvider, PhoneMultiFactorGenerator,
+  RecaptchaVerifier,
+  sendEmailVerification
 } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import Router, { useRouter } from "next/router";
 import { collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { getAuth, signInWithPhoneNumber } from "firebase/auth";
-
+// import {
+//   multiFactor, PhoneAuthProvider, PhoneMultiFactorGenerator,
+//   RecaptchaVerifier
+// } from "firebase/auth";
 export default function VerifyNumber () { 
     const [otp,setOtp] = useState('')
     const [doneOtp,setDoneOtp] = useState(false)
@@ -45,6 +50,9 @@ export default function VerifyNumber () {
     };
 
 
+
+
+    
     const addOtp = async () => {
       
       if(member.length){
@@ -91,28 +99,70 @@ export default function VerifyNumber () {
       addOtp()
     },[member])
 
+    
+    
+    const number  = member[0]?.data().phone
+   
+   
+   
+    
 
- 
+     
 
-  // const phoneNumber = 8594025204;
-// const appVerifier = window.recaptchaVerifier;
+    const phoneNumber='+918594025204';
+  
+    
+    // const auth = getAuth();
 
-const auth = getAuth();
+    const captcha = ()=>{
+      window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+        'size': 'invisible',
+        'callback': (response) => {
+          
+        },
+         
+      },auth);
+    }
 
+
+
+    const r = ()=>{
+    
+
+     captcha()
+     const appVerifier = window.recaptchaVerifier;
+
+     signInWithPhoneNumber(auth,phoneNumber,appVerifier).
+     then(confiromationResult =>{
+      window.confiromationResult = confiromationResult;
+console.log('yess>>',confiromationResult)
+     }).catch((error)=>{
+      alert(error)
+     })
+    }
+  
+
+    // const recaptchaVerifier = new RecaptchaVerifier('recaptcha-container-id', undefined, auth);
+
+    
+
+     
 
   return ( 
     <div> 
       <Header />    
       <div className="otp">
-        <div className="otp__div grid md:grid-cols-3 gap-10">
+        <div className="otp__div grid md:grid-cols-3 gap-10" id='recaptcha-container-id'>
           <div className="photo__upload__left">
             <div className="otp__left__img">
               <Image src={otpImg} />
+              {/* <button onClick={verifyEmail}>Verify email</button> */}
             </div>
             {/* <button onClick={signin}>Check</button> */}
           </div>
 {/* <button onClick={()=>console.log(otpDoc.otp)}>Check</button>   */}
           <div className="otp__right md:col-span-2">
+             {/* <button onClick={test}>Test</button> */}
             <h4>Verify your phone number</h4>
 
             {!doneOtp ? <div className="otp__box">
@@ -135,11 +185,13 @@ const auth = getAuth();
 
 
       </div>
-      <div className="otp__div__btn">
+      <div className="otp__div__btn" id='sign'>
         <button className="otp__div__btn__left">Resend</button>
         <button className="otp__div__btn__right"
         onClick={matchOtp}
         >Submit</button>
+        <button id='recaptcha-container' onClick={r}>OK</button>
+        {/* <button onClick={t}>Ot</button> */}
       </div>
               </div>
              
