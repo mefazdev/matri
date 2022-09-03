@@ -185,9 +185,7 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
       <div className="home">
 
         
-<a href="https://google.com" target="_blank" rel="noopener noreferrer">
-        Googlemdfklgmgl;k
-      </a>
+
         {/* <button onClick={()=>console.log(user.uid)}>CLICK</button> */}
         <div className="home__main ">
           <div className="home__main__div  grid    md:grid-cols-3  ">
@@ -448,5 +446,4 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
   );
 }
 
-
-// otm0vUctobRRRyvT0aGzbqzUyjk2 otm0vUctobRRRyvT0aGzbqzUyjk2
+ 
