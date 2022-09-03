@@ -22,6 +22,7 @@ import MobileDisplay from "../../components/MobielDispaly";
 import MobileMenu from "../../components/MobileMenu";
 import Modal from "@mui/material/Modal";
 
+import girlHolder from '../../asset/image/girls-place.png'
 
  
 const initializeRazorpay = () => {
@@ -329,7 +330,10 @@ const saveAddress = async ()=>{
               <div className="view__main__img">
                
   
-                {profile.photo ? <img src={profile.photo} alt=''/>:   <Image alt="" src={imageHolder} />}
+                {profile.photo ? <img src={profile.photo} alt=''/> : 
+                 profile.gender == 'Male' ?  <Image src={imageHolder} alt="" /> :
+                 <Image src={girlHolder} alt="" />}
+                {/* // <Image alt="" src={imageHolder} />} */}
               </div>
               <div className="md:col-span-2 view__main__right">
                 <div className="view__main__first__row  flex">
