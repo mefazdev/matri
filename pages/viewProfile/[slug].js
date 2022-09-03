@@ -264,8 +264,8 @@ const makePayment = async () => {
     },
     prefill: {
       name: "Marrysunni.com",
-      email: profile.email,
-      contact:profile.phone,
+      email: member[0]?.data().email,
+      contact:member[0]?.data().phone,
     },
     // marrysunni.com@gmail.com   
   };
