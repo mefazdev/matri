@@ -286,9 +286,9 @@ export default function Display({
           )}
         </div>
         <div className="dpy__right">
-          <Link href={`/viewProfile/${encodeURIComponent(id)}`}><a target='_blank'><h6 onClick={addToVisited}>{name}</h6></a></Link>
-                      {/* <h6 onClick={addToVisited}>{name}</h6> */}
-
+          <Link href={`/viewProfile/${encodeURIComponent(id)}`}><h6 onClick={addToVisited}>{name}</h6></Link>
+                      
+ {/* <a target='_blank'><h6 onClick={addToVisited}>{name}</h6></a> */}
           <p>
             {age} Yrs, {height} cm, {gender}
           </p>
