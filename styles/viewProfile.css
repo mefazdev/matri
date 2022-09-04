@@ -282,11 +282,11 @@ display: none;
 
 .blur__address p{
   color: transparent;
-  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.242);
 }
 .blur__address h5{
   color: transparent;
-  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.237);
 }
 #view__loc__btn{
   color: #fff;
