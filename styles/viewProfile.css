@@ -281,10 +281,14 @@ display: none;
 
 
 .blur__address p{
+  max-width: fit-content;
   color: transparent;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.242);
+  background-color: rgba(0, 0, 0, 0.685);
 }
 .blur__address h5{
+  background-color: rgba(0, 0, 0, 0.685);
+  max-width: fit-content;
   color: transparent;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.237);
 }
