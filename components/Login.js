@@ -158,8 +158,9 @@ const [loginOn,setLoginOn] = useState(false)
    alert(" We have sent a email. Please check your regitered Email.")
   })
   .catch((error) => {
-    const errorCode = error.code;
+    // const errorCode = error.code;
     const errorMessage = error.message;
+    alert('Your signin method is with phone number')
     // ..
   });
   }
