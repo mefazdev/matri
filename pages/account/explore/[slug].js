@@ -71,10 +71,10 @@ export default function Explore() {
             </div>
             <div  onClick={visitControl} className={visit? "explore__head__div__active" :"explore__head__div"}>
               {/* <PersonIcon id='explore__head__icons'/>  */}
-              <p>PROFILE VISIT</p>
+              <p>PROFILE VISITS</p>
             </div>
             <div onClick={contactControl} className={contact? "explore__head__div__active" :"explore__head__div"}>
-              <p>CONTACT</p>
+              <p>CONTACTS</p>
             </div>
             <div onClick={shortListControl} className={shortList? "explore__head__div__active" :"explore__head__div"}>
               <p>SHORTLIST</p>

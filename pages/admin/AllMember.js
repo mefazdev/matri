@@ -21,6 +21,7 @@ import { deleteObject, getDownloadURL, ref, uploadString } from 'firebase/storag
 import { Table } from 'react-bootstrap';
 import AdminHeader from '../../components/AdminHeader';
 import Link from 'next/link';
+import moment from 'moment';
 
 // import Cookies from 'universal-cookie';
 // import { Link } from 'react-router-dom';
@@ -30,7 +31,7 @@ export default function AllMember() {
     const [admin,setAdmin] = useState({})
     const fetchData = async () => {
         const q = await query(collection(db, "member"), 
-        // orderBy("timestamp", "desc")
+        orderBy("timesTamp","desc")
         );
         onSnapshot(q, (snapshot) => {
           setMembers(snapshot.docs.map((doc) => doc));
@@ -74,6 +75,12 @@ export default function AllMember() {
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                 #
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Date
                   </th>
                   <th
                     scope="col"
@@ -123,11 +130,24 @@ export default function AllMember() {
 
 const no = members.length - index
 const d = data.data()
+const dt = d.date;
+const date = moment.unix(dt).format("MMM DD, YY");
 return(
     <tr key={index}>
         <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{no}</div>
                       {/* <div className="text-sm text-gray-500">''''</div> */}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        {/* <div className="flex-shrink-0 h-10 w-10">
+                          <img className="h-10 w-10 rounded-full" src={d.photo} alt="" />
+                        </div> */}
+                        <div className="ml-0">
+                          <div className="text-sm font-medium text-gray-900">{date}</div>
+                          {/* <div className="text-sm text-gray-500">fdfdf</div> */}
+                        </div>
+                      </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">

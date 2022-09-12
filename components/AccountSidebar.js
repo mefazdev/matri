@@ -172,10 +172,10 @@ export default function AccoundSidebar() {
           </div>
         </div>
         <div className="sbar__setings__row grid grid-cols-2 gap-4">
-          <div className="sbar__setings__left flex">
+          {/* <div className="sbar__setings__left flex">
             <LockIcon id="sbar__third__row__bottom__icon" />
             <p>Edit Password</p>
-          </div>
+          </div> */}
           <div
             className="sbar__setings__right flex"
             style={{ cursor: "pointer" }}
@@ -185,12 +185,16 @@ export default function AccoundSidebar() {
             <DeleteIcon id="sbar__third__row__bottom__icon" />
             <p>Delete Profile</p>
           </div>
-        </div>
-        <div className="sbar__setings__row grid grid-cols-2 gap-4">
           <div className="sbar__setings__left flex">
             <PowerSettingsNewIcon id="sbar__third__row__bottom__icon" />
             <p onClick={logOut}>Logout</p>
           </div>
+        </div>
+        <div className="sbar__setings__row grid grid-cols-2 gap-4">
+          {/* <div className="sbar__setings__left flex">
+            <PowerSettingsNewIcon id="sbar__third__row__bottom__icon" />
+            <p onClick={logOut}>Logout</p>
+          </div> */}
         </div>
       </div>
 

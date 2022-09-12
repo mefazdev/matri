@@ -42,26 +42,3 @@ const storage = getStorage();
 export { db, auth, storage};
 
 
-
-
-// // Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
-
-// // Your web app's Firebase configuration
-// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAY8L76wmkbV5bIJv8rUaWdk1S23AwyvpM",
-//   authDomain: "marrysunni-b56f0.firebaseapp.com",
-//   projectId: "marrysunni-b56f0",
-//   storageBucket: "marrysunni-b56f0.appspot.com",
-//   messagingSenderId: "1056784807734",
-//   appId: "1:1056784807734:web:b0ca22d7cf8188ca742597",
-//   measurementId: "G-T4PF36K3CW"
-// };
-
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);

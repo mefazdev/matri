@@ -399,12 +399,13 @@ const saveAddress = async ()=>{
                
               <div className= {addressDoc[0]?.data().id == id ? "" : 'blur__address'}>
                 
-                <h5>{profile.address}</h5>  
+                <h5>Address : <span className="view__loc__row__span">{profile.address}</span> </h5>  
               
   
-              <p>Phone: {profile.phone}</p>
-              <p>Secondary No : {profile.scndNumber}</p>
-              <p>Whatsapp : {profile.wtspNumber}</p>
+              <p>Phone: <span>{profile.phone}</span> </p>
+
+              <p>Secondary No : <span>{profile.scndNumber}</span></p>
+              <p>Whatsapp : <span>{profile.wtspNumber}</span> </p>
               
               </div>
               
@@ -414,11 +415,16 @@ const saveAddress = async ()=>{
          ''
              
              
-             : <button id='view__loc__btn'
-             onClick={()=>setPayModal(true)}
-             >View Location & Contact</button>}
+             :
+             <div>
+            <h4>To view & save this contact and address you need to pay ₹100</h4>
+             <button id='view__loc__btn'
+             onClick={makePayment}
+             >Pay ₹100</button>
+              </div>
+             }
              
-            </div>
+             </div>  
   
             <div className="view__desc">
               <h6>Basic Information</h6>
