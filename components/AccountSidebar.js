@@ -11,7 +11,9 @@ import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { onAuthStateChanged } from "firebase/auth";
 import girlHolder from '../asset/image/girls-place.png'
-
+import ShareIcon from '@mui/icons-material/Share';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import {
   addDoc,
   collection,
@@ -36,6 +38,7 @@ import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import { TelegramShareButton, WhatsappShareButton } from "react-share";
 
 export default function AccoundSidebar() {
   const router = useRouter();
@@ -97,6 +100,7 @@ export default function AccoundSidebar() {
             </span>
             ({member[0]?.data().profileId}){" "}
           </h6>
+          
           {/* <p>Account : Free</p>
           <button>Upgrade</button> */}
         </div>
@@ -135,7 +139,7 @@ export default function AccoundSidebar() {
             onClick={() => dispatch(openPotoEdit())}
           >
             <CameraAltIcon id="sbar__third__row__bottom__icon" />
-            <p>Manage Photos</p>
+            <p type='button'>Manage Photos</p>
           </div>
           <Link
             href={`/account/editProfile/${encodeURIComponent(member[0]?.id)}`}
@@ -145,6 +149,45 @@ export default function AccoundSidebar() {
               <p>Edit Profile</p>
             </div>
           </Link>
+        </div>
+      </div>
+
+      <div className="sbar__third__row ">
+        <div className="sbar__third__row__div">
+          <h5>Share my profile</h5>
+        </div>
+        <div className="sbar__third__row__bottom grid grid-cols-2">
+          <div
+            className="sbar__third__row__left flex"
+            
+          >
+
+<WhatsappShareButton
+          url={`https://www.marrysunni.com/shareView/${member[0]?.id}`}
+          // children={}
+          >
+            <div className="flex"><WhatsAppIcon id='sbar__wtsp__icon'/>  <p type='button'>WhatsApp</p></div>
+            
+            
+            </WhatsappShareButton>
+          
+          
+          </div>
+          
+            <div className="sbar__third__row__right flex">
+            <TelegramShareButton
+          // children={}
+          url={`https://www.marrysunni.com/shareView/${member[0]?.id}`}
+          ><div className="flex">
+ <TelegramIcon id='sbar__tlgrm__icon'/>
+            <p>Telegram</p>
+          </div>
+           
+            </TelegramShareButton>
+             
+            
+            </div>
+          
         </div>
       </div>
 
@@ -164,7 +207,7 @@ export default function AccoundSidebar() {
           >
             <VisibilityOffIcon id="sbar__third__row__bottom__icon" />
 
-            <p>
+            <p type='button'>
               {member[0]?.data().status == "Inactive"
                 ? "Unhide Profie"
                 : "Hide Profile"}
@@ -183,21 +226,23 @@ export default function AccoundSidebar() {
             onClick={() => dispatch(openProfielDelete())}
           >
             <DeleteIcon id="sbar__third__row__bottom__icon" />
-            <p>Delete Profile</p>
+            <p type='button'>Delete Profile</p>
           </div>
           <div className="sbar__setings__left flex">
             <PowerSettingsNewIcon id="sbar__third__row__bottom__icon" />
-            <p onClick={logOut}>Logout</p>
+            <p type='button' onClick={logOut}>Logout</p>
           </div>
         </div>
-        <div className="sbar__setings__row grid grid-cols-2 gap-4">
-          {/* <div className="sbar__setings__left flex">
-            <PowerSettingsNewIcon id="sbar__third__row__bottom__icon" />
-            <p onClick={logOut}>Logout</p>
-          </div> */}
-        </div>
-      </div>
+        {/* <div className="sbar__setings__row grid   gap-4">
+          <div className="sbar__setings__left flex">
+            <ShareIcon id="sbar__third__row__bottom__icon" />
+            <p onClick={logOut}>Sahre your profile via </p>
 
+          </div>
+          <WhatsAppIcon/>
+        </div> */}
+      </div>
+     
       {/* <div className='sbar__help flex'>
   <div className='sbar__help__circle'>
     <PhoneIcon/>

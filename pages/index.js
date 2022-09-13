@@ -228,7 +228,7 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
                     <input
                       required
                       onChange={(e) => setBridName(e.target.value)}
-                      placeholder="Bride / Groom name"
+                      // placeholder="Bride / Groom name"
                     />
                   </div>
                 </div>

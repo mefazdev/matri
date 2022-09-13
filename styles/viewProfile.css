@@ -298,9 +298,7 @@ display: none;
   color: transparent;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.237);
 }
-.view__loc__row__span {
-
-}
+ 
 .view__desc h4{
   font-family: 'Heeebo',sans-serif;
   font-size: 15px;
@@ -391,3 +389,11 @@ margin-top: 30px;
   color: transparent;
   text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
+
+#prof__tlgr__icon{
+  width: 35px;
+  margin-top: 0;
+  max-height: 35px;
+ margin-top: -5px;
+}
+ 

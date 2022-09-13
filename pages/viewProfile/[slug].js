@@ -23,6 +23,7 @@ import MobileMenu from "../../components/MobileMenu";
 import Modal from "@mui/material/Modal";
 
 import girlHolder from '../../asset/image/girls-place.png'
+import { TelegramIcon, TelegramShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
 
  
 const initializeRazorpay = () => {
@@ -365,7 +366,7 @@ const saveAddress = async ()=>{
   
   
                 <div className="view__like">
-                    <h6  onClick={()=>console.log(member[0].id)}>Like this member?</h6>
+                    <h6 >Like this profile?</h6>
                     <p>If you are interested in this profile, please send an Interest to this person.</p>
                 {/* <button >EXPRESS INTEREST
                   <FavoriteIcon id='view__fav__icon'/>
@@ -376,10 +377,24 @@ const saveAddress = async ()=>{
          <button onClick={sentInterest}>EXPRESS INTEREST   <FavoriteIcon id='view__fav__icon'/>  </button>
          }
                    <h5>
-  Contact this member directly through Mobile, E-mail and Wahtsapp. 
+  Contact this member directly through Mobile and Wahtsapp. 
   {/* and Chat by upgrading your membership. Upgrade Now */}
   </h5>
                 </div>
+                <div className="view__like">
+                  <p>Share via</p>
+              {/* <h4>fdfdfdfd</h4> */}
+                  <WhatsappShareButton
+          url={`https://www.marrysunni.com/shareView/${id}`}
+          // children={}
+          ><WhatsappIcon id='prof__tlgr__icon'/></WhatsappShareButton>
+        
+                  <TelegramShareButton 
+                  className="ml-2"
+          // children={}
+          url={`https://www.marrysunni.com/shareView/${id}`}
+          ><TelegramIcon id='prof__tlgr__icon'/></TelegramShareButton>
+                  </div>
               </div>
             </div>
   
@@ -436,6 +451,9 @@ const saveAddress = async ()=>{
                   <div className="flex  "><p>Age : </p>
                    <h5 className="ml-2">{age}</h5>
                   </div>
+                  <div className="flex  "><p>Gender : </p>
+                   <h5 className="ml-2">{profile.gender}</h5>
+                  </div>
                     <div className="flex  "><p>Maritial Status : </p>
                    <h5 className="ml-2">{profile.maritialStatus}</h5>
                   </div>   
@@ -462,16 +480,22 @@ const saveAddress = async ()=>{
               <div className="flex mt-1"><p>Profile ID : </p>
                    <h5 className="ml-2">{profile.profileId}</h5>
                   </div>
-                  <div className="flex  "><p>Gender : </p>
-                   <h5 className="ml-2">{profile.gender}</h5>
-                  </div>
+                
                   <div className="flex  "><p>Profile created by : </p>
                    <h5 className="ml-2">
-                     
+                    {/* {profile.createFor} */}
+                     {profile.createFor == 'Daughter'   ? 'Parent' :
+                     profile.createFor == 'Son'   ? 'Parent' :
+                     profile.createFor == 'Sister' ? 'Brother':
+                     profile.createFor == 'Brother' ? 'Sister' : 
+                     profile.createFor == 'Relative' ? 'Relative' : 
+                     profile.createFor == 'Myself' ? 'Myself' : 
+                     profile.createFor == 'Friend' ? 'Friend' : ''
+                     }
                    </h5>
                   </div>
                   <div className="flex mt-1"><p>Languages known : </p>
-                   <h5 className="ml-2">{profile.language ? language :'Never Provided'}</h5>
+                   <h5 className="ml-2">{profile.language }</h5>
                   </div>
                   <div className="flex mt-1"><p>Physical Status : </p>
                    <h5 className="ml-2">{profile.physicalStatus?physicalStatus :'Never Provided'}</h5>
@@ -488,11 +512,11 @@ const saveAddress = async ()=>{
                    <h5 className="ml-2">{profile.community}</h5>
                   </div>
                   <div className="flex  "><p>Perform Namaz : </p>
-                   <h5 className="ml-2">{profile.namaz ? profile.namaz :"Never Provided"}</h5>
+                   <h5 className="ml-2">{profile.namaz }</h5>
   
                   </div>
                   <div className="flex  "><p>Madhab : </p>
-                   <h5 className="ml-2">{profile.madhab? profile.madhab :'Never provided'}</h5>
+                   <h5 className="ml-2">{profile.madhab}</h5>
                    
                   </div>
                    {profile.relgsGraduation ? <div className="flex  "><p>Religious Graduation : </p>
@@ -504,13 +528,13 @@ const saveAddress = async ()=>{
               <div>
               
                   <div className="flex  "><p>Religious Education : </p>
-                   <h5 className="ml-2">{profile.relgsEdu? profile.relgsEdu:'Not Provided'}</h5>
+                   <h5 className="ml-2">{profile.relgsEdu }</h5>
                   </div>
                   <div className="flex mt-1"><p>Religiousness : </p>
                    <h5 className="ml-2">{profile.religiousness}</h5>
                   </div>
                   <div className="flex mt-1"><p>Hijab : </p>
-                   <h5 className="ml-2">{profile.preferHijab? profile.preferHijab:'Not Provided'}</h5>
+                   <h5 className="ml-2">{profile.preferHijab }</h5>
                   </div>
               </div>
               </div>
@@ -524,7 +548,7 @@ const saveAddress = async ()=>{
                    <h5 className="ml-2">{profile.highEdu}({profile.eduCourse})</h5>
                   </div>
                   <div className="flex  "><p>Edu Details : </p>
-                   <h5 className="ml-2">{profile.eduDetails? profile.eduDetails:"Not Provided"}</h5>
+                   <h5 className="ml-2">{profile.eduDetails }</h5>
   
                   </div>
                   
@@ -571,7 +595,7 @@ const saveAddress = async ()=>{
                    
                   </div>
                   <div className="flex  "><p>Hair Color : </p>
-                   <h5 className="ml-2">{profile.hailColor?hailColor:"Not Provided"}</h5>
+                   <h5 className="ml-2">{profile.hailColor }</h5>
                    
                   </div>
               </div>
@@ -583,7 +607,7 @@ const saveAddress = async ()=>{
               <div className="view__desc__columns grid md:grid-cols-2">
               <div>
                   <div className="flex mt-1"><p>Family Type : </p>
-                   <h5 className="ml-2">{profile.famType? profile.famType:"Not Provided"}</h5>
+                   <h5 className="ml-2">{profile.famType }</h5>
                   </div>
                   <div className="flex  "><p>Financial Status : </p>
                    <h5 className="ml-2">{profile.financialStatus}</h5>
@@ -608,17 +632,17 @@ const saveAddress = async ()=>{
               </div>
               <div>
               <div className="flex  "><p>Father : </p>
-                   <h5 className="ml-2">{profile.father? profile.father:'Not Provided'}({profile.fatherProf?fatherProf:''})</h5>
+                   <h5 className="ml-2">{profile.father? profile.father:''}({profile.fatherProf?fatherProf:''})</h5>
                   </div>
                   
                   <div className="flex  "><p>Mother : </p>
-                   <h5 className="ml-2">{profile.mother?fmother:'Not Provided'}({profile.motherProf?motherProf:''})</h5>
+                   <h5 className="ml-2">{profile.mother?fmother:''}({profile.motherProf?motherProf:''})</h5>
                    
                   </div>
                   
   
                   <div className="flex  "><p>Family Value : </p>
-                   <h5 className="ml-2">{profile.famValue?profile.famValue:'Not Provided'}</h5>
+                   <h5 className="ml-2">{profile.famValue?profile.famValue:''}</h5>
                    
                   </div>
                   {profile.elderBro?<div className="flex  "><p>No of elder brother : </p>
@@ -639,7 +663,7 @@ const saveAddress = async ()=>{
   
             <div className="view__desc">
               <h6>Iam looking for</h6>
-              <h5>{profile.lookingFor ? lookingFor :'Not Provided'}</h5>
+              <h5>{profile.lookingFor ? lookingFor :''}</h5>
         </div>
   
         <div className="view__intrest__send">
