@@ -15,7 +15,7 @@ import { collection, query, getDocs, doc, getDoc, updateDoc } from "@firebase/fi
  
  
 import logo from '../../asset/image/logo.png'
-
+import Cookies from "universal-cookie";
 export default function Login() {
 
     const [admin,setAdmin] = useState( {})
@@ -24,7 +24,7 @@ export default function Login() {
     
     // const [cookies, setCookie] = useCookies(['admin']);
  const router = useRouter()
-    // const cookies = new Cookies();
+    const cookies = new Cookies();
     // const admin  = cookies.get('admin')
     
     
@@ -44,7 +44,7 @@ export default function Login() {
         
             if( username == admin.data().username && password == admin.data().password){
                 await addAdmin()
-                       // cookies.set('admin', true ,{ path: '/' });
+                       cookies.set('admin', true ,{ path: '/' });
                         
                       router.push('/admin/AllMember')
                

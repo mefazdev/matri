@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@headlessui/react": "^1.7.1",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.5",
     "@reduxjs/toolkit": "^1.8.3",
@@ -35,7 +36,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.1",
     "short-id": "^0.1.0-1",
-    "shortid": "^2.2.16"
+    "shortid": "^2.2.16",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",

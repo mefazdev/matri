@@ -9,7 +9,7 @@ export default function LookEdit({ id }) {
   const dispatch = useDispatch();
   // const open = useSelector((state) => state.locEditControl);
   const open = useSelector((state) => state.lookingEditControl);
-  const [lookinFor, setlookinFor] = useState("");
+  const [lookingFor, setlookingFor] = useState("");
   const [saving, setSaving] = useState(false);
 
   const fetchProfile = async () => {
@@ -18,7 +18,7 @@ export default function LookEdit({ id }) {
         const docRef = doc(db, "member", id);
         const docSnap = await getDoc(docRef);
         const data = docSnap.data();
-        setlookinFor(data.lookinFor );
+        setlookingFor(data.lookingFor );
        
       }
     }
@@ -28,7 +28,7 @@ export default function LookEdit({ id }) {
     setSaving(true);
     const docRef = doc(db, "member", id);
     const updateRef = await updateDoc(docRef, {
-      lookinFor: lookinFor,
+      lookingFor: lookingFor,
     });
     dispatch(closeLookingEdit());
     setSaving(false);
@@ -48,12 +48,15 @@ export default function LookEdit({ id }) {
         aria-describedby="modal-modal-description"
       >
         <div className="edit__modal">
+          
           <div className="edit__desc__modal">
+         
             <h6>Edit Iam looking for</h6>
+            <h5 id='prof__warn__text'>Please make sure you have added your priority to see other's.</h5>
             <textarea
               rows={3}
-              onChange={(e) => setlookinFor(e.target.value)}
-              value={lookinFor}
+              onChange={(e) => setlookingFor(e.target.value)}
+              value={lookingFor}
               // value={'Its good person'}
             />
             <div className="edit__desc__modal__btn">

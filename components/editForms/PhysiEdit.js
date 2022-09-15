@@ -63,10 +63,13 @@ const [saving,setSaving] = useState(false)
     aria-describedby="modal-modal-description"
   >
     <div className="edit__modal">
+      
       <div className="edit__desc__modal">
+        
         <h6>Edit Physical Attributes</h6>
 
         <div className="basic__edit__content">
+        <h5 id='prof__warn__text'>Please make sure you have completed your physical details to see other's.</h5>
           <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
             <p>Hight & Weight</p>
             <div className="flex edu__row">

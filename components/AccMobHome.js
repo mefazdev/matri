@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import AccountNav from './AccountNav'
  
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
@@ -34,9 +34,15 @@ import MobileMenu from './MobileMenu';
 import MobileDisplay from './MobielDispaly';
 import Link from 'next/link';
 import MobFooterNav from './MobFooterNav';
-
+import { Fragment } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import { professions } from '../asset/data/profession';
+import { districts } from '../asset/data/districts';
+import { cities } from '../asset/data/cities';
 export default function AccMobHome() {
-     
+  const cancelButtonRef = useRef(null)
+  const [openWarn,setOpenWarn] = useState(false)
     const dispatch = useDispatch();
   const open = useSelector((state) => state.searchControl);
   const openMenu = useSelector((state) => state.accMenuEditControl);
@@ -404,7 +410,17 @@ if(limitFrom > 1){
  
   }
 
-
+  const warnProComplete = ()=>{
+    if(member[0]){
+      if(member[0].data().lookingFor == null)
+      setOpenWarn(true)
+      
+    }
+  }
+  useEffect(()=>{
+    // console.log("its mobile >>>>>>>>>")
+    warnProComplete()
+  },[member])
   return (
     <div className='mob'>
         <AccountNav/>
@@ -471,13 +487,320 @@ return(
  
 
        
+ {/* <<<<<<<<< SEARCH MODAL >>>>>>>>>>>>>>>> */}
+ <Modal
+        id="search__modal"
+        open={open}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="search">
+          <div className="search__head flex">
+            <div className="flex">
+              <div
+                className="search__btn"
+                id={deatailSearch ? "search__btn__active" : ""}
+                onClick={enableDeatailSearch}
+              >
+                Search Profile
+              </div>
+              <div
+                className="search__btn"
+                id={idSearch ? "search__btn__active" : ""}
+                onClick={enableIdSearch}
+              >
+                ID Search
+              </div>
+            </div>
 
+            <HighlightOffIcon
+              id="search__head__close"
+              onClick={() => dispatch(closeSearch())}
+            />
+          </div>
+
+          <div className="search__content">
+            {deatailSearch ? (
+              <div>
+                <div className="search__row flex">
+                  <p>Age</p>
+                  <div className="flex search__row__right">
+                    <input
+                      type="number"
+                      value={fromAge}
+                      onChange={(e) => setFromAge(e.target.value)}
+                    />
+                    to
+                    <input
+                      type="number"
+                      value={toAge}
+                      onChange={(e) => setToAge(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="search__row flex">
+                  <p>Height (cm)</p>
+                  <div className="flex search__row__right">
+                    <input
+                      value={fromHeight}
+                      onChange={(e) => setFromHeight(e.target.value)}
+                      type="number"
+                    />
+                    to
+                    <input
+                      value={toHeight}
+                      onChange={(e) => setToHeight(e.target.value)}
+                      type="number"
+                    />
+                  </div>
+                </div>
+
+                <div className="search__row flex">
+                  <p>Maritial Status</p>
+                  <div className=" search__madhab">
+                    <select onChange={(e) => setMariStatus(e.target.value)}>
+                      <option value="">Any</option>
+                      <option>Never Married</option>
+                      <option>Widowed/Widower</option>
+                      <option>Divorced</option>
+                      <option>Nikah Divorce </option>
+                      <option>Married</option>
+                      <option>Awaiting Divorce</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="search__row flex">
+                  <p>Organization/Madhab</p>
+                  <div className=" search__madhab">
+                    <select onChange={(e) => setOrg(e.target.value)}>
+                      <option value="">select</option>
+                      <option>AP</option>
+                      <option>EK</option>
+                      <option>Samsthana</option>
+                      <option>Dakshina</option>
+                      <option>Shafi</option>
+                      <option>Hanafi</option>
+
+                      <option>Maliki</option>
+                      <option>Hambali</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="search__row flex">
+                  <p>Education</p>
+                  <div className=" search__madhab">
+                    {/* <select>
+                      <option>select</option>
+                      <option>Any</option>
+                      <option>Graduation and above</option>
+                      <option>Pg and above</option>
+                      <option>Doctorate and above</option>
+                      <option>Engineering/Technology</option>
+                      <option>Masters in Engineering</option>
+                      <option>Medicine-Allopathic</option>
+                      <option>Masters in Medicine-Allopathic</option>
+                      <option>Medicine-Dental,Homeo,Ayurveda</option>
+                      <option>
+                        
+                        Masters in Medicine-Dental,Homeo,Ayurveda
+                      </option>
+                      <option>Arts/Science/Commerce</option>
+                      <option>Paramedical / Nursing</option>
+                      <option>Diploma / Associate Degree</option>
+                      <option>Management/Administration</option>
+                      <option>Finance/CA</option>
+                      <option>Bachlors / Masters/ Law</option>
+                      <option>Religious Education</option>
+                      <option>Higher Secondary School</option>
+                    </select> */}
+                    <select onChange={(e) => setEdu(e.target.value)}>
+                      <option value="">Please Select</option>
+                      <option>Bachlors</option>
+                      <option>Masters</option>
+                      <option>Doctorate</option>
+                      <option>Dipoloma</option>
+                      <option>Trade School/TTC/ITI</option>
+                      <option>Islamic Education</option>
+                      <option>High/Seceondary school</option>
+                      <option>Less than high school</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="search__row flex">
+                  <p>Religious Education</p>
+                  <div className=" search__madhab">
+                    <select onChange={(e) => setRlgsEdu(e.target.value)}>
+                      <option value="">select</option>
+                      <option>Basic</option>
+                      <option>10</option>
+                      <option>+2</option>
+                      <option>Graduation</option>
+                      <option>Scholar</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="search__row flex">
+                  <p>Religious Graduation</p>
+                  <div className=" search__madhab">
+                    <select onChange={(e) => setRlgsGradu(e.target.value)}>
+                      <option value="">select</option>
+
+                      <option>Saqafi</option>
+                      <option>Faizy</option>
+                      <option>Sa&apos;adi</option>
+                      <option>Latheefi</option>
+                      <option>Baqavi</option>
+                      <option>Nurani</option>
+                      <option>Hudawi</option>
+                      <option>Wafi</option>
+
+                      <option>Wafiyya</option>
+                      <option>Hadiya</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="search__row flex">
+                  <p>Profession</p>
+                  <div className=" search__madhab">
+                    <select onChange={(e) => setProf(e.target.value)}>
+                      <option value="">select</option>
+
+                      {professions.map((d, index) => {
+                        return <option key={index}>{d}</option>;
+                      })}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="search__row flex">
+                  <p>District</p>
+                  <div className=" search__madhab">
+                    <select onChange={(e) => setDist(e.target.value)}>
+                      <option value="">Plaease select</option>
+                      <option>Any</option>
+                      {districts.map((d, index) => {
+                        return <option key={index}>{d}</option>;
+                      })}
+                    </select>
+                  </div>
+                </div>
+                <div className="search__row flex">
+                  <p>City</p>
+                  <div className=" search__madhab">
+                    <select onChange={(e) => setCity(e.target.value)}>
+                      <option value="">Plaease select</option>
+                      {cities.map((d, index) => {
+                        return <option key={index}>{d}</option>;
+                      })}
+                    </select>
+                  </div>
+
+                  {/* <p>{dist}</p> */}
+                </div>
+                <div className="search__btn__div">
+                  <button onClick={searchProfiles}>Search</button>
+                </div>
+              </div>
+            ) : (
+              <div className="id__search">
+                <div className="grid lg:grid-cols-5">
+                  <p>Search with profile ID</p>
+
+                  <div className="flex">
+                    <input
+                      onChange={(e) => setSearchId(e.target.value)}
+                      placeholder="Enter ID"
+                    />
+                    <button onClick={searchById}>Search</button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </Modal>
        
+<Transition.Root show={
+openWarn
+} as={Fragment}>
+      <Dialog as="div" className="relative z-10" 
+      // initialFocus={cancelButtonRef}
+       onClose={setOpenWarn}>
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        </Transition.Child>
 
+        <div className="fixed inset-0 z-10 overflow-y-auto">
+          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              enterTo="opacity-100 translate-y-0 sm:scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            >
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <div className="sm:flex sm:items-start">
+                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                      <WarningAmberIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                    </div>
+                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                      <Dialog.Title as="h5" className="text-lg font-medium leading-6 text-gray-900">
+                        Complete profile!
+                      </Dialog.Title>
+                      <div className="mt-2">
+                        <p className="text-sm text-gray-500">
+                          Please make sure you have added all detail in your profile.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+<Link  href={`/account/editProfile/${encodeURIComponent(member[0]?.id)}`}
+><button
+                    type="button"
+                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-green-800 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                    // onClick={deleteProfile}
+                  >
+                    Add
+                  </button></Link>
+                  
+                  <button
+                    type="button"
+                    className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    onClick={() => setOpenWarn(false)}
+                    ref={cancelButtonRef}
+                  >
+                    Not now
+                  </button>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </div>
+      </Dialog>
+    </Transition.Root>
       
       <MobFooterNav member ={member}/>
       
-      
+   
     </div>
   )
 }

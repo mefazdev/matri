@@ -73,6 +73,7 @@ useEffect(()=>{
         <h6>Edit Educational Infromatoin</h6>
 
         <div className="basic__edit__content">
+        <h5 id='prof__warn__text'>Please make sure you have completed your educational details to see other's.</h5>
           <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
             <p>Highest Education</p>
             <div className="flex edu__row">
@@ -136,13 +137,13 @@ useEffect(()=>{
               <option selected={profType == 'Prefer Not to Say' ? true : false}>Prefer Not to Say</option>
             </select>
           </div>
-          <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
+          {/* <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
             <p>Job Details</p>
             <input value={jobDetails} 
             onChange={(e)=>setJobDetails(e.target.value)}
 
             />
-          </div>
+          </div> */}
         </div>
         <div className="edit__desc__modal__btn">
           <button className="edit__save__button"

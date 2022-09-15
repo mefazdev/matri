@@ -53,7 +53,7 @@ export default function Footer() {
               </div>
             
             </div>
-            <div className="footer__bottom__content__left lg:pt-2 ">
+            {/* <div className="footer__bottom__content__left lg:pt-2 ">
               <div className="flex justify-center">
                 <Link href="/ ">
                   <p>
@@ -69,7 +69,7 @@ export default function Footer() {
 
                 <p></p>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="footer__bottom__content__right ">
             <div className="flex justify-center">
@@ -85,7 +85,7 @@ export default function Footer() {
               <p style={{textDecoration:'underline',cursor:'pointer'}} className="ml-2">
                 
                
-                booreact 
+                Booreact 
                
              </p>
   </a>

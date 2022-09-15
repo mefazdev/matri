@@ -229,4 +229,7 @@ margin-top: 10px;
    border: solid 1px gray;
 }
 
- 
+ #prof__warn__text{
+   font-family: "Heebo",sans-serif;
+   color: red;
+ }

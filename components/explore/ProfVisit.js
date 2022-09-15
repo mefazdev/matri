@@ -17,6 +17,7 @@ import {
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
+import moment from "moment";
 
 export default function ProfVisit({ id }) {
   const [profile, setProfile] = useState({});
@@ -76,12 +77,8 @@ export default function ProfVisit({ id }) {
 
         {visitedList.map((data, index) => {
           const d = data.data().visitedProfile;
-          var today = new Date();
-          var age_now = today.getFullYear() - d.bYear;
-          var m = today.getMonth() - d.bMonth;
-          if (m < 0 || (m === 0 && today.getDate() < d.bday)) {
-            age_now--;
-          }
+          const dt = data.data().date
+          const date = moment.unix(dt).format("MMM DD, YY");
           return (
             <div key={index} className="interest__row">
               <div className="interest__row__left grid grid-cols-2">
@@ -95,7 +92,7 @@ export default function ProfVisit({ id }) {
                     <h6>{d.brideName}</h6>
                   </Link>
                   <p>
-                    {age_now} Yrs, {d.height} cm, {d.maritialStatus}
+                      {d.maritialStatus}
                   </p>
                   <p>
                     {d.highEdu} ({d.eduCourse}), {d.profession}
@@ -106,11 +103,9 @@ export default function ProfVisit({ id }) {
                 </div>
               </div>
 
-              <div className="interest__row__right">
-                {/* <div className="interest__row__right__div">
-                    <button id='intr__acc__btn'>Accept</button>
-                    <button id='intr__dec__btn'>Decline</button>
-                </div> */}
+              <div className="prof__visit__right">
+                
+                <p>{date}</p>
               </div>
               <HighlightOffIcon
                 onClick={() => removeItem(data.id)}

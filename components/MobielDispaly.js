@@ -40,6 +40,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
 import FacebookIcon from '@mui/icons-material/Facebook';
+import moment from "moment";
 export default function MobileDisplay({
   name,
   height,
@@ -126,6 +127,7 @@ export default function MobileDisplay({
         photo: photo,
         id: id,
       },
+      date: moment(new Date()).unix(),
       timestamp: serverTimestamp(),
     });
   };
@@ -190,6 +192,7 @@ export default function MobileDisplay({
         photo: photo,
         id: id,
       },
+      date: moment(new Date()).unix(),
       timestamp: serverTimestamp(),
     });
   };
@@ -231,7 +234,7 @@ export default function MobileDisplay({
           id: member[0].id,
         },
         status: "sent",
-
+        date: moment(new Date()).unix(),
         timestamp: serverTimestamp(),
       });
     } else {

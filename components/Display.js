@@ -38,6 +38,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
+import moment from "moment";
 export default function Display({
   name,
   height,
@@ -48,8 +49,7 @@ export default function Display({
   highEdu,
   occupation,
   photo,
-  wtspNumber,
-  phone,
+  
   age,
   id,
   userId,
@@ -123,8 +123,10 @@ export default function Display({
         occupation:occupation,
         photo: photo,
         id:id
-      }
-      ,       timestamp :serverTimestamp()
+      },
+      date: moment(new Date()).unix(),
+     timestamp :serverTimestamp()
+
     })
   };
 
@@ -205,7 +207,8 @@ export default function Display({
         occupation:occupation,
         photo: photo,
         id:id
-      }
+      },
+      date: moment(new Date()).unix()
       ,       timestamp :serverTimestamp()
     })
     
@@ -244,7 +247,8 @@ export default function Display({
         id:member[0].id
        },
        status:'sent',
-      
+       date: moment(new Date()).unix(),
+     
        timestamp :serverTimestamp()
        
       });

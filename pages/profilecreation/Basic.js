@@ -33,6 +33,7 @@ export default function Basic() {
   const [maritialStatus, setMaritialStatus] = useState("");
   const [user, setUser] = useState({});
   const [member, setMember] = useState([]);
+  const [saving,setSaving] = useState(false)
   const router = useRouter();
 
   const getUser = () => {
@@ -56,6 +57,7 @@ export default function Basic() {
   };
   const submitForm = async (e) => {
     e.preventDefault();
+    setSaving(true)
 
     const id = member[0].id;
     const docRef = doc(db, "member", id);
@@ -72,7 +74,7 @@ export default function Basic() {
       
       basic: true,
     });
-
+setSaving(false)
     router.push("/profilecreation/Education");
   };
 
@@ -243,7 +245,8 @@ export default function Basic() {
                   // onClick={submitForm}
                   // onClick={()=>router.push('/profilecreation/Education')}
                 >
-                  Next
+                  {saving ? 'Saving' : 'Next'}
+                  
                 </button>
               </div>
             </form>

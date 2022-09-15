@@ -38,9 +38,10 @@ const [saving, setSaving] = useState(false)
           setelderBro(data.elderBro ? data.elderBro : '')
           setyoungerBro(data.youngerBro ? data.youngerBro : '')
           setelderSis(data.elderSis ? data.elderSis: '')
-          setyoungerBro(data.youngerBro ? data.youngerBro : '')
+          setyoungerSis(data.youngerSis ? data.youngerSis: '')
           setmarriedBro(data.marriedBro ? data.marriedBro : '')
-          setelderBro(data.marriedBro ? data.marriedBro : '')
+          setmarriedSis(data.marriedSis ? data.marriedSis : '')
+          
           setfamType(data.famType ? data.famType : '')
           setfamValue(data.famValue ? data.famValue : '')
           sethomeType(data.homeType ? data.homeType : '')
@@ -99,6 +100,7 @@ const [saving, setSaving] = useState(false)
         <h6>Edit Family Details</h6>
 
         <div className="basic__edit__content">
+        <h5 id='prof__warn__text'>Please make sure you have completed your family details to see other's.</h5>
           <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
             <p>No. Elder Brothers</p>
              <input type='number'
@@ -203,6 +205,7 @@ const [saving, setSaving] = useState(false)
           <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
             <p>Mother</p>
            <select onChange={(e)=>setmother(e.target.value)}>
+            <option value=''>Please Select</option>
              <option  selected={mother == 'Alive'? true : false} >Alive</option>
             <option selected={mother == 'Died' ? true : false}>Died</option>
            </select>

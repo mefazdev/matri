@@ -71,7 +71,9 @@ const [loginOn,setLoginOn] = useState(false)
     //   console.log(member[0]?.data().basic)
     // }
     if (member[0]) {
-      if (member[0]?.data().basic !== true) {
+      if (member[0]?.data().userId == null){
+        router.push("/");
+      }else  if (member[0]?.data().basic !== true) {
         router.push("/profilecreation/Basic");
       } else if (member[0]?.data().accEdu !== true) {
         router.push("/profilecreation/Education");
@@ -184,9 +186,9 @@ const [loginOn,setLoginOn] = useState(false)
             ()=>console.log(member[0].data())
 
             }>click</button> */}
-          <h3 className="mt-5 mb-4" >Sign in with</h3>
+          <h3 className="mt-5 mb-4" >Login in with</h3>
 
-          <div className="login__row ">
+          <div className="login__ro ">
             <p>Phone Number</p>
             <div className="phone__input ">
               <PhoneInput
@@ -230,9 +232,9 @@ const [loginOn,setLoginOn] = useState(false)
           {/* <p>{email.length}</p> */}
           <div>
             <Link href="/">
-              <h5 onClick={() => dispatch(closeLogin())}>
+              <h5 type='button' onClick={() => dispatch(closeLogin())}>
                 New Here?{" "}
-                <span style={{ color: "rgb(10, 65, 127)" }}>Register Free</span>{" "}
+                <span style={{ color: "rgb(10, 65, 127)",cursor:'pointer' }}>Register Free</span>{" "}
               </h5>
             </Link>
           </div>

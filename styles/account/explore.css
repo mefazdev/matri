@@ -135,11 +135,14 @@
 }
 .interest__row__right__div {
   /* border: solid red; */
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   align-items: center;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
+}
+.interest__row__right p{
+font-size: 14px;
 }
 #intr__acc__btn {
   background-color: rgb(5, 86, 5);
@@ -212,4 +215,20 @@
   .interest__row__right__div{
     margin-top: 10px;
   }
+}
+
+
+.prof__visit__right{
+  align-items: center;
+  display: flex;
+  text-align: right;
+  /* border: solid red; */
+  /* width: 100%; */
+  padding-right: 5px;
+}
+.prof__visit__right p{
+  /* background-color: rgba(128, 128, 128, 0.272); */
+  font-size: 14px;
+  font-family: "Poppins",sans-serif;
+
 }

@@ -19,6 +19,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { async } from "@firebase/util";
 import { setDefaultEventParameters } from "firebase/analytics";
 import Link from "next/link";
+import moment from "moment";
 // import { async } from '@firebase/util';
 export default function Interest({ id }) {
   const [recived, setRecived] = useState(true);
@@ -164,6 +165,8 @@ export default function Interest({ id }) {
             {interest.map((data, index) => {
               const prof = data.data();
               const d = data.data().from;
+              const dt = data.data().date
+              const date = moment.unix(dt).format("MMM DD, YY");
               if (prof.status == "sent") {
                 if (prof.to.userId == user.uid) {
                   return (
@@ -196,7 +199,8 @@ export default function Interest({ id }) {
                       </div>
 
                       <div className="interest__row__right">
-                        <div className="interest__row__right__div">
+                        <p>{date}</p>
+                        <div className="interest__row__right__div md:mt-2">
                           <button
                             id="intr__acc__btn"
                             onClick={() => acceptInterest(data.id)}
@@ -227,6 +231,8 @@ export default function Interest({ id }) {
             {interest.map((data, index) => {
               const prof = data.data();
               const d = data.data().to;
+              const dt = data.data().date
+              const date = moment.unix(dt).format("MMM DD, YY");
               if (prof.status == "sent") {
                 if (prof.from.userId == user.uid) {
                   return (
@@ -259,17 +265,20 @@ export default function Interest({ id }) {
                       </div>
 
                       <div className="interest__row__right">
+                      <p className="md:pr-2">{date}</p>
                         <div className="interest__row__right__div">
-                          {/* <button id='intr__acc__btn'
-            
-            >Accept</button> */}
+                          
                           <button
                             id="intr__dec__btn"
+                            className="md:mt-3"
                             onClick={() => cancelSent(data.id)}
                           >
                             Cancel
                           </button>
+
+                       
                         </div>
+                       
                       </div>
                       {/* <HighlightOffIcon id="intr__close" /> */}
                     </div>
@@ -289,7 +298,8 @@ export default function Interest({ id }) {
               const prof = data.data();
               const fd = data.data().from;
               const td = data.data().to;
-
+              const dt = data.data().date
+              // const date = moment.unix(dt).format("MMM DD, YY");
               if (prof.status == "accepted") {
                 if (td.userId == user.uid && prof.toStatus != "remove") {
                   return (
@@ -323,8 +333,9 @@ export default function Interest({ id }) {
                       </div>
 
                       <div className="interest__row__right">
+                        {/* <p>{date}</p> */}
                         <div className="interest__row__right__div">
-                          <button id="intr__acc__btn">
+                          <button id="intr__acc__btn" className="md:mt-5">
                             You accepted {fd.brideName}
                           </button>
                           {/* <button

@@ -6,12 +6,12 @@ import { days, months, years } from "../../asset/data/date";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
-export default function BasicEdit({ id }) {
+export default function BasicEdit({id}) {
   const dispatch = useDispatch();
   const open = useSelector((state) => state.basicEditControl);
   const [profile, setProfile] = useState({});
 
-  const [day, setDay] = useState("2");
+  const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [name, setName] = useState("");
@@ -90,6 +90,8 @@ export default function BasicEdit({ id }) {
             <h6>Edit Basic Infromatoin</h6>
             {/* <button onClick={()=>console.log(id)}>CLICK</button> */}
             <div className="basic__edit__content">
+
+              <h5 id='prof__warn__text'>Please make sure you have completed your basic details to see other's.</h5>
               <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
                 <p>Name</p>
                 <input value={name} onChange={(e) => setName(e.target.value)} />
@@ -258,8 +260,9 @@ export default function BasicEdit({ id }) {
               <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
                 <p>Physical Status</p>
                 <select onChange={(e) => setPhysiStatus(e.target.value)}>
+                  <option value=''>Please Select</option>
                   <option
-                    value="Noraml Person"
+                    // value="Noraml Person"
                     selected={physiStatus == "Noraml Person" ? true : false}
                   >
                     Noraml Person

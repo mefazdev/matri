@@ -264,20 +264,20 @@ const [admin,setAdmin] = useState({})
             <p>Gender : </p>
             <h5 className="ml-2">{profile.gender}</h5>
           </div>
-          <div className="flex  ">
+          {/* <div className="flex  ">
             <p>Profile created by : </p>
             <h5 className="ml-2"></h5>
-          </div>
-          <div className="flex mt-1">
+          </div> */}
+          {/* <div className="flex mt-1">
             <p>Languages known : </p>
             <h5 className="ml-2">
-              {profile.language ? language : "Never Provided"}
+              {profile.language  }
             </h5>
-          </div>
+          </div> */}
           <div className="flex mt-1">
             <p>Physical Status : </p>
             <h5 className="ml-2">
-              {profile.physicalStatus ? physicalStatus : "Never Provided"}
+              {profile.physicalStatus  }
             </h5>
           </div>
         </div>
@@ -295,13 +295,13 @@ const [admin,setAdmin] = useState({})
           <div className="flex  ">
             <p>Perform Namaz : </p>
             <h5 className="ml-2">
-              {profile.namaz ? profile.namaz : "Never Provided"}
+              {profile.namaz  }
             </h5>
           </div>
           <div className="flex  ">
             <p>Madhab : </p>
             <h5 className="ml-2">
-              {profile.madhab ? profile.madhab : "Never provided"}
+              {profile.madhab }
             </h5>
           </div>
           {profile.relgsGraduation ? (
@@ -317,7 +317,7 @@ const [admin,setAdmin] = useState({})
           <div className="flex  ">
             <p>Religious Education : </p>
             <h5 className="ml-2">
-              {profile.relgsEdu ? profile.relgsEdu : "Not Provided"}
+              {profile.relgsEdu  }
             </h5>
           </div>
           <div className="flex mt-1">
@@ -327,7 +327,7 @@ const [admin,setAdmin] = useState({})
           <div className="flex mt-1">
             <p>Hijab : </p>
             <h5 className="ml-2">
-              {profile.preferHijab ? profile.preferHijab : "Not Provided"}
+              {profile.preferHijab }
             </h5>
           </div>
         </div>
@@ -347,7 +347,7 @@ const [admin,setAdmin] = useState({})
           <div className="flex  ">
             <p>Edu Details : </p>
             <h5 className="ml-2">
-              {profile.eduDetails ? profile.eduDetails : "Not Provided"}
+              {profile.eduDetails  }
             </h5>
           </div>
         </div>
@@ -390,7 +390,7 @@ const [admin,setAdmin] = useState({})
           <div className="flex  ">
             <p>Hair Color : </p>
             <h5 className="ml-2">
-              {profile.hailColor ? hailColor : "Not Provided"}
+              {profile.hailColor  }
             </h5>
           </div>
         </div>
@@ -404,7 +404,7 @@ const [admin,setAdmin] = useState({})
           <div className="flex mt-1">
             <p>Family Type : </p>
             <h5 className="ml-2">
-              {profile.famType ? profile.famType : "Not Provided"}
+              {profile.famType }
             </h5>
           </div>
           <div className="flex  ">
@@ -445,7 +445,7 @@ const [admin,setAdmin] = useState({})
           <div className="flex  ">
             <p>Mother : </p>
             <h5 className="ml-2">
-              {profile.mother ? fmother : "Not Provided"}(
+              {profile.mother  }(
               {profile.motherProf ? motherProf : ""})
             </h5>
           </div>
@@ -453,14 +453,14 @@ const [admin,setAdmin] = useState({})
           <div className="flex  ">
             <p>Family Value : </p>
             <h5 className="ml-2">
-              {profile.famValue ? profile.famValue : "Not Provided"}
+              {profile.famValue  }
             </h5>
           </div>
           {profile.elderBro ? (
             <div className="flex  ">
               <p>No of elder brother : </p>
               <h5 className="ml-2">
-                {profile.elderBro ? profile.elderBro : ""}
+                {profile.elderBro }
               </h5>
             </div>
           ) : (
@@ -470,7 +470,7 @@ const [admin,setAdmin] = useState({})
             <div className="flex  ">
               <p>No of elder sister : </p>
               <h5 className="ml-2">
-                {profile.elderBro ? profile.elderBro : ""}
+                {profile.elderBro  }
               </h5>
             </div>
           ) : (
@@ -482,7 +482,7 @@ const [admin,setAdmin] = useState({})
 
     <div className="view__desc">
       <h6>Iam looking for</h6>
-      <h5>{profile.lookingFor ? lookingFor : "Not Provided"}</h5>
+      <h5>{profile.lookingFor  }</h5>
     </div>
   </div>
 </div></> :""}

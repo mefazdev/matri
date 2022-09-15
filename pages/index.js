@@ -27,7 +27,7 @@ import {
 } from "firebase/firestore";
 import OtpInput from 'react-otp-input';
  
-import EditIcon from '@mui/icons-material/Edit';
+// import EditIcon from '@mui/icons-material/Edit';
 import shortId from "short-id";
 import Modal from "@mui/material/Modal";
 export default function Home() {
@@ -46,6 +46,7 @@ const [verifying,setVerifying] = useState(false)
   const router = useRouter();
   const [user, setUser] = useState({});
  const [registering,setRegistering] = useState(false)
+ const [saving,setSaving] = useState(false)
 
   const profId = shortId.generate();
 
@@ -85,12 +86,7 @@ const [verifying,setVerifying] = useState(false)
   const submitForm = async (e) => {
     e.preventDefault();
     setRegistering(true)
-    // const users = await createUserWithEmailAndPassword(auth, email, password);
-
-    // //  await getUser()
-    // // console.log(user.uid)
-    // await addData(users.user.uid);
-    // router.push("/profilecreation/Basic");
+    // const users = await createUserWithEmailAndPassword(auth, email, password)
 
  
     
@@ -124,7 +120,7 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
         setVerifyModal(false)
  
       //  setUid(result.uid)
-      
+        setRegistering(false)
         addData(result.user.uid)
  console.log(result)
       
@@ -136,10 +132,11 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
     }
   }
   const addData = async (uid) => {
-    
+    setSaving(true)
   //  if(uid){
     const docRef = await addDoc(collection(db, "member"), {
       userId: uid,
+
       createFor: createFor,
       brideName: brideName,
       phone: phone,
@@ -149,6 +146,7 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
       profileId: profId,
       timesTamp: serverTimestamp(),
     });
+    setSaving(false)
     router.push('/profilecreation/Basic')
   //  }
    
@@ -323,7 +321,7 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
                     type="submit"
                     id="home__main__form__btn"
                   >
-                    {registering ? "Registering" : ' Register Free'}
+                    {registering ? "Registering" : saving ? 'Saving': ' Register Free'}
                    
                   </button>
 

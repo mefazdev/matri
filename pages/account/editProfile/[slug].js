@@ -342,7 +342,7 @@ export default function EditProfile() {
                       <h5 className="ml-2">{profile.madhab}</h5>
                     ) : (
                       <h4
-                        onClick={() => dispatch(openRelgsEditEdit())}
+                        onClick={() => dispatch(openRelgsEdit())}
                         className="ml-2"
                       >
                         Add
@@ -535,9 +535,9 @@ export default function EditProfile() {
               </div>
 
               <div className="view__loc__row  ">
-                <h5> {profile.address}</h5>
-                <p>City: {profile.city}</p>
-                <p>District: {profile.district}</p>
+                <h5>Address : {profile.address}</h5>
+                {/* <p>City: {profile.city}</p>
+                <p>District: {profile.district}</p> */}
 
                 <p>Phone: {profile.phone}</p>
                 <p>Secondary No : {profile.scndNumber}</p>
@@ -621,7 +621,16 @@ export default function EditProfile() {
 
                   <div className="flex  ">
                     <p>Mother : </p>
-                    <h5 className="ml-2">Alive(House Wife)</h5>
+                    {profile.mother ? (
+                      <h5 className="ml-2">{profile.mother}</h5>
+                    ) : (
+                      <h4
+                        onClick={() => dispatch(openFamEdit())}
+                        className="ml-2"
+                      >
+                        Add
+                      </h4>
+                    )}
                   </div>
 
                   <div className="flex  ">
@@ -676,8 +685,8 @@ export default function EditProfile() {
                   Edit
                 </div>
               </div>
-              {profile.lookinFor ? (
-                <h5 className="ml-2">{profile.lookinFor}</h5>
+              {profile.lookingFor ? (
+                <h5 className="ml-2">{profile.lookingFor}</h5>
               ) : (
                 <h4
                   onClick={() => dispatch(openLookingEdit())}
