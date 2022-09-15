@@ -10,7 +10,7 @@ export default function Pricing() {
         <h2>PRICING</h2>
          
          <div className='price__row'>    <p>To become a member in www.marrysunni.com by registration is completely free.</p>   
-     <p className='mt-4'>The member should pay only 100 Rupees for each address and contacts of other members to show.</p>
+     <p className='mt-4'>The member should pay  100 Rupees to get  contact and  address of other member .</p>
   </div>
        </div>
     </div>

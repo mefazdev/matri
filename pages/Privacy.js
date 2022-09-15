@@ -10,7 +10,7 @@ export default function Privacy() {
           <h2>PRIVACY POLICY</h2>
            
            
-    <p className="mt-4">www.waytonikah.com is an electronic website targeting to provide premium matrimonial alliance services. We ensure to protect the privacy of the users as per our terms and conditions.</p>
+    <p className="mt-4">www.marrysunni.com is an electronic website targeting to provide premium matrimonial alliance services. We ensure to protect the privacy of the users as per our terms and conditions.</p>
 
     <p>Once you have registered to our website as a user/member, you accept our full terms and conditions and must provide us with the mandatory information. You may or may not provide information that is marked as not mandatory. The users are solely responsible for maintaining the confidentiality of the User Name and User Password and other activities related to transmission/transactions using their own user identity/name. They shall be solely responsible for carrying out any online or off-line transactions that involves credit/debit cards or any other forms of device or documents for making such transactions. www.marrysunni.com accepts no accountability / liability of your act and your improper use of information relating to credit/debit cards usage whether online/offline.</p>
 
