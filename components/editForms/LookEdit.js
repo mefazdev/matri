@@ -52,7 +52,7 @@ export default function LookEdit({ id }) {
           <div className="edit__desc__modal">
          
             <h6>Edit Iam looking for</h6>
-            <h5 id='prof__warn__text'>Please make sure you have added your priority to see other's.</h5>
+            <h5 id='prof__warn__text'>Please make sure you have added your priority to see other&apos;s.</h5>
             <textarea
               rows={3}
               onChange={(e) => setlookingFor(e.target.value)}

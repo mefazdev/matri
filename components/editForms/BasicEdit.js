@@ -91,7 +91,7 @@ export default function BasicEdit({id}) {
             {/* <button onClick={()=>console.log(id)}>CLICK</button> */}
             <div className="basic__edit__content">
 
-              <h5 id='prof__warn__text'>Please make sure you have completed your basic details to see other's.</h5>
+              <h5 id='prof__warn__text'>Please make sure you have completed your basic details to see other&apos;s.</h5>
               <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
                 <p>Name</p>
                 <input value={name} onChange={(e) => setName(e.target.value)} />

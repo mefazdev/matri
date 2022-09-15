@@ -73,7 +73,7 @@ useEffect(()=>{
         <h6>Edit Educational Infromatoin</h6>
 
         <div className="basic__edit__content">
-        <h5 id='prof__warn__text'>Please make sure you have completed your educational details to see other's.</h5>
+        <h5 id='prof__warn__text'>Please make sure you have completed your educational details to see other&apos;s.</h5>
           <div className="basic__edit__row grid md:grid-cols-3 lg:grid-cols-4">
             <p>Highest Education</p>
             <div className="flex edu__row">
