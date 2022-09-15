@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import AdjustIcon from "@mui/icons-material/Adjust";
+import Footer from "../components/Footer";
 export default function Privacy() {
   return (
     <div>
@@ -18,6 +19,7 @@ export default function Privacy() {
      <p>www.marrysunni.com is securely connected to service partners, which includes servers/administrators. Your IP address and other information including Email address, Contact name, User name and password, Address, Pin code, Contact number or other contact details etc; may be used for the general administration of the Website. Your IP address may also be used for the purpose of gathering broad demographic information. The information will solely be used by us to inform you and deliver information that might be of your interests. This information may include banner advertisements, administrative notifications, product hand-outs, and communications which are relevant for you where using the web site is concerned. Your acceptance to our terms and condition and privacy policy specify that you are willing to receive such information.</p>        
         </div>
       </div>
+      <Footer/>
     </div>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../components/Header'
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from '../firebase';
+import Footer from '../components/Footer';
 export default function Refund() {
 
   const provider = new GoogleAuthProvider();
@@ -41,6 +42,7 @@ export default function Refund() {
    {/* <button onClick={signIn}>SIGNIN</button> */}
       </div>
     </div>
+    <Footer/>
   </div>
   )
 }

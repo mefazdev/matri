@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import AdjustIcon from "@mui/icons-material/Adjust";
+import Footer from "../components/Footer";
 export default function Terms() {
   return (
     <div>
@@ -41,6 +42,8 @@ export default function Terms() {
              
         </div>
       </div>
+      <Footer/>
+
     </div>
   );
 }
