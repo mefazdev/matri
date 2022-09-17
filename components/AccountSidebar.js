@@ -197,11 +197,12 @@ export default function AccoundSidebar() {
         </div>
 
         <div className="sbar__setings__row mt-3 grid grid-cols-2 gap-4">
-          <div className="sbar__setings__left flex">
+          <div className="sbar__setings__left flex" type="button">
             <EmailIcon id="sbar__third__row__bottom__icon" />
             <p>SMS/Email Alerts</p>
           </div>
           <div
+          type="button"
             className="sbar__setings__right flex"
             onClick={() => dispatch(openProfielHide())}
           >
@@ -228,7 +229,8 @@ export default function AccoundSidebar() {
             <DeleteIcon id="sbar__third__row__bottom__icon" />
             <p type='button'>Delete Profile</p>
           </div>
-          <div className="sbar__setings__left flex">
+          <div className="sbar__setings__left flex" type="button">
+            {/* <button></button> */}
             <PowerSettingsNewIcon id="sbar__third__row__bottom__icon" />
             <p type='button' onClick={logOut}>Logout</p>
           </div>
