@@ -41,7 +41,7 @@ const [verifying,setVerifying] = useState(false)
   const [createFor, setCrateFor] = useState("");
   const [brideName, setBridName] = useState("");
   const [gender, setGender] = useState("");
-  const [spin,setSpin] = useState(false)
+  const [spin,setSpin] = useState(true)
   // const [uid,setUid]  = useState('')
   // const [verifyModal,setVerifyModal] = useState(false)
   const router = useRouter();
@@ -190,7 +190,15 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
       <div className="home">
 
         
-
+      {/* {spin ? (
+        <div className="test"><span className="flex h-3 w-3">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-200 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-300"></span>
+      </span></div>
+        
+      ) : (
+        ""
+      )} */}
         {/* <button onClick={()=>console.log(user.uid)}>CLICK</button> */}
         <div className="home__main ">
           <div className="home__main__div  grid    md:grid-cols-3  ">
@@ -441,14 +449,7 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
           </div>
       
     </Modal>
-    {spin ? (
-        <span className="flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-200 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-300"></span>
-        </span>
-      ) : (
-        ""
-      )}
+   
     <Footer/> 
 
 
