@@ -34,6 +34,7 @@ export default function Basic() {
   const [user, setUser] = useState({});
   const [member, setMember] = useState([]);
   const [saving,setSaving] = useState(false)
+  const [spin,setSpin] = useState(false)
   const router = useRouter();
 
   const getUser = () => {
@@ -56,6 +57,7 @@ export default function Basic() {
     
   };
   const submitForm = async (e) => {
+    setSpin(true)
     e.preventDefault();
     setSaving(true)
 
@@ -75,7 +77,9 @@ export default function Basic() {
       basic: true,
     });
 setSaving(false)
+
     router.push("/profilecreation/Education");
+    setSpin(false)
   };
 
   useEffect(() => {
@@ -253,22 +257,16 @@ setSaving(false)
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
+      {spin ? (
+        <span className="flex h-3 w-3">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-200 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-300"></span>
+        </span>
+      ) : (
+        ""
+      )}
     </>
   );
 }
 
-{
-  /* <div className='pr__crtn__second__row'>
-                <p>Maritial Status<span style={{color:'red'}}>*</span>  </p>
-                <div className='maritial__status__row gap-1 grid grid-cols-2 md:grid-cols-3'>
-                  <div className='flex maritial__status__row__input__row'><p>Never married</p><input type='radio' /></div>
-                  <div className='flex maritial__status__row__input__row'><p>Divorced</p><input type='radio' /></div>
-                  <div className='flex maritial__status__row__input__row '><p >Windowed/Windower</p><input type='radio' /></div>
-                  
-                  <div className='flex maritial__status__row__input__row'><p>Awaiting divorce</p><input type='radio' /></div>
-                  <div className='flex maritial__status__row__input__row'><p>Nikah divorce</p><input type='radio' /></div>
-                  <div className='flex maritial__status__row__input__row'><p>Married</p><input type='radio' /></div>
-                </div>
-               </div> */
-}
+ 

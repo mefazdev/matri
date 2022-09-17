@@ -74,6 +74,9 @@ export default function AccMobHome() {
  const [limitTo,setLimitTo] = useState(30)
  const [pageCount, setPageCount] = useState(1)
   const router = useRouter();
+
+
+
   const enableDeatailSearch = () => {
     setDetailSearch(true);
     setIdSearch(false);
@@ -411,15 +414,26 @@ if(limitFrom > 1){
   }
 
   const warnProComplete = ()=>{
+    
     if(member[0]){
       if(member[0].data().lookingFor == null)
       setOpenWarn(true)
       
     }
   }
+
+  function timeout(delay) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
+
+  const controlOpen = async () => {
+    await timeout(6000);
+    warnProComplete()
+  };
+ 
   useEffect(()=>{
     // console.log("its mobile >>>>>>>>>")
-    warnProComplete()
+   controlOpen()
   },[member])
   return (
     <div className='mob'>
@@ -766,7 +780,7 @@ openWarn
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          Please make sure you have added all detail in your profile.
+                          Please make sure you have added all details in your profile.
                         </p>
                       </div>
                     </div>

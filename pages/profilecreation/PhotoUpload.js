@@ -22,7 +22,7 @@ export default function PhotoUpload() {
   const [member, setMember] = useState([]);
   const [photo, setPhoto] = useState("");
   const [uploading, setUploading] = useState(false);
-
+  const [spin,setSpin] = useState(false)
   const router = useRouter();
   const getUser = () => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -55,6 +55,7 @@ export default function PhotoUpload() {
   };
 
   const uploadPhoto = async () => {
+    setSpin(true)
     setUploading(true);
     const id = member[0].id;
     const photoRef = ref(storage, `upload/${id}/photo`);
@@ -65,6 +66,7 @@ export default function PhotoUpload() {
       });
     });
     router.push("/account/Home");
+    setSpin(false)
   };
   useEffect(() => {
     getUser();
@@ -127,6 +129,14 @@ export default function PhotoUpload() {
           </Link>
         </div>
       </div>
+      {spin ? (
+        <span className="flex h-3 w-3">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-200 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-300"></span>
+        </span>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

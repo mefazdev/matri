@@ -840,7 +840,7 @@ openWarn
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          Please make sure you have added all detail in your profile.
+                          Please make sure you have added all details in your profile.
                         </p>
                       </div>
                     </div>

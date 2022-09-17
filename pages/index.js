@@ -41,6 +41,7 @@ const [verifying,setVerifying] = useState(false)
   const [createFor, setCrateFor] = useState("");
   const [brideName, setBridName] = useState("");
   const [gender, setGender] = useState("");
+  const [spin,setSpin] = useState(false)
   // const [uid,setUid]  = useState('')
   // const [verifyModal,setVerifyModal] = useState(false)
   const router = useRouter();
@@ -84,6 +85,7 @@ const [verifying,setVerifying] = useState(false)
     },auth);
   }
   const submitForm = async (e) => {
+    setSpin(true)
     e.preventDefault();
     setRegistering(true)
     // const users = await createUserWithEmailAndPassword(auth, email, password)
@@ -102,6 +104,7 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
 //  console.log('yess>>',confiromationResult)
  setVerifyModal(true)
  setRegistering(false)
+ setSpin(false)
       }).catch((error)=>{
        alert(error)
       })
@@ -110,7 +113,7 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
   };
 
   const verifyOtp = async()=>{
- 
+ setSpin(true)
     setVerifying(true)
     if(otp.length == 6){
       let confiromationResult = window.confiromationResult;
@@ -122,9 +125,10 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
       //  setUid(result.uid)
         setRegistering(false)
         addData(result.user.uid)
- console.log(result)
+        setSpin(false)
       
       }).catch((error)=>{
+        setSpin(false)
         alert(error)
         setRegistering(false)
       })
@@ -132,6 +136,7 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
     }
   }
   const addData = async (uid) => {
+    setSpin(true)
     setSaving(true)
   //  if(uid){
     const docRef = await addDoc(collection(db, "member"), {
@@ -147,7 +152,9 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
       timesTamp: serverTimestamp(),
     });
     setSaving(false)
+ 
     router.push('/profilecreation/Basic')
+    setSpin(false)
   //  }
    
   };
@@ -434,7 +441,14 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
           </div>
       
     </Modal>
-
+    {spin ? (
+        <span className="flex h-3 w-3">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-200 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-300"></span>
+        </span>
+      ) : (
+        ""
+      )}
     <Footer/> 
 
 

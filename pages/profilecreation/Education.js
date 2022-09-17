@@ -33,6 +33,7 @@ function Education() {
   const [user, setUser] = useState({});
   const [member, setMember] = useState([]);
   const [saving, setSaving] = useState(false);
+  const [spin,setSpin] = useState(false)
 
   const router = useRouter();
   const getUser = () => {
@@ -56,6 +57,7 @@ function Education() {
   };
 
   const submitForm = async (e) => {
+    setSpin(true)
     e.preventDefault();
     setSaving(true);
     const id = member[0].id;
@@ -73,6 +75,7 @@ function Education() {
 
     router.push("/profilecreation/Description");
     setSaving(false);
+    setSpin(false)
   };
 
   useEffect(() => {
@@ -229,6 +232,14 @@ function Education() {
           </div>
         </div>
       </div>
+      {spin ? (
+        <span className="flex h-3 w-3">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-200 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-300"></span>
+        </span>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
