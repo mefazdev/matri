@@ -57,6 +57,7 @@ import LocEdit from "../../components/editForms/LocEdit";
 import DescEdit from "../../components/editForms/DescEdit";
 import BasicEdit from "../../components/editForms/BasicEdit";
 import PhysiEdit from "../../components/editForms/PhysiEdit";
+import moment from "moment";
 
 const initializeRazorpay = () => {
   return new Promise((resolve) => {
@@ -141,7 +142,7 @@ const [open,setOpen] = useState(true)
           city: profile.city,
           district: profile.district,
           occupation: profile.profession,
-          photo: profile.photo,
+          photo: profile.photo? profile.photo : '' ,
           id: id,
         },
         from: {
@@ -1182,7 +1183,7 @@ const [open,setOpen] = useState(true)
                   to this person.
                 </p>
 
-                {send ? (
+                {send ? ( 
                   <button> INTEREST SENT </button>
                 ) : accepted ? (
                   <button> INTEREST ACCEPTED </button>
