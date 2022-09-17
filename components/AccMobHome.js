@@ -416,7 +416,7 @@ if(limitFrom > 1){
   const warnProComplete = ()=>{
     
     if(member[0]){
-      if(member[0].data().lookingFor == null)
+      if(member[0].data().lookingFor == null || member[0].data().lookingFor == "")
       setOpenWarn(true)
       
     }
@@ -432,7 +432,7 @@ if(limitFrom > 1){
   };
  
   useEffect(()=>{
-    // console.log("its mobile >>>>>>>>>")
+
    controlOpen()
   },[member])
   return (

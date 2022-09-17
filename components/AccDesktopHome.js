@@ -459,14 +459,26 @@ export default function AccDesktopHome() {
   };
 
   const warnProComplete = ()=>{
+    
     if(member[0]){
-      if(member[0].data().lookingFor == null)
+      if(member[0].data().lookingFor == null || member[0].data().lookingFor == "")
       setOpenWarn(true)
       
     }
   }
-  useEffect(()=>{
+
+  function timeout(delay) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
+
+  const controlOpen = async () => {
+    await timeout(6000);
     warnProComplete()
+  };
+ 
+  useEffect(()=>{
+
+   controlOpen()
   },[member])
   return (
     <>
