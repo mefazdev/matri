@@ -25,6 +25,7 @@ const [loginOn,setLoginOn] = useState(false)
   const [otp, setOtp] = useState("");
   const [verifyModal, setVerifyModal] = useState(false);
   const [verifying, setVerifying] = useState(false);
+  const [spin,setSpin] = useState(false)
 
   const login = async () => { 
     setLoginOn(true) 
@@ -38,6 +39,7 @@ const [loginOn,setLoginOn] = useState(false)
     } catch (error) {
       alert(error);
       setLoginOn(false) 
+      setSpin(false)
     }
   };
 
@@ -95,6 +97,7 @@ const [loginOn,setLoginOn] = useState(false)
   }, [user]);
 
   const checkLoginMethod = () => {
+    setSpin(true)
     setLoginOn(true) 
     if (phone.length >= 10) {
       sendOtp();
@@ -114,7 +117,7 @@ const [loginOn,setLoginOn] = useState(false)
   };
   const sendOtp = async () => {
     // e.preventDefault();
-
+setSpin(true)
     if (window.recaptchaVerifier == null) {
       generateRecaptcha();
     }
@@ -127,15 +130,17 @@ const [loginOn,setLoginOn] = useState(false)
         //  console.log('yess>>',confiromationResult)
         setVerifyModal(true);
         dispatch(closeLogin());
-        
+        setSpin(false)
       })
       .catch((error) => {
         alert(error);
         setLoginOn(false) 
+        setSpin(false)
       });
   };
 
   const verifyOtp = () => {
+    setSpin(true)
     setVerifying(true);
     if (otp.length == 6) {
       let confiromationResult = window.confiromationResult;
@@ -146,9 +151,11 @@ const [loginOn,setLoginOn] = useState(false)
           setVerifying(false);
           navigate()
           setLoginOn(false) 
+          setSpin(false)
         })
         .catch((error) => {
           alert(error);
+          setSpin(false)
         });
     }
   };
@@ -302,6 +309,15 @@ const [loginOn,setLoginOn] = useState(false)
              */}
         </div>
       </Modal>
+
+      {spin ? (
+        <span className="flex h-3 w-3">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-200 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-300"></span>
+        </span>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
