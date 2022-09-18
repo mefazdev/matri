@@ -33,6 +33,7 @@ import "react-toastify/dist/ReactToastify.css";
 // import MobileMenu from "../../components/MobileMenu";
 import Modal from "@mui/material/Modal";
 import AdminHeader from "../../../components/AdminHeader";
+import Link from "next/link";
 
 export default function ViewProfile() {
   const dispatch = useDispatch();
@@ -129,8 +130,8 @@ const [admin,setAdmin] = useState({})
     <div className="view">
         {admin.admin == true ? <><AdminHeader />
 
-<div className="view__content flex">
-  <div className="sidebar__div"></div>
+<div className="view__content  ">
+ 
 
   <div className="view__right">
     <div className="view__head flex">
@@ -483,6 +484,11 @@ const [admin,setAdmin] = useState({})
     <div className="view__desc">
       <h6>Iam looking for</h6>
       <h5>{profile.lookingFor  }</h5>
+    </div>
+
+    <div className="viewProf__edit">
+    <Link href={`/admin/editProfile/${encodeURIComponent(id)}`}><button>EDIT</button></Link>
+      
     </div>
   </div>
 </div></> :""}

@@ -247,21 +247,16 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
                 </div>
 
                 <div className="main__form__row grid md:grid-cols-2  gap-3 md:gap-10">
-                  <div>
+                <div className="main__form__row__left">
                     <p>
-                      Phone<span style={{ color: "red" }}>*</span>
+                      Email<span style={{ color: "red" }}>*</span>{" "}
                     </p>
-                    <div className="phone__input ">
-                      <PhoneInput
-                        name="phone"
-                        className="pl-2"
-                        placeholder="Phone"
-                        value={phone}
-                        onChange={setPhone}
-                        required
-                        defaultCountry="IN"
-                      />
-                    </div>
+                    <input
+                      placeholder="Email"
+                      required
+                      type="email"
+                      onChange={(e) => setEmail(e.target.value.trim())}
+                    />
                   </div>
                   <div className="main__form__row__right">
                     <p>
@@ -286,20 +281,27 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
                       />
                     </div>
                   </div>
+                  
+
                 </div>
                 <div className="main__form__row grid md:grid-cols-2  gap-3 md:gap-10">
-                  <div className="main__form__row__left">
+                <div>
                     <p>
-                      Email<span style={{ color: "red" }}>*</span>{" "}
+                      Phone<span style={{ color: "red" }}>*</span>
                     </p>
-                    <input
-                      placeholder="Email"
-                      required
-                      type="email"
-                      onChange={(e) => setEmail(e.target.value.trim())}
-                    />
+                    <div className="phone__input ">
+                      <PhoneInput
+                        name="phone"
+                        className="pl-2"
+                        placeholder="Phone"
+                        value={phone}
+                        onChange={setPhone}
+                        required
+                        defaultCountry="IN"
+                      />
+                    </div>
                   </div>
-                  {/* <div className="main__form__row__right">
+                                   {/* <div className="main__form__row__right">
                     <p>
                       Password<span style={{ color: "red" }}>*</span>
                     </p>

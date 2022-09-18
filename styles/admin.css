@@ -21,6 +21,25 @@ margin-left: 3%;
   }
 
 
+  .all__member__head__left select{
+    border: solid 1px gray;
+    border-radius: 3px;
+    outline: none;
+    min-width: 100px;
+    padding: 3px;
+    font-family: "Poppins",sans-serif;
+  }
+  .all__member__head__left input{
+    border: solid 1px gray;
+    border-radius: 3px;
+    outline: none;
+    min-width: 100px;
+    font-family: "Poppins",sans-serif;
+  margin-left: 5px;
+  padding: 3px;
+  }
+
+
   #ad__view__btn{
     background-color: blue;
     font-size: 13px;
@@ -118,4 +137,33 @@ width: 70px;
     padding: 5px;
     border-radius: 6px;
     width: 100px;
+}
+
+
+.all__member__head{
+  /* border: saddlebrown solid; */
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.all__member__head__btn{
+ font-family: 'Poppins',sans-serif;
+ font-weight: 600;
+ font-size: 16px;
+ padding: 3px;
+ background-color: rgba(128, 128, 128, 0.119);
+ min-width: 100px;
+ margin-left: 4px;
+ border-radius: 4px;
+}
+.all__member__head__btn__active{
+  font-family: 'Poppins',sans-serif;
+ font-weight: 600;
+ font-size: 16px;
+ padding: 3px;
+ background-color: rgba(128, 128, 128, 0.119);
+ min-width: 100px;
+ margin-left: 4px;
+ border-radius: 4px;
+ outline: 1px solid rgb(17, 159, 90);
 }
