@@ -134,6 +134,7 @@ export default function AllMember() {
             <div className="all__member__head flex">
             <div className="all__member__head__left">
             <select onChange={((e)=>setSearchKey(e.target.value))}>
+              <option value=''>Filter by</option>
               <option value='ID'>Id</option>
               <option>Name</option>
               <option>District</option>
