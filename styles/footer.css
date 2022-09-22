@@ -11,6 +11,7 @@
     background-color: rgb(5, 100, 43);
     padding-top: 20px;
     padding-bottom: 20px;
+    
 }
 
 .footer__bottom__content{
@@ -39,7 +40,7 @@
     margin-right: 5px;
 }
 .footer__bottom__content__right{
-   
+    
     align-items: center;
     display: flex;
 }
@@ -60,6 +61,12 @@
     color: #ffff; 
 }
 @media screen and (max-width: 800px) {
+    .footer__bottom__content__left p{
+        font: normal normal normal 13px/25px Overpass;
+        font-family: "Overpass", sans-serif;
+        color: #fff; 
+        cursor: pointer;
+    }
     .footer__bottom__content__left{
        
         display: block;
@@ -71,7 +78,7 @@
     }
     .footer__bottom__content__right{
         margin: auto;
-      margin-top: 40px;
+      /* margin-top: 40px; */
       display: block;
    
     }
@@ -93,4 +100,8 @@
         cursor: pointer;
     } 
   
+}
+
+#testing{
+    color: rgb(53, 123, 197);
 }

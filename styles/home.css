@@ -268,3 +268,32 @@ height: 30px;
  
  }
 
+
+ .home__avatar__div{
+  /* border: saddlebrown solid; */
+  /* width: 100%; */
+  /* background-color: #fff; */
+  height:fit-content;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+
+ }
+ .home__avatar__div p{
+  color: #fff;
+  font-size: 14px;
+  font-family: "Poppins",sans-serif;
+  margin-top: -5px;
+ }
+ #home__avatar{
+color: rgb(240, 236, 236);
+font-size: 30px;
+ }
+ .home__avatar__div img{
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  overflow: hidden;
+ }
+

@@ -29,26 +29,35 @@ export default function Footer() {
         <div className="footer__bottom__content grid grid-cols-1 lg:grid-cols-3">
           <div className="footer__bottom__content__left__div lg:col-span-2">
             <div className="footer__bottom__content__left  ">
-              <div className="flex justify-center">
+              <div className="md:flex">
+              
+              <Link href='/'><p className="flex">Home <span className="invisible md:visible">|</span></p></Link>
+              <Link href='/About'><p className="flex">About <span className="invisible md:visible">|</span></p></Link>
+      
+              <Link href='/Contact'><p className="flex">Contact <span className="invisible md:visible">|</span></p></Link>
+      
                 <Link href="/Privacy">
-                  <p>
-                    Privacy policy <span>|</span>
+                
+                  <p className="flex  ">
+                    Privacy policy <span className="invisible md:visible">|</span>
                   </p>
                 </Link>
+             
                 <Link href="/Terms">
-                  <p>
-                    Terms and conditions <span>|</span>
+                  <p className="flex">
+                    Terms and conditions
+                    <span className="invisible md:visible">|</span> 
                   </p>
                 </Link>
               </div>
               <div className="flex justify-center">
                 <Link href="/Pricing">
-                  <p>
+                  <p className="invisible md:visible">
                     Pricing <span>|</span>
                   </p>
                 </Link>
                 <Link href="/Privacy">
-                <p>Refund policy </p>
+                <p className="invisible md:visible">Refund policy </p>
                 </Link>
               </div>
             

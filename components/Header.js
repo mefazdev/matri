@@ -6,7 +6,9 @@ import {  openLogin,   } from '../redux/actions';
 import Link from 'next/link';
 import logo from '../asset/image/logo.png'
 import Image from 'next/image';
-export default function Header() {
+import AccountCircleSharpIcon from '@mui/icons-material/AccountCircleSharp';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+export default function Header({name,avatar}) {
   const dispatch = useDispatch();
     // const open = useSelector((state) => state.searchControl);
  
@@ -55,11 +57,20 @@ export default function Header() {
 
             </div>
          </div>
-         <button id='mob__login__btn' onClick={()=>dispatch(openLogin())}>Login</button>
+<div className='home__avatar__div'
+onClick={()=>dispatch(openLogin())}
+type="button"
+>
+  {avatar ?  <img alt='' src={avatar} /> : <AccountCircleSharpIcon id='home__avatar'/>}
+  
 
-<MenuIcon 
+<p>{name  ? name : "Login"}</p>   
+</div>
+         {/* <button id='mob__login__btn' onClick={()=>dispatch(openLogin())}>Login</button> */}
+
+{/* <MenuIcon 
 onClick={()=>setMobileView(!mobileView)}
-id='header__menu'/>
+id='header__menu'/> */}
       </div>
 
  
@@ -67,7 +78,7 @@ id='header__menu'/>
   {mobileView  ? <div className='header__collapse'>
     <div className='collapse__row'>
       <Link href='/'><p>Home</p></Link>
-      
+       
     </div>
     <div className='collapse__row'>
       <Link href='/About'><p>About</p></Link>

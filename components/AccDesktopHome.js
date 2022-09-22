@@ -102,7 +102,7 @@ export default function AccDesktopHome() {
           where("status", "==", "Active"),
           // limit(1)
   
-          where('district','==',dist)
+          // where('district','==',dist)
         );
         const data = await getDocs(q);
         setMembers(data.docs.map((doc) => doc));
@@ -484,7 +484,7 @@ export default function AccDesktopHome() {
     <>
       {user ? (
         <>
-          <AccountNav    />
+          <AccountNav     />
         
           <div className="acc__desk">
             <div className="acc__desk__content flex">

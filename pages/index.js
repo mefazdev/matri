@@ -186,7 +186,10 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
         // href="/favicon.ico" 
         />
       </Head>
-      <Header />
+      <Header 
+      name = {member[0]?.data().brideName}
+      avatar = {member[0]?.data().photo ? member[0]?.data().photo: ''}
+      />
       <div className="home">
 
         
@@ -312,7 +315,7 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
                     />
                   </div> */}
                 </div>
-                {/* <div className='main__form__row   '> */}
+              
                 <div className="main__form__check__div">
                   {/* <div className='flex'> */}
                   <input
@@ -323,16 +326,18 @@ const users = signInWithPhoneNumber(auth,phone,appVerifier).
                   />
                   <p>
                     {" "}
-                    By clicking register free, you accept our <Link  href='/Terms'><span style={{color:'blue',cursor:'pointer'}}>T&C</span></Link> and <Link href='/Privacy'><span style={{color:'blue',cursor:'pointer'}}>Privacy
+                    By clicking register free, you accept our <Link  href='/Terms'><span id='testing' 
+                    style={{color:'rgb(53, 123, 197)',cursor:'pointer'}}
+                    >T&C</span></Link> and <Link href='/Privacy'><span style={{color:'rgb(53, 123, 197)',cursor:'pointer'}}>Privacy
                     Policy</span></Link> 
                   </p>
 
                   {/* </div> */}
                 </div>
 
-                {/* </div> */}
+                
                 <div className=" flex home__main__form__btn__div">
-                  {/* <Link href='/profilecreation/Basic'> */}
+                 
                   <button
                     disabled={!check}
                     type="submit"
