@@ -58,7 +58,7 @@ export default function Header({name,avatar}) {
             </div>
          </div>
 <div className='home__avatar__div'
-id='header__menu'/>
+id='header__menu'
 onClick={()=>dispatch(openLogin())}
 type="button"
 >
